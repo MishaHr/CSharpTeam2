@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C16085CB-ED7B-402A-9D41-789C3F3D8163}</ProjectGuid>
+    <ProjectGuid>{6AE6BE6F-8239-489B-B9D5-A66A15B16CD9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Project</RootNamespace>
-    <AssemblyName>Project</AssemblyName>
+    <RootNamespace>ProductDatabase</RootNamespace>
+    <AssemblyName>ProductDatabase</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,11 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProductDatabase.BL\ProductDatabase.BL.csproj">
+      <Project>{BC0DDAA7-F217-4604-95DA-36F16D0A22D3}</Project>
+      <Name>ProductDatabase.BL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
