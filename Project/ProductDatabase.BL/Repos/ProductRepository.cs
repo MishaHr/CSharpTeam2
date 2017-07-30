@@ -13,32 +13,12 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас для добування Продуктів
     /// </summary>
-    public class ProductRepository:IRepository
+    public class ProductRepository:AbstractRepository
     {
-        //змінна вибору відповідного файлу бази даних (пізніше перероблю механізм)
-        public string Option { get; set; } = "Product";
-
-        /// <summary>
-        ///  Метод для добування о’єкту Product з бази даних. Приймає ID продукту як вхідний параметр
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns>Повертає об’єкт класу Product з відповідни ID</returns>
-        public IRetrivable Retrive(int Id)
+        
+        public ProductRepository() : base("Product")
         {
-            
-            //читаєму інфу з файлу
-            LoadService load = new LoadService(Option);
-            string [] retrivedData = load.ReadFromFile(Id);
            
-            
-            //заповнюємо відповідні поля в об’єкту Product
-            Product item = new Product(ToInt32(retrivedData [0]));
-            item.CategoryId = ToInt32(retrivedData[1]);
-            item.ManufacrirerId = ToInt32(retrivedData[2]);
-            item.ProductModel = retrivedData[3];
-
-
-            return item;
         }
 
         //метод зчитування всіх записів

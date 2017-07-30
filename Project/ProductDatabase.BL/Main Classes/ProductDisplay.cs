@@ -23,7 +23,7 @@ namespace ProductDatabase.BL.Main_Classes
 
         public override string ToString()
         {
-            return string.Format($"Product ID: {ProductId}\nCategory: {CategoryName}\nManufacturer: {ManufacturerName}\nModel: {ProductModel}");
+            return string.Format($"ID Товару: {ProductId}\nКатегорія: {CategoryName}\nВиробник: {ManufacturerName}\nМодель: {ProductModel}");
         }
     }
 }

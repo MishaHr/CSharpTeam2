@@ -16,14 +16,12 @@ namespace ProductDatabase
         static void Main(string [] args)
         {
             //Вхідна точка програми
-            int ID = 2;
-            ProductDisplayRepository loadReport = new ProductDisplayRepository();
-            ProductDisplay report1 = loadReport.Retrive(ID);
-            Console.WriteLine(report1);
+            Console.OutputEncoding = Encoding.UTF8;
+            MainMenu.Show();
             
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+            //Console.WriteLine("Press any key to exit...");
+            //Console.ReadKey();
         }
     }
 }

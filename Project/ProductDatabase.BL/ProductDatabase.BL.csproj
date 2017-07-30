@@ -47,6 +47,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="IRetrivable.cs" />
     <Compile Include="Main Classes\Manufacturer.cs" />
+    <Compile Include="ObjectCreator.cs" />
     <Compile Include="Repos\ManufacturerRepository.cs" />
     <Compile Include="Main Classes\ProductDisplay.cs" />
     <Compile Include="Repos\CategoryRepository.cs" />

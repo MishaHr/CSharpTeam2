@@ -13,6 +13,11 @@ namespace ProductDatabase.BL
     {
         string Option { get; }
 
+        /// <summary>
+        /// Метод добування об’экту з бази даних
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         IRetrivable Retrive(int Id);
     }
 }

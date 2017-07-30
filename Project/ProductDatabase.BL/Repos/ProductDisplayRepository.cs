@@ -28,8 +28,8 @@ namespace ProductDatabase.BL.Repos
 
             //добуваються об’єкти згідно з ІД
             Product product = (Product)prodactData.Retrive(id);
-            Category category = categoryData.Retrive(product.CategoryId);
-            Manufacturer manufacturer = manufacturerData.Retrive(product.ManufacrirerId);
+            Category category = (Category)categoryData.Retrive(product.CategoryId);
+            Manufacturer manufacturer = (Manufacturer)manufacturerData.Retrive(product.ManufacrirerId);
 
             //заповнюються відповідні поля та повертається результат
             report.ProductId = product.ProductId;
