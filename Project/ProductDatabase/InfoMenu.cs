@@ -31,8 +31,8 @@ namespace ProductDatabase
         private static void Back()
         {
             WriteLine();
-            Write("Натисніть любу клавышу щоб повернутись до попереднього меню: ");
-            ReadLine();
+            Write("Натисніть любу клавышу щоб повернутись до попереднього меню.");
+            ReadKey();
             MainMenu.Show();
         }
     }

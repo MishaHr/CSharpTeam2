@@ -26,16 +26,16 @@ namespace ProductDatabase.BL.Repos
             CategoryRepository categoryData =new CategoryRepository();
             ManufacturerRepository manufacturerData = new ManufacturerRepository();
 
-            //добуваються об’єкти згідно з ІД
-            Product product = (Product)prodactData.Retrive(id);
-            Category category = (Category)categoryData.Retrive(product.CategoryId);
-            Manufacturer manufacturer = (Manufacturer)manufacturerData.Retrive(product.ManufacrirerId);
+            ////добуваються об’єкти згідно з ІД
+            //Product product = (Product)prodactData.Retrive(id);
+            //Category category = (Category)categoryData.Retrive(product.CategoryId);
+            //Manufacturer manufacturer = (Manufacturer)manufacturerData.Retrive(product.ManufacrirerId);
 
-            //заповнюються відповідні поля та повертається результат
-            report.ProductId = product.ProductId;
-            report.CategoryName = category.CategoryName;
-            report.ManufacturerName = manufacturer.ManufacturerName;
-            report.ProductModel = product.ProductModel;
+            ////заповнюються відповідні поля та повертається результат
+            //report.ProductId = product.ProductId;
+            //report.CategoryName = category.CategoryName;
+            //report.ManufacturerName = manufacturer.ManufacturerName;
+            //report.ProductModel = product.ProductModel;
 
 
             return report;

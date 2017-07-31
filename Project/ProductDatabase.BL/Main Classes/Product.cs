@@ -37,7 +37,7 @@ namespace ProductDatabase.BL
 
         public override string ToString()
         {
-            return string.Format($"ID:{ProductId} Category:{CategoryId} Manufacturer: {ManufacrirerId} Model {ProductModel}");
+            return string.Format($"ID: {ProductId}\nCategory: {CategoryId}\nManufacturer: {ManufacrirerId}\nModel {ProductModel}");
         }
     }
 }

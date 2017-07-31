@@ -18,36 +18,44 @@ namespace ProductDatabase.BL
            Option = option;
         }
 
-        public IRetrivable GetInstance(string [] retrivedData )
+        public Product GetProduct (string [] retrivedData )
         {
-             
-            if (Option == "Product")
-            {
-                Product product = new Product(ToInt32(retrivedData[0]));
+
+            //else if (Option=="Category")
+            Product product = new Product(ToInt32(retrivedData[0]));
                 product.CategoryId = ToInt32(retrivedData[1]);
                 product.ManufacrirerId = ToInt32(retrivedData[2]);
-                product.ProductModel = retrivedData[3];
+                product.ProductModel = retrivedData[3].Trim();
                 return product;
             }
 
-            else if (Option=="Category")
-            {
-                Category category = new Category(ToInt32(retrivedData[0]));
-                category.CategoryName = retrivedData[1];
-                return category;
-            }
-
-            else if (Option == "Manufacturer")
-            {
-                //заповнюємо відповідні поля в об’єкту Manufacturer (це можна винести в майбутньому в окремий клас-Фабрику)
-                Manufacturer manufacturer = new Manufacturer(Convert.ToInt32(retrivedData[0]));
-                manufacturer.ManufacturerName = retrivedData[1];
-
-                return manufacturer;
-
-            }
-
-            return null;
+        public Category GetCategory(string[] retrivedData)
+        //else if (Option=="Category")
+        {
+            Category category = new Category(ToInt32(retrivedData[0]));
+            category.CategoryName = retrivedData[1].Trim();
+            return category;
         }
+
+        public Manufacturer GetManufacturer(string[] retrivedData)
+        //else if (Option == "Manufacturer")
+        {
+            //заповнюємо відповідні поля в об’єкту Manufacturer (це можна винести в майбутньому в окремий клас-Фабрику)
+            Manufacturer manufacturer = new Manufacturer(Convert.ToInt32(retrivedData[0]));
+            manufacturer.ManufacturerName = retrivedData[1].Trim();
+
+            return manufacturer;
+
+        }
+
+        public Supplier GetSupplier(string[] retrivedData)
+        {
+            Supplier supplier =new Supplier(ToInt32(retrivedData[0]));
+            supplier.SupplierName = retrivedData[1];
+            return supplier;
+        }
+
+
+
     }
 }

@@ -10,36 +10,59 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL
 {
+    public interface IProductRepository
+    {
+        IEnumerable<Product> GetAll();
+        Product Get(int id);
+        Product Add(Product newProduct);
+        void SaveChanes();
+    }
+
     /// <summary>
     /// Клас для добування Продуктів
     /// </summary>
-    public class ProductRepository:AbstractRepository
+    public class ProductRepository: IProductRepository
     {
-        
-        public ProductRepository() : base("Product")
+        private string _option = "Product";
+        private List<Product> _productList;
+
+        public ProductRepository() 
         {
-           
+           LoadService load = new LoadService(_option);
+            List<string[]> retrivedData = load.ReadAll();
+
+            //створюємо і повертаємо об’єкт
+            ObjectCreator itemCreator = new ObjectCreator(_option);
+            _productList = new List<Product>();
+
+            for (int index = 0; index < retrivedData.Count; index++)
+            {
+               _productList.Add(itemCreator.GetProduct(retrivedData[index]));
+            }
         }
 
         //метод зчитування всіх записів
-        //public List<Product> RetriveAll()
-        //{
-        //    List<Product> productList = new List<Product>() { };
-        //    LoadService load = new LoadService(Option);
-        //    List<string[]> retrivedData = load.ReadAll();
-
-        //    foreach (var prod in retrivedData)
-        //    {
-        //        int productID = Convert.ToInt32(prod[0]);
-        //        productList.Add(new Product(productID, prod[1]));
-        //    }
-
-        //    return productList;
-        //}
-
-        public void Save(string saveProduct)
+       
+        public IEnumerable<Product> GetAll()
         {
-            SaveService.WrightToFile(saveProduct);
+            List<Product> products = _productList;
+            return products;
+        }
+
+        public Product Get(int id)
+        {
+            Product item = _productList.FirstOrDefault(product => product.ProductId == id);
+            return item;
+        }
+
+        public Product Add(Product newProduct)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveChanes()
+        {
+            throw new NotImplementedException();
         }
     }
 

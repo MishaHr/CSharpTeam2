@@ -9,7 +9,7 @@ namespace ProductDatabase.BL.Main_Classes
     /// <summary>
     /// Клас Виробників продукції.
     /// </summary>
-    public class Manufacturer: IRetrivable
+    public class Manufacturer
     {
         public int ManufacturerId { get; private set; }
         public string ManufacturerName { get; set; }

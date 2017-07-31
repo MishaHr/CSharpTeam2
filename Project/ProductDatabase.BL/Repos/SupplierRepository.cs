@@ -13,43 +13,34 @@ namespace ProductDatabase.BL
     /// </summary>
     public class SupplierRepository
     {
-        private string option = "Supplier";
+        private string _option = "Supplier";
+        private List<Supplier> _supplierList;
+
+        public SupplierRepository()
+        {
+            LoadService load = new LoadService(_option);
+            List<string[]> retrivedData = load.ReadAll();
+
+            //створюємо і повертаємо об’єкт
+            ObjectCreator itemCreator = new ObjectCreator(_option);
+            _supplierList = new List<Supplier>();
+
+            for (int index = 0; index < retrivedData.Count; index++)
+            {
+                _supplierList.Add(itemCreator.GetSupplier(retrivedData[index]));
+            }
+
+        }
+
 
         /// <summary>
         /// Метод для добування о’єкту Supplier з бази даних. Приймає ID постачальника як вхідний параметр
         /// </summary>
         /// <param name="productId"></param>
         /// <returns>Повертає об’єкт класу Supplier з відповідни ID</returns>
-        public Supplier Retrive(int productId)
-        {
 
-            //читаєму інфу з файлу
-            LoadService load = new LoadService(option);
-            string[] supplierData = load.ReadFromFile(productId);
-
-
-            //заповнюємо відповідні поля в об’єкту Supplier
-            Supplier item = new Supplier(ToInt32(supplierData[0]));
-            item.SupplierName = supplierData[1];
-
-            return item;
-        }
-    
         //метод зчитування всіх записів
-        public List<Supplier> RetriveAll()
-        {
-            List<Supplier> supplierList = new List<Supplier>() { };
-            LoadService load = new LoadService(option);
-            List<string[]> retrivedData = load.ReadAll();
-
-            foreach (var sup in retrivedData)
-            {
-                int supplierID = Convert.ToInt32(sup[0]);
-                supplierList.Add(new Supplier(supplierID, sup[1]));
-            }
-
-            return supplierList;
-        }
+        
 
         public void Save(string saveProduct)
         {

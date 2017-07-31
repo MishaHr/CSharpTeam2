@@ -41,39 +41,7 @@ namespace ProductDatabase.DA
 
         }
 
-        /// <summary>
-        /// метод для зчитування цылого рядка з файлу відповідно до ІД.
-        /// </summary>
-        /// <param name="itemId">Ідентифікатор рядка, який потрибно знайти і обробити</param>
-        /// <returns>Повертає масив стрінгів, в кожному елементі якого знаходяться окремі значення рядка</returns>
-        public string [] ReadFromFile(int itemId)
-        {
-            string line;
-            int lineId;
-            StreamReader reader =
-                new StreamReader(path);
-            using (reader)
-            {
-                line = reader.ReadLine();
-                while (line != null)
-                {
-                    string[] retrivedData = ParseToStringArray(line);
-                    lineId = Convert.ToInt32(retrivedData[0]);
-                    if (lineId == itemId)
-                    {
-                        return retrivedData;
-                    }
-                    else
-                    {
-                        line = reader.ReadLine();
-                    }
-                }
-                
-            }
-
-        return null;
-        }
-
+  
         /// <summary>
         /// метод який добуває всі записи з файлу
         /// </summary>
