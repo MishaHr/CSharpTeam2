@@ -51,13 +51,18 @@ namespace ProductDatabase
                     Категорія = category.CategoryName,
                     Виробник = manufacturer.ManufacturerName,
                     Модель = product.ProductModel
+                    
                 };
-           
-
+            
+            
             foreach (var p in prod)
             {
                 Console.WriteLine(p);
             }
+            Console.WriteLine();
+            var newProd = prod.First();
+
+            Console.WriteLine($"Код товару: {newProd.ID}\nКатегорія: {newProd.Категорія}\nВиробник: {newProd.Виробник}\nМодель: {newProd.Модель}");
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
