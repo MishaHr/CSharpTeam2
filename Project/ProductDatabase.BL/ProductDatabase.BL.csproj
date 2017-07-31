@@ -45,8 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main Classes\Category.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IRetrivable.cs" />
     <Compile Include="Main Classes\Manufacturer.cs" />
     <Compile Include="ObjectCreator.cs" />
     <Compile Include="Repos\ManufacturerRepository.cs" />

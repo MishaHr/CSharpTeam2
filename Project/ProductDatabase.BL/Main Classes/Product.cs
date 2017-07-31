@@ -10,7 +10,7 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас Продукції. містить основну інформацію про продук, а також ID категорії та виробника
     /// </summary>
-    public class Product:IRetrivable
+    public class Product
     {
         
         public int ProductId { get; private set; }

@@ -9,7 +9,7 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас категорій товарів. 
     /// </summary>
-    public class Category:IRetrivable
+    public class Category
     {
         public int CategoryId { get; private set; }
 
