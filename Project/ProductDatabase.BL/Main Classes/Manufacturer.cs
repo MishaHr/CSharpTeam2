@@ -9,7 +9,7 @@ namespace ProductDatabase.BL.Main_Classes
     /// <summary>
     /// Клас Виробників продукції.
     /// </summary>
-    public class Manufacturer
+    public class Manufacturer: ISaveable
     {
         public int ManufacturerId { get; private set; }
         public string ManufacturerName { get; set; }
@@ -21,7 +21,7 @@ namespace ProductDatabase.BL.Main_Classes
 
         public override string ToString()
         {
-            return string.Format($"{ManufacturerId} {ManufacturerName}");
+            return string.Format($"{ManufacturerId};{ManufacturerName}");
         }
     }
 }

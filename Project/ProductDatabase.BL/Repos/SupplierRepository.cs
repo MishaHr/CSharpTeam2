@@ -27,7 +27,7 @@ namespace ProductDatabase.BL
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _supplierList.Add(itemCreator.GetSupplier(retrivedData[index]));
+                _supplierList.Add(itemCreator.CreateSupplier(retrivedData[index]));
             }
 
         }

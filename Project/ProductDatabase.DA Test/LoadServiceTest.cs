@@ -13,12 +13,11 @@ namespace ProductDatabase.DA_Test
         {
             //Arrange
 
-            var loadService = new LoadService();
-            var expected = "2; Notebook";
+            
             //Act
-            var actual = loadService.ReadFromFile(2);
+           
             //Assert
-            Assert.AreEqual(expected,actual);
+            
         }
     }
 }

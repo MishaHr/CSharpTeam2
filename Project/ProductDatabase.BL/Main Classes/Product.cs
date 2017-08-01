@@ -10,7 +10,7 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас Продукції. містить основну інформацію про продук, а також ID категорії та виробника
     /// </summary>
-    public class Product
+    public class Product: ISaveable, IGetable
     {
         
         public int ProductId { get; private set; }
@@ -18,12 +18,6 @@ namespace ProductDatabase.BL
         public int ManufacrirerId { get; set; }
         public string ProductModel { get; set; }
 
-    
-
-        public Product()
-        {
-                
-        }
 
         /// <summary>
         /// Основний конструктор, який буде використовуватись
@@ -34,10 +28,13 @@ namespace ProductDatabase.BL
             ProductId = productId;
         }
 
-
+        /// <summary>
+        /// Формат виводу стрінги в ToString() перевантажено у відповідності до формату запису у файл
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return string.Format($"ID: {ProductId}\nCategory: {CategoryId}\nManufacturer: {ManufacrirerId}\nModel {ProductModel}");
+            return string.Format($"{ProductId};{CategoryId};{ManufacrirerId};{ProductModel}");
         }
     }
 }

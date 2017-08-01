@@ -9,7 +9,7 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас категорій товарів. 
     /// </summary>
-    public class Category
+    public class Category: ISaveable
     {
         public int CategoryId { get; private set; }
 
@@ -26,7 +26,7 @@ namespace ProductDatabase.BL
 
         public override string ToString()
         {
-            return string.Format($"{CategoryId} {CategoryName}");
+            return string.Format($"{CategoryId};{CategoryName}");
         }
     }
 }

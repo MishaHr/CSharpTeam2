@@ -35,7 +35,7 @@ namespace ProductDatabase.BL.Main_Classes
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _manufacturerList.Add(itemCreator.GetManufacturer(retrivedData[index]));
+                _manufacturerList.Add(itemCreator.CreateManufacturer(retrivedData[index]));
             }
         }
 

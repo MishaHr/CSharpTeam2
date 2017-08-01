@@ -33,7 +33,7 @@ namespace ProductDatabase.BL.Repos
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _categoryList.Add(itemCreator.GetCategory(retrivedData[index]));
+                _categoryList.Add(itemCreator.CreateCategory(retrivedData[index]));
             }
         }
 

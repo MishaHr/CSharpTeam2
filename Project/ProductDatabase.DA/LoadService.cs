@@ -24,20 +24,29 @@ namespace ProductDatabase.DA
         {
             if (option == "Product")
             {
-                path = @"Products.dat";
+                path = @"C:\ProjectDebug\ProjectDB\Products.dat";
             }
             else if (option == "Supplier")
             {
-                path = @"Suppliers.dat";
+                path = @"C:\ProjectDebug\ProjectDB\Suppliers.dat";
             }
             else if (option == "Category")
             {
-                path = @"Category.dat";
+                path = @"C:\ProjectDebug\ProjectDB\Category.dat";
             }
             else if (option == "Manufacturer")
             {
-                path = @"Manufacturer.dat";
+                path = @"C:\ProjectDebug\ProjectDB\Manufacturer.dat";
             }
+            else if (option == "Memo")
+            {
+                path = @"C:\ProjectDebug\ProjectDB\Memo.dat";
+            }
+            else if (option == "WarehouseRecord")
+            {
+                path = @"C:\ProjectDebug\ProjectDB\WarehouseRecord.dat";
+            }
+
 
         }
 

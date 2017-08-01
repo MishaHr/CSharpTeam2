@@ -8,7 +8,7 @@ using ProductDatabase.BL.Main_Classes;
 
 namespace ProductDatabase.BL
 {
-    public class ObjectCreator
+    internal class ObjectCreator
     {
         private string Option { get; set; }
         //private string objectChoice { get; set; }
@@ -18,7 +18,7 @@ namespace ProductDatabase.BL
            Option = option;
         }
 
-        public Product GetProduct (string [] retrivedData )
+        public Product CreateProduct (string [] retrivedData )
         {
 
             //else if (Option=="Category")
@@ -29,7 +29,7 @@ namespace ProductDatabase.BL
                 return product;
             }
 
-        public Category GetCategory(string[] retrivedData)
+        public Category CreateCategory(string[] retrivedData)
         //else if (Option=="Category")
         {
             Category category = new Category(ToInt32(retrivedData[0]));
@@ -37,9 +37,8 @@ namespace ProductDatabase.BL
             return category;
         }
 
-        public Manufacturer GetManufacturer(string[] retrivedData)
-        //else if (Option == "Manufacturer")
-        {
+        public Manufacturer CreateManufacturer(string[] retrivedData)
+       {
             //заповнюємо відповідні поля в об’єкту Manufacturer (це можна винести в майбутньому в окремий клас-Фабрику)
             Manufacturer manufacturer = new Manufacturer(Convert.ToInt32(retrivedData[0]));
             manufacturer.ManufacturerName = retrivedData[1].Trim();
@@ -48,13 +47,30 @@ namespace ProductDatabase.BL
 
         }
 
-        public Supplier GetSupplier(string[] retrivedData)
+        public Supplier CreateSupplier(string[] retrivedData)
         {
             Supplier supplier =new Supplier(ToInt32(retrivedData[0]));
             supplier.SupplierName = retrivedData[1];
             return supplier;
         }
 
+        public Memo CreateMemo(string[] retrivedData)
+        {
+            Memo memo = new Memo(ToInt32(retrivedData[0]));
+            memo.MemoText = retrivedData[1];
+            return memo;
+        }
+
+        public WarehouseRecord CreateWarehouseRecord (string[] retrivedData)
+        {
+            WarehouseRecord warehouseRecord = new WarehouseRecord(ToInt32(retrivedData[0]));
+            warehouseRecord.WarehouseNumber = ToInt32(retrivedData[1]);
+            warehouseRecord.Ammmount = ToInt32(retrivedData[2]);
+            warehouseRecord.Price = ToDouble(retrivedData[3]);
+            warehouseRecord.DeliveryDate = ToDateTime(retrivedData[4]);
+            warehouseRecord.SupplierId = ToInt32(retrivedData[5]);
+            return warehouseRecord;
+        }
 
 
     }

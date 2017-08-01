@@ -10,25 +10,17 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL
 {
-    public interface IProductRepository
-    {
-        IEnumerable<Product> GetAll();
-        Product Get(int id);
-        Product Add(Product newProduct);
-        void SaveChanes();
-    }
-
     /// <summary>
     /// Клас для добування Продуктів
     /// </summary>
-    public class ProductRepository: IProductRepository
+    public class ProductRepository: IRepository
     {
         private string _option = "Product";
         private List<Product> _productList;
 
         public ProductRepository() 
         {
-           LoadService load = new LoadService(_option);
+            LoadService load = new LoadService(_option);
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
@@ -37,30 +29,30 @@ namespace ProductDatabase.BL
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-               _productList.Add(itemCreator.GetProduct(retrivedData[index]));
+               _productList.Add(itemCreator.CreateProduct(retrivedData[index]));
             }
         }
 
         //метод зчитування всіх записів
        
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<IGetable> GetAll()
         {
             List<Product> products = _productList;
             return products;
         }
 
-        public Product Get(int id)
+        public IGetable Get(int id)
         {
             Product item = _productList.FirstOrDefault(product => product.ProductId == id);
             return item;
         }
 
-        public Product Add(Product newProduct)
+        public IGetable Add(IGetable newProduct)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveChanes()
+        public void SaveChanges()
         {
             throw new NotImplementedException();
         }
