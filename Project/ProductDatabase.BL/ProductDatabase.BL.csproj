@@ -44,28 +44,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IGetable.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="ISaveable.cs" />
-    <Compile Include="Main Classes\Category.cs" />
-    <Compile Include="Main Classes\Manufacturer.cs" />
-    <Compile Include="Main Classes\Memo.cs" />
-    <Compile Include="Main Classes\ShortDescription.cs" />
-    <Compile Include="Main Classes\WarehouseRecord.cs" />
+    <Compile Include="Display.cs" />
+    <Compile Include="Interfaces\IGetable.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\ISaveable.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Manufacturer.cs" />
+    <Compile Include="Entities\Memo.cs" />
+    <Compile Include="Entities\ShortDescription.cs" />
+    <Compile Include="Entities\WarehouseRecord.cs" />
     <Compile Include="ObjectCreator.cs" />
-    <Compile Include="Reports.cs" />
-    <Compile Include="Repos\ManufacturerRepository.cs" />
-    <Compile Include="Main Classes\ProductDisplay.cs" />
-    <Compile Include="Repos\CategoryRepository.cs" />
-    <Compile Include="Repos\MemoRepository.cs" />
-    <Compile Include="Repos\ProductRepository.cs" />
-    <Compile Include="Main Classes\Supplier.cs" />
-    <Compile Include="Main Classes\Product.cs" />
+    <Compile Include="Reports\Report.cs" />
+    <Compile Include="Reports\ReportByCategory.cs" />
+    <Compile Include="Repositories\ManufacturerRepository.cs" />
+    <Compile Include="Entities\ProductDisplay.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\MemoRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Entities\Supplier.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repos\ProductDisplayRepository.cs" />
-    <Compile Include="Repos\ShortDescriptionRepository.cs" />
-    <Compile Include="Repos\SupplierRepository.cs" />
-    <Compile Include="Repos\WarehouseRecordRepository.cs" />
+    <Compile Include="Repositories\ProductDisplayRepository.cs" />
+    <Compile Include="Repositories\ShortDescriptionRepository.cs" />
+    <Compile Include="Repositories\SupplierRepository.cs" />
+    <Compile Include="Repositories\WarehouseRecordRepository.cs" />
+    <Compile Include="Controller.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProductDatabase.DA\ProductDatabase.DA.csproj">

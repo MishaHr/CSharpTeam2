@@ -21,33 +21,7 @@ namespace ProductDatabase
             //Вхідна точка програми
             Console.OutputEncoding = Encoding.UTF8;
             //MainMenu.Show();
-            ShortDescriptionRepository descriptionRepository = new ShortDescriptionRepository();
-            var descriptions = (List<ShortDescription>)descriptionRepository.GetAll();
-            ProductRepository productRepository = new ProductRepository();
-            var products = (List<Product>) productRepository.GetAll();
-            MemoRepository memoRepository =new MemoRepository();
-            var memos = (List<Memo>) memoRepository.GetAll();
-
-
-            var info =
-                from product in products
-                join description in descriptions
-                on product.ProductId equals description.ProductId
-                join memo in memos
-                on product.ProductId equals memo.ProductId
-                
-                select new
-                {
-                    ID = product.ProductId,
-                    Model = product.ProductModel,
-                    Description = description.DescriptionText,
-                    Memo = memo.MemoText
-                   
-                };
-
-            var inf = info.ToList();
-          
-            Console.WriteLine($"{inf[0].ID}. {inf[0].Model}.\nКороткий опис: {inf[0].Description}\nПримітка: {inf[0].Memo}");
+            TestReportsMenu.Show();
 
 
 
