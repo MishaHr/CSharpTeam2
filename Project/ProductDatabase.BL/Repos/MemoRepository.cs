@@ -17,7 +17,7 @@ namespace ProductDatabase.BL.Repos
         {
             LoadService load = new LoadService(_option);
             List<string[]> retrivedData = load.ReadAll();
-
+           
             //створюємо і повертаємо об’єкт
             ObjectCreator itemCreator = new ObjectCreator(_option);
             _memoList = new List<Memo>();
@@ -42,7 +42,7 @@ namespace ProductDatabase.BL.Repos
             return memo;
         }
 
-        public IGetable Add(IGetable newObject)
+        public void Add(IGetable newObject)
         {
             throw new NotImplementedException();
         }

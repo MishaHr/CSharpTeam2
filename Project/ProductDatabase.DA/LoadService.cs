@@ -46,6 +46,10 @@ namespace ProductDatabase.DA
             {
                 path = @"C:\ProjectDebug\ProjectDB\WarehouseRecord.dat";
             }
+            else if (option == "ShortDescription")
+            {
+                path = @"C:\ProjectDebug\ProjectDB\ShortDescription.dat";
+            }
 
 
         }

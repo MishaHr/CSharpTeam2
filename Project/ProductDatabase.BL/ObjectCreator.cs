@@ -72,6 +72,13 @@ namespace ProductDatabase.BL
             return warehouseRecord;
         }
 
+        public ShortDescription CreateDescription(string[] retrivedData)
+        {
+            ShortDescription description =new ShortDescription(ToInt32(retrivedData[0]));
+            description.DescriptionText = retrivedData[1];
+            return description;
+        }
+
 
     }
 }

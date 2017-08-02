@@ -47,7 +47,7 @@ namespace ProductDatabase.BL
             return item;
         }
 
-        public IGetable Add(IGetable newProduct)
+        public void Add(IGetable newProduct)
         {
             throw new NotImplementedException();
         }
