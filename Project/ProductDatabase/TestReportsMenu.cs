@@ -31,7 +31,7 @@ namespace ProductDatabase
             string choice;
                choice = Console.ReadLine();
             Console.Clear();
-            TextDisplay display = new TextDisplay();
+            ObjectToStringConverter display = new ObjectToStringConverter();
             switch (choice)
             {
 

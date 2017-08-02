@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ObjectToString.cs" />
     <Compile Include="Interfaces\IGetable.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ISaveable.cs" />
@@ -54,6 +53,7 @@
     <Compile Include="Entities\ShortDescription.cs" />
     <Compile Include="Entities\WarehouseRecord.cs" />
     <Compile Include="ObjectCreator.cs" />
+    <Compile Include="ObjectToStringConverter.cs" />
     <Compile Include="Reports\Report.cs" />
     <Compile Include="Reports\ReportByCategory.cs" />
     <Compile Include="Repositories\ManufacturerRepository.cs" />
