@@ -19,6 +19,7 @@ namespace ProductDatabase
         /// <summary>
         /// Метод виводу пунктыв меню на екран
         /// </summary>
+
         public static void Show()
         {
             Clear();
@@ -30,6 +31,7 @@ namespace ProductDatabase
             WriteLine("5. Згенерувати звіт");
             WriteLine("\n0. Вихід з програми");
             Write("\nВиберіть дію яку ви хочете виконати: ");
+
             Choose();
         }
 
@@ -38,6 +40,7 @@ namespace ProductDatabase
         /// </summary>
         private static void Choose()
         {
+
             string choice = (ReadLine());
             Clear();
             switch (choice)
@@ -64,7 +67,6 @@ namespace ProductDatabase
                     WriteLine("Ви ввели помилковий символ, повторіть свій вибір");
                     Show();
                     break;
-
 
 
             }
