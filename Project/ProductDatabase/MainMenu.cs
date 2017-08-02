@@ -19,14 +19,19 @@ namespace ProductDatabase
         /// <summary>
         /// Метод виводу пунктыв меню на екран
         /// </summary>
-        public  static void Show()
+
+        public static void Show()
         {
             Clear();
-            WriteLine("Головне меню:");
-            WriteLine("1. Показати інфо про товар");
-            WriteLine("2. Додати товар");
-            WriteLine("0. Вихід з програми");
-            Write("\nВиберіть дію: ");
+            WriteLine("\tГоловне меню:");
+            WriteLine("1. Додати новий товар");
+            WriteLine("2. Переглянути інформацію про товар");
+            WriteLine("3. Редагувати інформацію про товар");
+            WriteLine("4. Видалити існуючий товар");
+            WriteLine("5. Згенерувати звіт");
+            WriteLine("\n0. Вихід з програми");
+            Write("\nВиберіть дію яку ви хочете виконати: ");
+
             Choose();
         }
 
@@ -35,20 +40,35 @@ namespace ProductDatabase
         /// </summary>
         private static void Choose()
         {
-            
-            int choice = Convert.ToInt32(ReadLine());
+
+            string choice = (ReadLine());
             Clear();
-            if (choice == 1)
+            switch (choice)
             {
-               InfoMenu.Show();
-            }
-            else if (choice == 2)
-            {
-                UnderConstructionMenu.Show();
-            }
-            else if (choice == 0)
-            {
-                Back();
+                case "1":
+                    AddNewProductMenu.Show();
+                    break;
+                case "2":
+                    ShowProductInfoMenu.Show();
+                    break;
+                case "3":
+                    EditProductMenu.Show();
+                    break;
+                case "4":
+                    DeleteProductMenu.Show();
+                    break;
+                case "5":
+                    ReportGenerationMenu.Show();
+                    break;
+                case "0":
+                    Back();
+                    break;
+                default:
+                    WriteLine("Ви ввели помилковий символ, повторіть свій вибір");
+                    Show();
+                    break;
+
+
             }
         }
 
