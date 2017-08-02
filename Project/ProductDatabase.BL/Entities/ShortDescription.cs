@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductDatabase.BL.Main_Classes
 {
-    public class ShortDescription: ISaveable
+    public class ShortDescription: ISaveable,IGetable
     {
         /// <summary>
         /// Клас який містить коротку інформацію про кожен товар

@@ -8,37 +8,40 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Repos
 {
-    public class WarehouseRecordRepository:IRepository
+    public class ShortDescriptionRepository:IRepository
     {
-        private string _option = "WarehouseRecord";
-        private List<WarehouseRecord> _warehouseRecordsList;
-        public WarehouseRecordRepository()
+        private string _option = "ShortDescription";
+        public List<ShortDescription> _shortDescriptions;
+
+
+        public ShortDescriptionRepository()
         {
             LoadService load = new LoadService(_option);
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
             ObjectCreator itemCreator = new ObjectCreator(_option);
-            _warehouseRecordsList = new List<WarehouseRecord>();
+            _shortDescriptions = new List<ShortDescription>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _warehouseRecordsList.Add(itemCreator.CreateWarehouseRecord(retrivedData[index]));
+                _shortDescriptions.Add(itemCreator.CreateDescription(retrivedData[index]));
             }
         }
 
         public IEnumerable<IGetable> GetAll()
         {
-            List<WarehouseRecord> warehouseRecords = _warehouseRecordsList;
-            return warehouseRecords;
+            List<ShortDescription> descriptions = _shortDescriptions;
+            return descriptions;
         }
 
         public IGetable Get(int id)
         {
-            throw new NotImplementedException();
+            ShortDescription description = _shortDescriptions.FirstOrDefault(d => d.ProductId == id);
+            return description;
         }
 
-        public IGetable Add(IGetable newObject)
+        public void Add(IGetable newObject)
         {
             throw new NotImplementedException();
         }

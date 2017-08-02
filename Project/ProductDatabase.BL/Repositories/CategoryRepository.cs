@@ -7,21 +7,16 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Repos
 {
-    public interface ICategoryRepository
-    {
-        IEnumerable<Category> GetAll();
-        Category Get(int id);
-        Category Add(Category newProduct);
-        void SaveChanes();
-    }
+    
 
     /// <summary>
     /// Клас для добування Категорій
     /// </summary>
-    public class CategoryRepository: ICategoryRepository
+    public class CategoryRepository: IRepository
     {
         private string _option  = "Category";
         private List<Category> _categoryList;
+
         public CategoryRepository()
         {
             LoadService load = new LoadService(_option);
@@ -38,24 +33,24 @@ namespace ProductDatabase.BL.Repos
         }
 
       
-        public IEnumerable<Category> GetAll()
+        public IEnumerable<IGetable> GetAll()
         {
             List <Category> categories = _categoryList;
             return categories;
         }
 
-        public Category Get(int id)
+        public IGetable Get(int id)
         {
             Category item = _categoryList.FirstOrDefault(product => product.CategoryId == id);
             return item;
         }
 
-        public Category Add(Category newCategory)
+        public void Add(IGetable newObject)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveChanes()
+        public void SaveChanges()
         {
             throw new NotImplementedException();
         }
