@@ -7,7 +7,7 @@ using ProductDatabase.BL.Repos;
 
 namespace ProductDatabase.BL
 {
-    public  class TextDisplay
+    public  class ObjectToString
     {
 
         

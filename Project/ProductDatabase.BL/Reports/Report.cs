@@ -38,8 +38,8 @@ namespace ProductDatabase.BL
             List<Memo> memos = (List<Memo>)memoRepository.GetAll();
 
             //об’єднання даних по ІД. Вибірка по необхідній категорії
-            var query =
-                from product in products
+            var list =
+                (from product in products
                 join category in catgories on product.CategoryId equals category.CategoryId
                 join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
                 join description in descriptions on product.ProductId equals description.ProductId
@@ -54,10 +54,9 @@ namespace ProductDatabase.BL
                     Description = description.DescriptionText,
                     Memo = memo.MemoText
 
-                };
+                }).ToList();
 
             //Перетворення анонімниї об’єктів в об’єкти типу ReportByCategory та об’єднання їх у колекцію
-            var list = query.ToList();
             List<ReportByCategory> result = new List<ReportByCategory>();
             foreach (var item in list)
             {
