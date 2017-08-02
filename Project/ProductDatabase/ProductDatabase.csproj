@@ -59,11 +59,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewProductMenu.cs" />
+    <Compile Include="DeleteProductMenu.cs" />
+    <Compile Include="EditProductMenu.cs" />
+
     <Compile Include="InfoMenu.cs" />
     <Compile Include="IUserInterface.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportGenerationMenu.cs" />
+    <Compile Include="ShowProductInfoMenu.cs" />
     <Compile Include="UnderConstructionMenu.cs" />
   </ItemGroup>
   <ItemGroup>
