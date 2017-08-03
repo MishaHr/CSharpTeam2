@@ -44,7 +44,7 @@ namespace ProductDatabase
             switch (choice)
             {
                 case "1":
-                    AddNewProductMenu.Show();
+                    AddNewProductMenu.AddProduct();
                     break;
                 case "2":
                     ShowProductInfoMenu.Show();

@@ -31,58 +31,156 @@ namespace ProductDatabase
                     AddProduct();
                     break;
                 default:
-                    Choose();
+                    AddProduct();
                     break;
             }
         }
 
-        //public static void AddProduct()
-        //{
-        //    //Clear();
-        //    Write("Введіть назву товару : ");
-        //    string ProductName = (ReadLine());
-        //    int Row = CursorTop;
-        //    SetCursorPosition(0, Row-1);
-        //    Write("Назва товару : {0}", ProductName.PadRight(100));
-        //    WriteLine("Введіть назву товару : ");
-        //    string ProductManufacturer = (ReadLine());
-        //    WriteLine(ProductManufacturer);
-        //    Back();
-        //}
-
         public static void AddProduct()
         {
-            WriteLine("Список категорій");
-            WriteLine("0. Додати нову категорію");
-            Write("\nВведіть ID категорії зі списка або додайе нову : ");
+            //WriteLine("0. Повернутися до попереднього меню");
+            WriteLine("Список категорій"); // будуть відображатись доступні категорії для вибору
+            Write("\nВведіть ID категорії зі списку : ");
             string ProductCategory = (ReadLine());
-            if (ProductCategory == "0")
-            {
-                DataBaseEditMenu.AddNewCategory();
-            }
-            else
-            {
-                Clear();
-                WriteLine("Категорія : {0}", ProductCategory); // замсть ID має підібратися назва категорії
-            }
-            Write("\nВиберіть виробника : ");
+            //if (ProductCategory == "0")
+            //{
+            //    Back();
+            //}
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory); // замсть ID має підібратися назва категорії
+
+            WriteLine("\nСписок виробників"); // будуть відображатись доступні виробники товару для вибору
+            Write("\nВведіть ID виробника зі списку : ");
             string ProductManufacturer = (ReadLine());
-            if (ProductManufacturer == "0")
-            {
-                DataBaseEditMenu.AddNewManufacturer();
-            }
-            else
-            {
-                Clear();
-                WriteLine("Категорія : {0}", ProductCategory);
-                WriteLine("Виробник : {0}", ProductManufacturer);
-            }
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+
             Write("\nВведіть назву товару : ");
             string ProductName = (ReadLine());
             Clear();
             WriteLine("Категорія : {0}", ProductCategory);
             WriteLine("Виробник : {0}", ProductManufacturer);
             WriteLine("Назва товару : {0}", ProductName);
+
+            Write("\nВведіть дату виготовлення : "); // потрібно буде привести приклад правильного формату
+            string ProductManufactureDate = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+
+            Write("\nВведіть гарантійний термін : "); 
+            string ProductWarranty = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+
+            WriteLine("\nСписок постачальників"); // будуть відображатись доступні виробники товару для вибору
+            Write("\nВведіть ID постачальника зі списку : "); // потрібно буде привести приклад правильного формату
+            string ProductProvider = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Номер телефону постачальника : 098 765 43 21");
+
+            Write("\nВведіть кількість одиниць : ");
+            string ProductAmount = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Номер телефону постачальника : 098 765 43 21");
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+
+            Write("\nВведіть ціну за одиницю : ");
+            string ProductPrice = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Номер телефону постачальника : 098 765 43 21");
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+
+            Write("\nВведіть дату поставки : ");
+            string ProductDeliveryDate = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Номер телефону постачальника : 098 765 43 21");
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+
+            Write("\nВведіть номер складу : ");
+            string ProductWarehouse = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Номер телефону постачальника : 098 765 43 21");
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+            WriteLine("Номер складу : {0}", ProductWarehouse);
+
+            Write("\nВведіть короткий опис : ");
+            string ProductDescription = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Номер телефону постачальника : 098 765 43 21");
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+            WriteLine("Номер складу : {0}", ProductWarehouse);
+            WriteLine("Короткий опис : {0}", ProductDescription);
+
+            Write("\nЗаповніть поле для приміток якщо потрібно : ");
+            string ProductNotes = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Номер телефону постачальника : 098 765 43 21");
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+            WriteLine("Номер складу : {0}", ProductWarehouse);
+            WriteLine("Короткий опис : {0}", ProductDescription);
+            WriteLine("Примітка : {0}", ProductNotes);
+
+            WriteLine("\nІнформація введена успішно!");
+            WriteLine("Натисніть будь яку клавіше для повернення до головного меню.");
             ReadLine();
             Back();
         }
