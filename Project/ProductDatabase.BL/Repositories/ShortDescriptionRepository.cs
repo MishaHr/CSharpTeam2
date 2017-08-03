@@ -8,12 +8,18 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Repos
 {
+    /// <summary>
+    /// Клас для добування всіх записів з файлу Коротких приміток
+    /// </summary>
     public class ShortDescriptionRepository:IRepository
     {
         private string _option = "ShortDescription";
         public List<ShortDescription> _shortDescriptions;
 
 
+        /// <summary>
+        /// Конструктор, в якому завантажуються всі дані з файла і з них формується Ліст об’єктів
+        /// </summary>
         public ShortDescriptionRepository()
         {
             LoadService load = new LoadService(_option);
@@ -28,6 +34,7 @@ namespace ProductDatabase.BL.Repos
                 _shortDescriptions.Add(itemCreator.CreateDescription(retrivedData[index]));
             }
         }
+
 
         public IEnumerable<IGetable> GetAll()
         {

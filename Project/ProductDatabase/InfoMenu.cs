@@ -20,11 +20,7 @@ namespace ProductDatabase
         private static void Choose()
         {
             
-            int ID = Convert.ToInt32(ReadLine());
-            Clear();
-            ProductDisplayRepository loadReport = new ProductDisplayRepository();
-            ProductDisplay report1 = loadReport.Retrive(ID);
-            Console.WriteLine(report1);
+            
             InfoMenu.Back();
         }
 

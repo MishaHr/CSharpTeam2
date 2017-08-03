@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,12 +62,24 @@ namespace ProductDatabase
                 //тест виводу на екран категорії по ій-ді
                 case "2":
                 {
-                    Console.Write("enter Category ID:");
-                    int id = Convert.ToInt32(Console.ReadLine());
-                        
-                    var text = display.CategoryToText(id);
-                    Console.WriteLine(text);
-                        Back();
+                    try
+                    {
+                        Console.Write("enter Category ID:");
+                        int id = Convert.ToInt32(Console.ReadLine());
+                        var text = display.CategoryToText(id);
+                        Console.WriteLine(text);
+                    }
+                    catch (NullReferenceException e)
+                    {
+                        Console.WriteLine(e.Message);
+
+                    }
+                    catch (FileNotFoundException fnfe)
+                    {
+                            Console.WriteLine(fnfe.Message);
+                    }
+
+                    Back();
                         break;
 
                 }

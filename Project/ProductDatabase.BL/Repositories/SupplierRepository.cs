@@ -11,7 +11,7 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас для добування Постачальників з бази даних
     /// </summary>
-    public class SupplierRepository
+    public class SupplierRepository:IRepository
     {
         private string _option = "Supplier";
         private List<Supplier> _supplierList;
@@ -32,19 +32,34 @@ namespace ProductDatabase.BL
 
         }
 
+        /// <summary>
+        /// Повертає повний список всіх постачальників
+        /// </summary>
+        /// <returns>Ліст постачальників</returns>
+        public IEnumerable<IGetable> GetAll()
+        {
+            return _supplierList;
+        }
 
         /// <summary>
-        /// Метод для добування о’єкту Supplier з бази даних. Приймає ID постачальника як вхідний параметр
+        /// Метод для добування о’єкту Supplier з бази даних.
         /// </summary>
-        /// <param name="productId"></param>
-        /// <returns>Повертає об’єкт класу Supplier з відповідни ID</returns>
-
-        //метод зчитування всіх записів
-        
-
-        public void Save(string saveProduct)
+        /// <param name="productId">ID постачальника</param>
+        /// <returns>Об’єкт класу Supplier з відповідни ID</returns>
+        public IGetable Get(int id)
         {
-            SaveService.WrightToFile(saveProduct);
+            Supplier supplier = _supplierList.FirstOrDefault(s => s.SupplierId == id);
+            return supplier;
+        }
+
+        public void Add(IGetable newObject)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 

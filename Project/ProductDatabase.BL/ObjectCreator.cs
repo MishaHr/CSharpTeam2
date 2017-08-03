@@ -47,7 +47,7 @@ namespace ProductDatabase.BL
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу Manufacturer</returns>
         public Manufacturer CreateManufacturer(string[] retrivedData)
-       {
+        {
             Manufacturer manufacturer = new Manufacturer(Convert.ToInt32(retrivedData[0]));
             manufacturer.ManufacturerName = retrivedData[1].Trim();
             return manufacturer;
