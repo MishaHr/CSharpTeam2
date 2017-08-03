@@ -32,24 +32,39 @@ namespace ProductDatabase.BL.Repos
             }
         }
 
-      
+      /// <summary>
+      /// Метод для утворення всього списку категорій
+      /// </summary>
+      /// <returns>Діст всіх об’єктів Category</returns>
         public IEnumerable<IGetable> GetAll()
         {
             List <Category> categories = _categoryList;
             return categories;
         }
 
+        /// <summary>
+        /// Метод добуває з бази категорію за вказаним ІД
+        /// </summary>
+        /// <param name="id">ІД категорії, яку треба знайти</param>
+        /// <returns>об’єкт типу Category</returns>
         public IGetable Get(int id)
         {
             Category item = _categoryList.FirstOrDefault(product => product.CategoryId == id);
             return item;
         }
 
+        /// <summary>
+        /// Метод додає в таблицю новостворений об’єкт Категорії
+        /// </summary>
+        /// <param name="newObject">Об’єкт нової категорії</param>
         public void Add(IGetable newObject)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Метод зберігає всю таблицю категорій у файл
+        /// </summary>
         public void SaveChanges()
         {
             throw new NotImplementedException();

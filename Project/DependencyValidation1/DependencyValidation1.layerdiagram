@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="f610c48d-367a-4af9-b48d-5dd72901749c" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="72f7b8ae-49a3-46e8-8dff-6ceb08bf2339" name="ProductDatabase">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="bd69bb89-6857-4f91-bcc8-7ef9ebcf2889" direction="Forward">
+          <layerMoniker Id="1ac8547d-7f6d-4755-85c1-2ca348774ab1" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="3783f954-cf66-4a3d-b33d-2afac56b09a1" name="ProductDatabase">
+          <ArtifactNode Label="ProductDatabase" Category="CodeSchema_Project" Id="(Assembly=../ProductDatabase/ProductDatabase.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=ProductDatabase)" Label="ProductDatabase.exe" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.exe" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="1ac8547d-7f6d-4755-85c1-2ca348774ab1" name="ProductDatabase.BL">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="8bc4e12c-a1da-4dce-8857-9086415cb604" direction="Forward">
+          <layerMoniker Id="eefd6475-593b-48f5-879b-a9d433815afc" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="905fb182-1e33-4681-8dd9-7ebbdccf76d2" name="ProductDatabase.BL">
+          <ArtifactNode Label="ProductDatabase.BL" Category="CodeSchema_Project" Id="(Assembly=../ProductDatabase.BL/ProductDatabase.BL.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=ProductDatabase.BL)" Label="ProductDatabase.BL.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="eefd6475-593b-48f5-879b-a9d433815afc" name="ProductDatabase.DA">
+      <references>
+        <reference Id="93eb053f-4d79-419d-9655-313592a37831" name="ProductDatabase.DA">
+          <ArtifactNode Label="ProductDatabase.DA" Category="CodeSchema_Project" Id="(Assembly=../ProductDatabase.DA/ProductDatabase.DA.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=ProductDatabase.DA)" Label="ProductDatabase.DA.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>
