@@ -38,7 +38,7 @@ namespace ProductDatabase
                 //Тест побудови звіту
                 case "1":
                 {
-                    var text = display.TextCategoryList();
+                    var text = display.CategoryListToText();
                     foreach (var s in text)
                     {
                         Console.WriteLine(s);
@@ -46,7 +46,7 @@ namespace ProductDatabase
                         Console.Write("Виберіть категорію: ");
                     int id = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
-                    var category = display.TextCategory(id);
+                    var category = display.CategoryToText(id);
                     Console.WriteLine($"{category}\n");
                         var report = Controller.ShowByCategory(id);
                     foreach (var item in report)
@@ -64,7 +64,7 @@ namespace ProductDatabase
                     Console.Write("enter Category ID:");
                     int id = Convert.ToInt32(Console.ReadLine());
                         
-                    var text = display.TextCategory(id);
+                    var text = display.CategoryToText(id);
                     Console.WriteLine(text);
                         Back();
                         break;
@@ -75,7 +75,7 @@ namespace ProductDatabase
                 case "3":
                 {
                         
-                        var text = display.TextCategoryList();
+                        var text = display.CategoryListToText();
                         foreach (var s in text)
                         {
                             Console.WriteLine(s);

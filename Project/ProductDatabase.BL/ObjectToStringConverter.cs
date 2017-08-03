@@ -17,7 +17,7 @@
             private string Text { get; set; }
 
         /// <summary>
-        /// Метод перетворюе об’єкт типу Category в стрінгу
+        /// Метод перетворює об’єкт типу Category в стрінгу
         /// </summary>
         /// <param name="id">ІД категорії</param>
         /// <returns>Стрінга, відповідно сформатована для виведення на екран</returns>
