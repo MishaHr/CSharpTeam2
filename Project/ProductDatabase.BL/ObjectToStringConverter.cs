@@ -84,13 +84,25 @@ namespace ProductDatabase.BL
         /// Метод формує Список Постачальників у текстовому форматі
         /// </summary>
         /// <returns>Список постачальників у вигляді стрінгів</returns>
-        public List<string> SuppliersToList()
+        public List<string> SuppliersListToText()
         {
             //тимчасовий код для тестів
-            List<string> list =new List<string>();
-            list[0] = "1. Samsung";
-            list[1] = "2. HP";
-            return list;
+            //List<string> list = new List<string>();
+            //list[0] = "1. Samsung";
+            //list[1] = "2. HP";
+            //return list;
+            //Завантажуємо всі категорії з бази
+            SupplierRepository supplierRepository = new SupplierRepository();
+            List<string> strings = new List<string>();
+            var supplierList = (List<Supplier>)supplierRepository.GetAll();
+
+            //заповнюємо Ліст текстовим представленням кожного об’єкту Category
+            foreach (var s in supplierList)
+            {
+                Text = $"{s.SupplierId}. {s.SupplierName}, тел:{s.SupplierPhoneNumber}";
+                strings.Add(Text);
+            }
+            return strings;
         }
 
         /// <summary>
@@ -102,7 +114,18 @@ namespace ProductDatabase.BL
         public string ManufacturerToText(int id)
         {
             //тимчасовий код для тестів
-            return "1. Samsung";
+            //return "1. Samsung";
+            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
+            Manufacturer man = (Manufacturer)manufacturerRepository.Get(id);
+            try
+            {
+                string result = $"{man.ManufacturerId}. {man.ManufacturerName}";
+                return result;
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Категорії з таким ІД не існує");
+            }
         }
 
         /// <summary>
@@ -112,10 +135,22 @@ namespace ProductDatabase.BL
         public List<string> ManufacturerListToText()
         {
             //тимчасовий код для тестів
-            List<string> list = new List<string>();
-            list[0] = "1. Samsung";
-            list[1] = "2. HP";
-            return list;
+            //List<string> list = new List<string>();
+            //list[0] = "1. Samsung";
+            //list[1] = "2. HP";
+            //return list;
+            //Завантажуємо всі категорії з бази
+            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
+            List<string> strings = new List<string>();
+            var manufacturerList = (List<Manufacturer>)manufacturerRepository.GetAll();
+
+            //заповнюємо Ліст текстовим представленням кожного об’єкту Category
+            foreach (var m in manufacturerList)
+            {
+                Text = $"{m.ManufacturerId}. {m.ManufacturerName}";
+                strings.Add(Text);
+            }
+            return strings;
         }
 
 
