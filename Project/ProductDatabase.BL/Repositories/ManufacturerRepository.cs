@@ -30,7 +30,7 @@ namespace ProductDatabase.BL.Main_Classes
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator(_option);
+            ObjectCreator itemCreator = new ObjectCreator();
             _manufacturerList = new List<Manufacturer>();
 
             for (int index = 0; index < retrivedData.Count; index++)

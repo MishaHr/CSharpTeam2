@@ -10,7 +10,7 @@ namespace ProductDatabase.BL
     {
         IEnumerable<IGetable> GetAll();
         IGetable Get(int id);
-        IGetable Add(IGetable newObject);
+        void Add(IGetable newObject);
         void SaveChanges();
     }
 }

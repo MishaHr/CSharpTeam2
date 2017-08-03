@@ -9,7 +9,7 @@ namespace ProductDatabase.BL.Main_Classes
     public class WarehouseRecord:IGetable
     {
         /// <summary>
-        /// Клас зберігання записів навяності товару на складі ()кількість, ціна, дата поставки)
+        /// Клас зберігання записів навяності товару на складі (кількість, ціна, дата поставки)
         /// </summary>
         public int ProductId { get; private set; }
         public int WarehouseNumber { get; set; }

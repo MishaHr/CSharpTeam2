@@ -46,6 +46,10 @@ namespace ProductDatabase.DA
             {
                 path = @"C:\ProjectDebug\ProjectDB\WarehouseRecord.dat";
             }
+            else if (option == "ShortDescription")
+            {
+                path = @"C:\ProjectDebug\ProjectDB\ShortDescription.dat";
+            }
 
 
         }
@@ -59,18 +63,32 @@ namespace ProductDatabase.DA
         {
             List<string[]> allData = new List<string[]>();
             string line;
-            StreamReader reader =
-                new StreamReader(path);
-            using (reader)
+            try
             {
-                line = reader.ReadLine();
-                while (line != null)
+
+                using (StreamReader reader = new StreamReader(path))
                 {
-                    allData.Add(ParseToStringArray(line));
                     line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        allData.Add(ParseToStringArray(line));
+                        line = reader.ReadLine();
+                    }
                 }
+                return allData;
             }
-            return allData;
+            catch (FileNotFoundException e)
+            {
+                throw new FileNotFoundException($"Файл {path} відсутній");
+            }
+            catch (ArgumentException e)
+            {
+                throw new ArgumentException($"Внутрішня помилка");
+            }
+            catch (IOException e)
+            {
+                throw new IOException();
+            }
         }
 
         /// <summary>

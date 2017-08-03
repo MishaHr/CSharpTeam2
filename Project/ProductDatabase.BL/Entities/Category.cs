@@ -9,7 +9,7 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас категорій товарів. 
     /// </summary>
-    public class Category: ISaveable
+    public class Category: ISaveable,IGetable
     {
         public int CategoryId { get; private set; }
 

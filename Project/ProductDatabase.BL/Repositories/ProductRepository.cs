@@ -24,7 +24,7 @@ namespace ProductDatabase.BL
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator(_option);
+            ObjectCreator itemCreator = new ObjectCreator();
             _productList = new List<Product>();
 
             for (int index = 0; index < retrivedData.Count; index++)
@@ -47,7 +47,7 @@ namespace ProductDatabase.BL
             return item;
         }
 
-        public IGetable Add(IGetable newProduct)
+        public void Add(IGetable newProduct)
         {
             throw new NotImplementedException();
         }

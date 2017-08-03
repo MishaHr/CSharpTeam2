@@ -1,44 +1,48 @@
-﻿using System;
+﻿using ProductDatabase.BL.Main_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProductDatabase.BL.Main_Classes;
 using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Repos
 {
-    public class WarehouseRecordRepository:IRepository
+    public class MemoRepository:IRepository
     {
-        private string _option = "WarehouseRecord";
-        private List<WarehouseRecord> _warehouseRecordsList;
-        public WarehouseRecordRepository()
+        private string _option = "Memo";
+        public List<Memo> _memoList;
+
+        public MemoRepository()
         {
             LoadService load = new LoadService(_option);
             List<string[]> retrivedData = load.ReadAll();
-
+           
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator(_option);
-            _warehouseRecordsList = new List<WarehouseRecord>();
+            ObjectCreator itemCreator = new ObjectCreator();
+            _memoList = new List<Memo>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _warehouseRecordsList.Add(itemCreator.CreateWarehouseRecord(retrivedData[index]));
+                _memoList.Add(itemCreator.CreateMemo(retrivedData[index]));
             }
+
         }
+
 
         public IEnumerable<IGetable> GetAll()
         {
-            List<WarehouseRecord> warehouseRecords = _warehouseRecordsList;
-            return warehouseRecords;
+            List<Memo> memoList = _memoList;
+            return memoList;
         }
 
         public IGetable Get(int id)
         {
-            throw new NotImplementedException();
+            Memo memo = _memoList.FirstOrDefault(m => m.ProductId == 1);
+            return memo;
         }
 
-        public IGetable Add(IGetable newObject)
+        public void Add(IGetable newObject)
         {
             throw new NotImplementedException();
         }
