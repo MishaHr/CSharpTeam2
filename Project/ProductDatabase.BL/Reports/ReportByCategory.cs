@@ -14,7 +14,9 @@ namespace ProductDatabase.BL.Reports
         public string  Manufacturer { get;  set; }
         public string Model { get;  set; }
         public string Description { get;  set; }
+        public DateTime ProductionDate { get; set; }
         public string Memo { get;  set; }
+
 
         public ReportByCategory(int id)
         {
@@ -23,7 +25,8 @@ namespace ProductDatabase.BL.Reports
 
         public override string ToString()
         {
-            return string.Format($"Код: {ID}. {Manufacturer} {Model} ({Description})\nПримітка: {Memo}");
+            return string.Format($"Код: {ID}. {Manufacturer} {Model}\nДата виготовлення: {ProductionDate.ToString("dd.MM.yyyy")}" +
+                                 $"\nКороткий опис:{Description}\nПримітка: {Memo}");
         }
     }
 }

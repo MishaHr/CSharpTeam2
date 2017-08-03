@@ -81,16 +81,42 @@ namespace ProductDatabase.BL
         }
 
         /// <summary>
-        /// Метод формує Список Постачальників у текстовому форматі
+        /// Метод формує скорочений Список Постачальників у текстовому форматі 
+        /// (без телефону, тільки ІД та назва)
         /// </summary>
-        /// <returns>Список постачальників у вигляді стрінгів</returns>
-        public List<string> SuppliersToList()
+        /// <returns>скорочений Список постачальників у вигляді стрінгів</returns>
+        public List<string> SuppliersListToText()
         {
-            //тимчасовий код для тестів
-            List<string> list =new List<string>();
-            list[0] = "1. Samsung";
-            list[1] = "2. HP";
-            return list;
+            SupplierRepository supplierRepository = new SupplierRepository();
+            List<string> suppliers = new List<string>();
+            var supplierList = (List<Supplier>) supplierRepository.GetAll();
+
+            foreach (var supplier in supplierList)
+            {
+                Text = $"{supplier.SupplierId}. {supplier.SupplierName}";
+                suppliers.Add(Text);
+            }
+            return suppliers;
+        }
+
+
+        /// <summary>
+        /// Метод формує повний Список Постачальників у текстовому форматі 
+        /// (всі поля разом з телефоном)
+        /// </summary>
+        /// <returns>Повний Список постачальників у вигляді стрінгів</returns>
+        public List<string> SuppliersListToTextFull()
+        {
+            SupplierRepository supplierRepository = new SupplierRepository();
+            List<string> suppliers = new List<string>();
+            var supplierList = (List<Supplier>)supplierRepository.GetAll();
+
+            foreach (var supplier in supplierList)
+            {
+                Text = $"{supplier.SupplierId}. {supplier.SupplierName}, тел: {supplier.SupplierPhoneNumber}";
+                suppliers.Add(Text);
+            }
+            return suppliers;
         }
 
         /// <summary>
@@ -101,8 +127,17 @@ namespace ProductDatabase.BL
         /// <returns>Стрінга, відповідно сформатована для виведення на екран</returns>
         public string ManufacturerToText(int id)
         {
-            //тимчасовий код для тестів
-            return "1. Samsung";
+            ManufacturerRepository manufacturerRepository   =new ManufacturerRepository();
+            Manufacturer man = manufacturerRepository.Get(id);
+            try
+            {
+                string result = $"{man.ManufacturerId}. {man.ManufacturerName}";
+                return result;
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Виробника з таким ІД не існує");
+            }
         }
 
         /// <summary>
@@ -111,11 +146,16 @@ namespace ProductDatabase.BL
         /// <returns>Список Виробників у вигляді стрінгів</returns>
         public List<string> ManufacturerListToText()
         {
-            //тимчасовий код для тестів
-            List<string> list = new List<string>();
-            list[0] = "1. Samsung";
-            list[1] = "2. HP";
-            return list;
+            ManufacturerRepository manufacturerRepository =new ManufacturerRepository();
+            List<Manufacturer> manufacturerList = (List<Manufacturer>)manufacturerRepository.GetAll();
+            List<string> manufacturerStringList = new List<string>();
+
+            foreach (var man in manufacturerList)
+            {
+                Text = $"{man.ManufacturerId}. {man.ManufacturerName}";
+                manufacturerStringList.Add(Text);
+            }
+            return manufacturerStringList;
         }
 
 
