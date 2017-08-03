@@ -18,7 +18,7 @@ namespace ProductDatabase
         static void Main(string [] args)
         {
             //Вхідна точка програми
-            Console.OutputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.Unicode;
             MainMenu.Show();
             
 

@@ -13,13 +13,12 @@ namespace ProductDatabase
     /// <summary>
     /// Клас головного меню програми
     /// </summary>
-    public static  class MainMenu
+    public static class MainMenu
     {
 
         /// <summary>
         /// Метод виводу пунктыв меню на екран
         /// </summary>
-
         public static void Show()
         {
             Clear();
@@ -29,9 +28,9 @@ namespace ProductDatabase
             WriteLine("3. Редагувати інформацію про товар");
             WriteLine("4. Видалити існуючий товар");
             WriteLine("5. Згенерувати звіт");
+            WriteLine("6. Робота з базами");
             WriteLine("\n0. Вихід з програми");
             Write("\nВиберіть дію яку ви хочете виконати: ");
-
             Choose();
         }
 
@@ -40,7 +39,6 @@ namespace ProductDatabase
         /// </summary>
         private static void Choose()
         {
-
             string choice = (ReadLine());
             Clear();
             switch (choice)
@@ -60,15 +58,17 @@ namespace ProductDatabase
                 case "5":
                     ReportGenerationMenu.Show();
                     break;
+                case "6":
+                    DataBaseEditMenu.Show();
+                    break;
                 case "0":
                     Back();
                     break;
                 default:
-                    WriteLine("Ви ввели помилковий символ, повторіть свій вибір");
+                    WriteLine("Ви ввели помилковий символ, натисніть будь яку клавішу для продовження!");
+                    //ReadKey();
                     Show();
                     break;
-
-
             }
         }
 
@@ -77,7 +77,7 @@ namespace ProductDatabase
         /// </summary>
         private static void Back()
         {
-            
+
         }
     }
 }

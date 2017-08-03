@@ -13,6 +13,7 @@ namespace ProductDatabase
         {
             Clear();
             WriteLine("\tДодавання товару");
+            WriteLine("\n1. Додати товар");
             WriteLine("\n0. Повернутися до попереднього меню");
             Choose();
         }
@@ -20,32 +21,70 @@ namespace ProductDatabase
         public static void Choose()
         {
             string choice = (ReadLine());
-            //Clear();
+            Clear();
             switch (choice)
             {
                 case "0":
                     Back();
                     break;
-                default:
+                case "1":
                     AddProduct();
+                    break;
+                default:
+                    Choose();
                     break;
             }
         }
 
+        //public static void AddProduct()
+        //{
+        //    //Clear();
+        //    Write("Введіть назву товару : ");
+        //    string ProductName = (ReadLine());
+        //    int Row = CursorTop;
+        //    SetCursorPosition(0, Row-1);
+        //    Write("Назва товару : {0}", ProductName.PadRight(100));
+        //    WriteLine("Введіть назву товару : ");
+        //    string ProductManufacturer = (ReadLine());
+        //    WriteLine(ProductManufacturer);
+        //    Back();
+        //}
+
         public static void AddProduct()
         {
-            //Clear();
-            string choice = (ReadLine());
-            switch (choice)
+            WriteLine("Список категорій");
+            WriteLine("0. Додати нову категорію");
+            Write("\nВведіть ID категорії зі списка або додайе нову : ");
+            string ProductCategory = (ReadLine());
+            if (ProductCategory == "0")
             {
-                case "0":
-                    Back();
-                    break;
-                default:
-                    // метод для перевірки коректності введеного значення та подальшого введення інформації про новий товар
-                    AddProduct();
-                    break;
+                DataBaseEditMenu.AddNewCategory();
             }
+            else
+            {
+                Clear();
+                WriteLine("Категорія : {0}", ProductCategory); // замсть ID має підібратися назва категорії
+            }
+            Write("\nВиберіть виробника : ");
+            string ProductManufacturer = (ReadLine());
+            if (ProductManufacturer == "0")
+            {
+                DataBaseEditMenu.AddNewManufacturer();
+            }
+            else
+            {
+                Clear();
+                WriteLine("Категорія : {0}", ProductCategory);
+                WriteLine("Виробник : {0}", ProductManufacturer);
+            }
+            Write("\nВведіть назву товару : ");
+            string ProductName = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            ReadLine();
+            Back();
         }
 
         public static void Back()
