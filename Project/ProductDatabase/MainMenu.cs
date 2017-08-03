@@ -23,7 +23,7 @@ namespace ProductDatabase
         {
             Clear();
             WriteLine("\tГоловне меню:");
-            WriteLine("1. Додати новий товар");
+            WriteLine("\n1. Додати новий товар");
             WriteLine("2. Переглянути інформацію про товар");
             WriteLine("3. Редагувати інформацію про товар");
             WriteLine("4. Видалити існуючий товар");
