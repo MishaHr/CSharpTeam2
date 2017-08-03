@@ -11,7 +11,7 @@ namespace ProductDatabase.BL
     {
         public static List<string> ShowByCategory(int id)
         {
-            Report report = new Report();
+            ReportBuilder report = new ReportBuilder();
             var reportsByCategories = report.GenerateByCategory(id);
             List<string> strings = new List<string>();
             foreach (ReportByCategory r in reportsByCategories)

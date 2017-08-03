@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="f610c48d-367a-4af9-b48d-5dd72901749c" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
   <layers>
-    <layer Id="72f7b8ae-49a3-46e8-8dff-6ceb08bf2339" name="ProductDatabase">
+    <layer Id="72f7b8ae-49a3-46e8-8dff-6ceb08bf2339" name="ProductDatabase" forbiddenNamespace="ProductDatabase.DA">
       <dependencyToLayers>
         <dependencyFromLayerToLayer Id="bd69bb89-6857-4f91-bcc8-7ef9ebcf2889" direction="Forward">
           <layerMoniker Id="1ac8547d-7f6d-4755-85c1-2ca348774ab1" />

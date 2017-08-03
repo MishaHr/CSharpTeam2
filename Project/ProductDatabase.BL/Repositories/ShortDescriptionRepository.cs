@@ -20,7 +20,7 @@ namespace ProductDatabase.BL.Repos
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator(_option);
+            ObjectCreator itemCreator = new ObjectCreator();
             _shortDescriptions = new List<ShortDescription>();
 
             for (int index = 0; index < retrivedData.Count; index++)

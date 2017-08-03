@@ -10,10 +10,10 @@ using ProductDatabase.BL.Repos;
 namespace ProductDatabase.BL
 {
 
-        /// <summary>
-        /// Клас для побудови звітів
-        /// </summary>
-    internal class Report
+    /// <summary>
+    /// Клас для побудови звітів
+    /// </summary>
+    internal class ReportBuilder
     {
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace ProductDatabase.BL
 
                 }).ToList();
 
-            //Перетворення анонімниї об’єктів в об’єкти типу ReportByCategory та об’єднання їх у колекцію
+            //Перетворення анонімних об’єктів в об’єкти типу ReportByCategory та об’єднання їх у колекцію
             List<ReportByCategory> result = new List<ReportByCategory>();
             foreach (var item in list)
             {

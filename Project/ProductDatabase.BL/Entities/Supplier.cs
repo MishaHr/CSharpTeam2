@@ -9,22 +9,23 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас Постачальника продукції
     /// </summary>
-    public class Supplier:ISaveable
+    public class Supplier:ISaveable,IGetable
     {
 
-    public int SupplierId { get; private set; }
-    public string SupplierName { get; set; }
+        public int SupplierId { get; private set; }
+        public string SupplierName { get; set; }
+        public string SupplierPhoneNumber { get; set; }
 
-    public Supplier(int supplierId)
-    {
-        SupplierId = supplierId;
-    }
+        public Supplier(int supplierId)
+        {
+            SupplierId = supplierId;
+        }
 
     
-    public override string ToString()
-    {
-        return string.Format($"{SupplierId};{SupplierName}");
-    }
+        public override string ToString()
+        {
+            return string.Format($"{SupplierId};{SupplierName}");
+        }
 
 
     }
