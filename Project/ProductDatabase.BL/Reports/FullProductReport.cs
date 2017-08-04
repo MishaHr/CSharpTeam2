@@ -18,7 +18,7 @@ namespace ProductDatabase.BL.Reports
         public double Price { get; set; }
         public string Supplier { get; set; }
         public string SupplierPhoneNumber { get; set; }
-        public DateTime DeliveryTime { get; set; }
+        public DateTime DeliveryDate { get; set; }
         public int WarehouseNumber { get; set; }
         public string Description { get; set; }
         public string Memo { get; set; }
@@ -33,7 +33,7 @@ namespace ProductDatabase.BL.Reports
             return string.Format(
                 $"{ProductId};{Category};{Manufacturer};{Model};" +
                 $"{ProductionDate.ToString("dd.MM.yyyy")};{ExpirationDate};{Ammount};" +
-                $"{Price};{Supplier};{SupplierPhoneNumber};{DeliveryTime};{WarehouseNumber};" +
+                $"{Price};{Supplier};{SupplierPhoneNumber};{DeliveryDate.ToString("dd.MM.yyyy")};{WarehouseNumber};" +
                 $"{Description};{Memo}");
         }
     }

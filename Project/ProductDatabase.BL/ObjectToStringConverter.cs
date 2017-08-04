@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using ProductDatabase.BL.Entities;
     using ProductDatabase.BL.Reposirories;
+    using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL
 {
@@ -158,6 +159,20 @@ namespace ProductDatabase.BL
             return manufacturerStringList;
         }
 
+        public List<string> LastIdList()
+        {
+            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
+            List<LastIdKeeper> idList = (List<LastIdKeeper>) lastIdKeeperRepository.GetAll();
+            List<string> lastIdText = new List<string>();
+
+            foreach (var lastId in idList)
+            {
+                Text =
+                    $"Prod: {lastId.LastProductId}, Cat: {lastId.LastCategoryId}, Man: {lastId.LastManufacturerId}, Sup: {lastId.LastSupplierId}";
+                lastIdText.Add(Text);
+            }
+            return lastIdText;
+        }
 
 
     }

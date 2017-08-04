@@ -41,6 +41,18 @@ namespace ProductDatabase.BL
             return strings;
         }
 
-        
+        public static List<string> ShowFullProductReport()
+        {
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var fullReports = reportBuilder.GenerateFullProductReport();
+
+            List<string> textFullProductReports = new List<string>();
+            foreach (FullProductReport report in fullReports)
+            {
+                textFullProductReports.Add(report.ToString());
+            }
+            return textFullProductReports;
+        }
+
     }
 }

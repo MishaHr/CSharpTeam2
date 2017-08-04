@@ -12,12 +12,13 @@ namespace ProductDatabase.BL.Repositories
     internal class LastIdKeeperRepository:IRepository
     {
         private string _option = "LastIdKeeper";
-        public List<LastIdKeeper> _lastIdKeeperList;
+        private List<LastIdKeeper> _lastIdKeeperList;
 
         public LastIdKeeperRepository()
         {
             LoadService load = new LoadService(_option);
             List<string[]> retrivedData = load.ReadAll();
+            _lastIdKeeperList= new List<LastIdKeeper>();
 
             for (int i = 0; i<retrivedData.Count;i++)
             {

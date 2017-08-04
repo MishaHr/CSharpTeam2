@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductDatabase.DA", "Produ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductDatabase.DA Test", "ProductDatabase.DA Test\ProductDatabase.DA Test.csproj", "{C5C40A60-0E85-4413-9C2E-15990593AB09}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "DependencyValidation1", "DependencyValidation1\DependencyValidation1.modelproj", "{17E382F2-2983-44F5-B11A-AE8DC56F6201}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +41,6 @@ Global
 		{C5C40A60-0E85-4413-9C2E-15990593AB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5C40A60-0E85-4413-9C2E-15990593AB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5C40A60-0E85-4413-9C2E-15990593AB09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17E382F2-2983-44F5-B11A-AE8DC56F6201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17E382F2-2983-44F5-B11A-AE8DC56F6201}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17E382F2-2983-44F5-B11A-AE8DC56F6201}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17E382F2-2983-44F5-B11A-AE8DC56F6201}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

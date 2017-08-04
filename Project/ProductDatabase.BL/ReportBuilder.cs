@@ -82,7 +82,79 @@ namespace ProductDatabase.BL
         /// <returns>Ліст звітів FullProductReport</returns>
         internal List<FullProductReport> GenerateFullProductReport()
         {
-            return null;
+            //ініціалізація потрібних репозиторіїв
+            ProductRepository productRepository = new ProductRepository();
+            CategoryRepository categoryRepository = new CategoryRepository();
+            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
+            WarehouseRecordRepository warehouseRecordRepository = new WarehouseRecordRepository();
+            SupplierRepository supplierRepository = new SupplierRepository();
+            ShortDescriptionRepository shortDescriptionRepository = new ShortDescriptionRepository();
+            MemoRepository memoRepository = new MemoRepository();
+
+            //завантаження всіх необхідних "таблиць" даних
+            var products = (List<Product>)productRepository.GetAll();
+            var catgories = (List<Category>)categoryRepository.GetAll();
+            var manufacturers = (List<Manufacturer>)manufacturerRepository.GetAll();
+            var descriptions = (List<ShortDescription>)shortDescriptionRepository.GetAll();
+            List<Memo> memos = (List<Memo>)memoRepository.GetAll();
+            var warehouseRecords = (List<WarehouseRecord>) warehouseRecordRepository.GetAll();
+            var suppliers = (List<Supplier>) supplierRepository.GetAll();
+
+
+            //об’єднання даних по ІД. Вибірка по необхідній категорії
+            var list =
+            (from product in products
+                join category in catgories on product.CategoryId equals category.CategoryId
+                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
+                join description in descriptions on product.ProductId equals description.ProductId
+                join memo in memos on product.ProductId equals memo.ProductId
+                join record in warehouseRecords on product.ProductId equals record.ProductId 
+                select new
+                {
+                    ID = product.ProductId,
+                    Category = category.CategoryName,
+                    Manufacturer = manufacturer.ManufacturerName,
+                    Model = product.ProductModel,
+                    ProductionDate = product.ProductionDate,
+                    ExpirationDate = product.ExpirationDate,
+                    Ammount = record.Ammount,
+                    Price = record.Price,
+                    Supplier = (from supplier in suppliers
+                                join warehouseRec in warehouseRecords on supplier.SupplierId equals record.SupplierId
+                                select supplier.SupplierName).First(),
+                    SupplierPhoneNumber = (from sup in suppliers
+                                           join warehouse in warehouseRecords on sup.SupplierId equals  warehouse.SupplierId
+                                           select sup.SupplierPhoneNumber).First(),
+                    DeliveryDate = record.DeliveryDate,
+                    WarehouseNumber = record.WarehouseNumber,
+                    Memo = memo.MemoText,
+                    Description = description.DescriptionText
+                    
+
+                }).ToList();
+
+            //Перетворення анонімних об’єктів в об’єкти типу ReportByCategory та об’єднання їх у колекцію
+            List<FullProductReport> result = new List<FullProductReport>();
+            foreach (var item in list)
+            {
+                FullProductReport report = new FullProductReport(item.ID);
+                report.Category = item.Category;
+                report.Manufacturer = item.Manufacturer;
+                report.Model = item.Model;
+                report.ProductionDate = item.ProductionDate;
+                report.ExpirationDate = item.ExpirationDate;
+                report.Ammount = item.Ammount;
+                report.Price = item.Price;
+                report.Supplier = item.Supplier;
+                report.SupplierPhoneNumber = item.SupplierPhoneNumber;
+                report.DeliveryDate = item.DeliveryDate;
+                report.WarehouseNumber = item.WarehouseNumber;
+                report.Description = item.Description;
+                report.Memo = item.Memo;
+
+                result.Add(report);
+            }
+            return result;
         }
 
         /// <summary>

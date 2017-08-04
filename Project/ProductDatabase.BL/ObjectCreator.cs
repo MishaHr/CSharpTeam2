@@ -89,7 +89,7 @@ namespace ProductDatabase.BL
         {
             WarehouseRecord warehouseRecord = new WarehouseRecord(ToInt32(retrivedData[0]));
             warehouseRecord.WarehouseNumber = ToInt32(retrivedData[1]);
-            warehouseRecord.Ammmount = ToInt32(retrivedData[2]);
+            warehouseRecord.Ammount = ToInt32(retrivedData[2]);
             warehouseRecord.Price = ToDouble(retrivedData[3]);
             warehouseRecord.DeliveryDate = ToDateTime(retrivedData[4]);
             warehouseRecord.SupplierId = ToInt32(retrivedData[5]);

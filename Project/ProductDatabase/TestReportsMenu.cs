@@ -34,6 +34,7 @@ namespace ProductDatabase
                choice = Console.ReadLine();
             Console.Clear();
             ObjectToStringConverter display = new ObjectToStringConverter();
+            
             switch (choice)
             {
 
@@ -102,7 +103,7 @@ namespace ProductDatabase
                 case "3":
                 {
 
-                    var text = display.ManufacturerListToText();
+                    var text = TextReportShower.ShowFullProductReport();
                         foreach (var s in text)
                         {
                             Console.WriteLine(s);
