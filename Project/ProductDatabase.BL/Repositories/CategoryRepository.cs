@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.DA;
 
-namespace ProductDatabase.BL.Repos
+namespace ProductDatabase.BL.Reposirories
 {
     
 

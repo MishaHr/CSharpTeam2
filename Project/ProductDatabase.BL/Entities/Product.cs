@@ -17,6 +17,7 @@ namespace ProductDatabase.BL
         public int CategoryId { get; set; }
         public int ManufacrirerId { get; set; }
         public string ProductModel { get; set; }
+        public DateTime ProductionDate { get; set; }
 
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace ProductDatabase.BL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format($"{ProductId};{CategoryId};{ManufacrirerId};{ProductModel}");
+            return string.Format($"{ProductId};{CategoryId};{ManufacrirerId};{ProductModel};{ProductionDate.ToString("dd.MM.yyyy")}");
         }
     }
 }

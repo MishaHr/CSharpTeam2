@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddNewProductMenu.cs" />
+    <Compile Include="DataBaseEditMenu.cs" />
     <Compile Include="DeleteProductMenu.cs" />
     <Compile Include="EditProductMenu.cs" />
     <Compile Include="InfoMenu.cs" />

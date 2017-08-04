@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductDatabase.BL.Main_Classes
+namespace ProductDatabase.BL.Entities
 {
     /// <summary>
     /// Клас Виробників продукції.

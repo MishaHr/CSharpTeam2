@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProductDatabase.BL;
 
 namespace ProductDatabase
 {
@@ -13,6 +14,7 @@ namespace ProductDatabase
         {
             Clear();
             WriteLine("\tДодавання товару");
+            WriteLine("\n1. Додати товар");
             WriteLine("\n0. Повернутися до попереднього меню");
             Choose();
         }
@@ -20,11 +22,14 @@ namespace ProductDatabase
         public static void Choose()
         {
             string choice = (ReadLine());
-            //Clear();
+            Clear();
             switch (choice)
             {
                 case "0":
                     Back();
+                    break;
+                case "1":
+                    AddProduct();
                     break;
                 default:
                     AddProduct();
@@ -32,20 +37,182 @@ namespace ProductDatabase
             }
         }
 
+        public static void WriteAt(int x, int y)
+        {
+            try
+            {
+                Console.SetCursorPosition(x, y);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.Clear();
+                Console.WriteLine(e.Message);
+            }
+        }
+
         public static void AddProduct()
         {
-            //Clear();
-            string choice = (ReadLine());
-            switch (choice)
+            ObjectToStringConverter display = new ObjectToStringConverter();
+            //WriteLine("0. Повернутися до попереднього меню");
+            WriteLine("Список категорій\n");
+            var Category = display.CategoryListToText();
+            foreach (var cat in Category)
             {
-                case "0":
-                    Back();
-                    break;
-                default:
-                    // метод для перевірки коректності введеного значення та подальшого введення інформації про новий товар
-                    AddProduct();
-                    break;
+                Console.WriteLine(cat);
             }
+            Write("\nВведіть ID категорії зі списку : ");
+            int CategoryID = Convert.ToInt32(Console.ReadLine());
+            string ProductCategory = display.CategoryToText(CategoryID);
+            //if (ProductCategory == "0")
+            //{
+            //    Back();
+            //}
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+
+            WriteLine("\nСписок виробників\n");
+            var Manufacturer = display.ManufacturerListToText();
+            foreach (var man in Manufacturer)
+            {
+                Console.WriteLine(man);
+            }
+            Write("\nВведіть ID виробника зі списку : ");
+            int ManufacturerID = Convert.ToInt32(Console.ReadLine());
+            string ProductManufacturer = display.ManufacturerToText(ManufacturerID);
+            //string ProductManufacturer = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+
+            Write("\nВведіть назву товару : ");
+            string ProductName = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+
+            Write("\nВведіть дату виготовлення : 00.00.0000"); // потрібно буде привести приклад правильного формату
+            WriteAt(28, 4);
+            string ProductManufactureDate = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+
+            Write("\nВведіть гарантійний термін : "); 
+            string ProductWarranty = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0} років", ProductWarranty);
+
+            WriteLine("\nСписок постачальників\n"); // будуть відображатись доступні виробники товару для вибору
+            var Suppliers = display.SuppliersListToText();
+            foreach (var sup in Suppliers)
+            {
+                Console.WriteLine(sup);
+            }
+            Write("\nВведіть ID постачальника зі списку : "); // потрібно буде привести приклад правильного формату
+            int SupplierId = Convert.ToInt32(Console.ReadLine());
+            string ProductProvider = display.SupplierToText(SupplierId);
+            //string ProductProvider = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+
+            Write("\nВведіть дату поставки : 00.00.0000");
+            WriteAt(24, 7);
+            string ProductDeliveryDate = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+
+            Write("\nВведіть кількість одиниць : ");
+            string ProductAmount = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+
+            Write("\nВведіть ціну за одиницю : ");
+            string ProductPrice = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+
+            Write("\nВведіть номер складу : ");
+            string ProductWarehouse = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+            WriteLine("Номер складу : {0}", ProductWarehouse);
+
+            Write("\nВведіть короткий опис : ");
+            string ProductDescription = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+            WriteLine("Номер складу : {0}", ProductWarehouse);
+            WriteLine("Короткий опис : {0}", ProductDescription);
+
+            Write("\nЗаповніть поле для приміток якщо потрібно : ");
+            string ProductNotes = (ReadLine());
+            Clear();
+            WriteLine("Категорія : {0}", ProductCategory);
+            WriteLine("Виробник : {0}", ProductManufacturer);
+            WriteLine("Назва товару : {0}", ProductName);
+            WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+            WriteLine("Гарантійний термін : {0}", ProductWarranty);
+            WriteLine("Постачальник : {0}", ProductProvider);
+            WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+            WriteLine("Кількість одиниць : {0}", ProductAmount);
+            WriteLine("Ціна за одиницю : {0}", ProductPrice);
+            WriteLine("Номер складу : {0}", ProductWarehouse);
+            WriteLine("Короткий опис : {0}", ProductDescription);
+            WriteLine("Примітка : {0}", ProductNotes);
+
+            WriteLine("\nІнформація введена успішно!");
+            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            ReadLine();
+            Back();
         }
 
         public static void Back()

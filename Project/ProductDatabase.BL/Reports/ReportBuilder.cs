@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProductDatabase.BL.Main_Classes;
+using ProductDatabase.BL.Entities;
 using ProductDatabase.BL.Reports;
-using ProductDatabase.BL.Repos;
+using ProductDatabase.BL.Reposirories;
 
 namespace ProductDatabase.BL
 {
@@ -52,6 +52,7 @@ namespace ProductDatabase.BL
                     Manufacturer = manufacturer.ManufacturerName,
                     Model = product.ProductModel,
                     Description = description.DescriptionText,
+                    ProductionDate = product.ProductionDate,
                     Memo = memo.MemoText
 
                 }).ToList();
@@ -65,6 +66,7 @@ namespace ProductDatabase.BL
                 report.Manufacturer = item.Manufacturer;
                 report.Model = item.Model;
                 report.Description = item.Description;
+                report.ProductionDate = item.ProductionDate;
                 report.Memo = item.Memo;
 
                 result.Add(report);

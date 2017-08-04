@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProductDatabase.BL.Main_Classes;
+using ProductDatabase.BL.Entities;
 
 namespace ProductDatabase.BL
 {
@@ -26,6 +26,7 @@ namespace ProductDatabase.BL
                 product.CategoryId = ToInt32(retrivedData[1]);
                 product.ManufacrirerId = ToInt32(retrivedData[2]);
                 product.ProductModel = retrivedData[3].Trim();
+                product.ProductionDate = DateTime.Parse(retrivedData[4].Trim());
                 return product;
             }
 
