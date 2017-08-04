@@ -67,6 +67,7 @@
     <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProductDatabase.DA\ProductDatabase.DA.csproj">
