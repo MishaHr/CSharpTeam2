@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.BL;
-using ProductDatabase.BL.Main_Classes;
-using ProductDatabase.BL.Repos;
+using ProductDatabase.BL.Entities;
+using ProductDatabase.BL.Reposirories;
 
 
 namespace ProductDatabase

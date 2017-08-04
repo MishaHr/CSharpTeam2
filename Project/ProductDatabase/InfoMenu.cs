@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProductDatabase.BL.Main_Classes;
-using ProductDatabase.BL.Repos;
+using ProductDatabase.BL.Entities;
+using ProductDatabase.BL.Reposirories;
 using static System.Console;
 
 namespace ProductDatabase

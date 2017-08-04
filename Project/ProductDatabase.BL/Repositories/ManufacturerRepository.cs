@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.DA;
 
-namespace ProductDatabase.BL.Main_Classes
+namespace ProductDatabase.BL.Entities
 {
     public interface IManufacturerRepository
     {
