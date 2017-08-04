@@ -50,6 +50,10 @@ namespace ProductDatabase.DA
             {
                 path = @"C:\ProjectDebug\ProjectDB\ShortDescription.dat";
             }
+            else if (option == "LastIdKeeper")
+            {
+                path = @"C:\ProjectDebug\ProjectDB\LastIdKeeper.dat";
+            }
 
 
         }

@@ -12,24 +12,29 @@ namespace ProductDatabase.BL.Repositories
     internal class LastIdKeeperRepository:IRepository
     {
         private string _option = "LastIdKeeper";
-        public List<LastIdKeeper> _memoList;
+        public List<LastIdKeeper> _lastIdKeeperList;
 
         public LastIdKeeperRepository()
         {
             LoadService load = new LoadService(_option);
             List<string[]> retrivedData = load.ReadAll();
 
+            for (int i = 0; i<retrivedData.Count;i++)
+            {
+                _lastIdKeeperList.Add(CreateLastIdKeeper(retrivedData[i]));
+            }
 
         }
 
         public IEnumerable<IGetable> GetAll()
         {
-            throw new NotImplementedException();
+            return _lastIdKeeperList;
         }
 
         public IGetable Get(int id)
         {
-            throw new NotImplementedException();
+            LastIdKeeper lastIdKeeper = _lastIdKeeperList.FirstOrDefault(li=>li.LastProductId==id);
+            return lastIdKeeper;
         }
 
         public void Add(IGetable newObject)
@@ -42,7 +47,7 @@ namespace ProductDatabase.BL.Repositories
             throw new NotImplementedException();
         }
 
-        private LastIdKeeper CreateLastIdKeeper(string retrivedData)
+        private LastIdKeeper CreateLastIdKeeper(string[] retrivedData)
         {
             LastIdKeeper lastIdKeeper = new LastIdKeeper();
             lastIdKeeper.LastProductId = ToInt32(retrivedData[0]);
