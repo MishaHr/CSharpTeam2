@@ -19,11 +19,9 @@ namespace ProductDatabase
         static void Main(string [] args)
         {
             //Вхідна точка програми
-            Console.OutputEncoding = Encoding.UTF8;
-            //MainMenu.Show();
-            TestReportsMenu.Show();
-
-
+            Console.OutputEncoding = Encoding.Unicode;
+            MainMenu.Show();
+            //TestReportsMenu.Show();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
