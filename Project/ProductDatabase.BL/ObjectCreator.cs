@@ -27,6 +27,7 @@ namespace ProductDatabase.BL
                 product.ManufacrirerId = ToInt32(retrivedData[2]);
                 product.ProductModel = retrivedData[3].Trim();
                 product.ProductionDate = DateTime.Parse(retrivedData[4].Trim());
+                product.ExpirationDate = retrivedData[5].Trim();
                 return product;
             }
 

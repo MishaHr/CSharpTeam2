@@ -17,11 +17,10 @@ namespace ProductDatabase.BL
     {
 
         /// <summary>
-        /// Метод генерує звіт всіх товарів в вибраній категорії
+        /// Метод генерує короткий звіт всіх товарів
         /// </summary>
-        /// <param name="id">ІД категорії</param>
-        /// <returns>Колекцію звітів ReportByCategory по вибраній категорії</returns>
-        internal List<ReportByCategory> GenerateByCategory(int id)
+        /// <returns>Колекцію звітів ReportByCategory</returns>
+        internal List<ShortProductReport> GenerateShortProductReport()
         {
             //ініціалізація потрібних репозиторіїв
             ProductRepository productRepository = new ProductRepository();
@@ -44,7 +43,6 @@ namespace ProductDatabase.BL
                 join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
                 join description in descriptions on product.ProductId equals description.ProductId
                 join memo in memos on product.ProductId equals memo.ProductId
-                where product.CategoryId == id
                 select new
                 {
                     ID = product.ProductId,
@@ -53,20 +51,22 @@ namespace ProductDatabase.BL
                     Model = product.ProductModel,
                     Description = description.DescriptionText,
                     ProductionDate = product.ProductionDate,
+                    ExpirationDate = product.ExpirationDate,
                     Memo = memo.MemoText
 
                 }).ToList();
 
             //Перетворення анонімних об’єктів в об’єкти типу ReportByCategory та об’єднання їх у колекцію
-            List<ReportByCategory> result = new List<ReportByCategory>();
+            List<ShortProductReport> result = new List<ShortProductReport>();
             foreach (var item in list)
             {
-                ReportByCategory report = new ReportByCategory(item.ID);
+                ShortProductReport report = new ShortProductReport(item.ID);
                 report.Category = item.Category;
                 report.Manufacturer = item.Manufacturer;
                 report.Model = item.Model;
                 report.Description = item.Description;
                 report.ProductionDate = item.ProductionDate;
+                report.ExpirationDate = item.ExpirationDate;
                 report.Memo = item.Memo;
 
                 result.Add(report);
@@ -76,8 +76,26 @@ namespace ProductDatabase.BL
 
         }
 
+        /// <summary>
+        /// Генерує повний звіт всіх товарів
+        /// </summary>
+        /// <returns>Ліст звітів FullProductReport</returns>
+        internal List<FullProductReport> GenerateFullProductReport()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Генерує звіт товарів на складі WarehouseRecordReport
+        /// </summary>
+        /// <returns>Ліст звітів WarehouseRecordReport</returns>
+        internal List<WarehouseRecordReport> GenerateWarehouseRecordReport()
+        {
+            return null;
+        }
 
 
-        
+
+
     }
 }

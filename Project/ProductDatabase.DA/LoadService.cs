@@ -83,11 +83,11 @@ namespace ProductDatabase.DA
             }
             catch (ArgumentException e)
             {
-                throw new ArgumentException($"Внутрішня помилка");
+                throw new ArgumentException("Внутрішня помилка. Зверніться в службу підтримки");
             }
             catch (IOException e)
             {
-                throw new IOException();
+                throw new IOException("Внутрішня помилка. Спробуйте ще раз");
             }
         }
 

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\LastIdKeeper.cs" />
     <Compile Include="Interfaces\IGetable.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ISaveable.cs" />
@@ -55,8 +56,10 @@
     <Compile Include="ObjectCreator.cs" />
     <Compile Include="ObjectToStringConverter.cs" />
     <Compile Include="Reports\FullProductReport.cs" />
-    <Compile Include="Reports\ReportBuilder.cs" />
-    <Compile Include="Reports\ReportByCategory.cs" />
+    <Compile Include="ReportBuilder.cs" />
+    <Compile Include="Reports\ShortProductReport.cs" />
+    <Compile Include="Reports\WarehouseRecordReport.cs" />
+    <Compile Include="Repositories\LastIdKeeperRepository.cs" />
     <Compile Include="Repositories\ManufacturerRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\MemoRepository.cs" />
@@ -67,7 +70,7 @@
     <Compile Include="Repositories\ShortDescriptionRepository.cs" />
     <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />
-    <Compile Include="Controller.cs" />
+    <Compile Include="TextReportShower.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProductDatabase.DA\ProductDatabase.DA.csproj">

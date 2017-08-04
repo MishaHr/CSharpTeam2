@@ -9,7 +9,7 @@ namespace ProductDatabase.BL.Entities
     /// <summary>
     /// Клас Виробників продукції.
     /// </summary>
-    public class Manufacturer: ISaveable
+    public class Manufacturer: ISaveable,IGetable
     {
         public int ManufacturerId { get; private set; }
         public string ManufacturerName { get; set; }

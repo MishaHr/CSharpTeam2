@@ -7,18 +7,10 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Entities
 {
-    public interface IManufacturerRepository
-    {
-        IEnumerable<Manufacturer> GetAll();
-        Manufacturer Get(int id);
-        Manufacturer Add(Manufacturer newManufacturer);
-        void SaveChanes();
-    }
-
-    /// <summary>
+   /// <summary>
     /// Клас для добування Виробників
     /// </summary>
-    public class ManufacturerRepository:IManufacturerRepository
+    public class ManufacturerRepository:IRepository
     {
         //змінна вибору відповідного файлу бази даних (пізніше перероблю механізм)
         private string _option = "Manufacturer";
@@ -40,24 +32,24 @@ namespace ProductDatabase.BL.Entities
         }
 
 
-        public IEnumerable<Manufacturer> GetAll()
+        public IEnumerable<IGetable> GetAll()
         {
             List<Manufacturer> manufacturers = _manufacturerList;
             return manufacturers;
         }
 
-        public Manufacturer Get(int id)
+        public IGetable Get(int id)
         {
             Manufacturer manufacturer = _manufacturerList.FirstOrDefault(man => man.ManufacturerId == id);
             return manufacturer;
         }
 
-        public Manufacturer Add(Manufacturer newManufacturer)
+        public void Add(IGetable newManufacturer)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveChanes()
+        public void SaveChanges()
         {
             throw new NotImplementedException();
         }

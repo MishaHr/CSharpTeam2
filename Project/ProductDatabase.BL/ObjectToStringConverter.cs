@@ -128,7 +128,7 @@ namespace ProductDatabase.BL
         public string ManufacturerToText(int id)
         {
             ManufacturerRepository manufacturerRepository   =new ManufacturerRepository();
-            Manufacturer man = manufacturerRepository.Get(id);
+            Manufacturer man = (Manufacturer)manufacturerRepository.Get(id);
             try
             {
                 string result = $"{man.ManufacturerId}. {man.ManufacturerName}";
