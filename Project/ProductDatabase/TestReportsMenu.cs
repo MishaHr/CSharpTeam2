@@ -61,7 +61,7 @@ namespace ProductDatabase
 
                             var category = display.CategoryToText(id);
                             Console.WriteLine($"{category}\n");
-                            var report = TextReportShower.ShowShortReportByCategory(id);
+                            var report = TextReportShower.ShowWarehouseReportByCategory(id);
                             foreach (var item in report)
                             {
                                 Console.WriteLine(item);
@@ -93,8 +93,13 @@ namespace ProductDatabase
                     {
                         Console.Write("enter ID:");
                         int id = Convert.ToInt32(Console.ReadLine());
-                        var text = display.ManufacturerToText(id);
-                        Console.WriteLine(text);
+                        bool check = true;//Validation.Id(id);
+                        if (check==true)
+                        {
+                            var text = display.ManufacturerToText(id);
+                            Console.WriteLine(text);
+                        }
+                        
                     }
                     catch (NullReferenceException e)
                     {
@@ -140,7 +145,10 @@ namespace ProductDatabase
             Console.Write("\nНатисніть любу клавышу щоб повернутись до попереднього меню.");
             Console.ReadKey();
             TestReportsMenu.Show();
+
         }
+
+
 
 
     }

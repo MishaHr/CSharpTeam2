@@ -166,7 +166,6 @@ namespace ProductDatabase.BL
             ProductRepository productRepository = new ProductRepository();
             WarehouseRecordRepository warehouseRecordRepository = new WarehouseRecordRepository();
             ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
-
             SupplierRepository supplierRepository = new SupplierRepository();
 
             var products = (List<Product>) productRepository.GetAll();
@@ -195,7 +194,24 @@ namespace ProductDatabase.BL
                     ExpirationDate = product.ExpirationDate,
                     WarehouseNumber = warehouseRecord.WarehouseNumber
                 }).ToList();
-            return null;
+
+            List<WarehouseRecordReport> reportList = new List<WarehouseRecordReport>();
+            foreach (var item in query)
+            {
+                WarehouseRecordReport report = new WarehouseRecordReport(item.ProductId);
+                report.CategoryId = item.CategoryId;
+                report.ManufacturerName = item.ManufacturerName;
+                report.Model = item.Model;
+                report.Ammount = item.Ammount;
+                report.Price = item.Price;
+                report.SupplierName = item.Supplier;
+                report.DeliveryDate = item.DeliveryDate;
+                report.ExpirationDate = item.ExpirationDate;
+                report.WarehouseNumber = item.WarehouseNumber;
+
+                reportList.Add(report);
+            }
+            return reportList;
         }
 
 
