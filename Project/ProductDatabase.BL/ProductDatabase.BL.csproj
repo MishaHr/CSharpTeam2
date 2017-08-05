@@ -81,13 +81,7 @@
   <ItemGroup>
     <Folder Include="CustomExceptions\" />
   </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="..\DependencyValidation1\DependencyValidation1.layerdiagram">
-      <Link>DependencyValidation1.layerdiagram</Link>
-      <Visible>False</Visible>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
+    <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
