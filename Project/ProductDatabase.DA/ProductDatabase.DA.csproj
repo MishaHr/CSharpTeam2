@@ -52,27 +52,27 @@
       <Visible>False</Visible>
     </AdditionalFiles>
     <None Include="packages.config" />
-    <None Include="ProjectDB\Category.dat">
+    <None Include="Category.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ProjectDB\Manufacturer.dat">
+    <None Include="Manufacturer.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ProjectDB\Memo.dat">
+    <None Include="Memo.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ProjectDB\Products.dat">
+    <None Include="Products.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ProjectDB\ShortDescription.dat">
+    <None Include="ShortDescription.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ProjectDB\Suppliers.dat">
+    <None Include="Suppliers.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ProjectDB\WarehouseRecord.dat">
+    <None Include="WarehouseRecord.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -81,9 +81,12 @@
     <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ProjectDB\LastIdKeeper.dat">
+    <None Include="LastIdKeeper.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProjectDB\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
