@@ -9,9 +9,9 @@ namespace ProductDatabase.DA
     /// <summary>
     /// Клас для запису інформації у файл. В розробці
     /// </summary>
-    public static class SaveService
+    public  class SaveService
     {
-        public static void WrightToFile(string toSave)
+        public  void WrightToFile(List<string> toSave)
         {
             Console.WriteLine($"{toSave} saved succesfully");
         }
