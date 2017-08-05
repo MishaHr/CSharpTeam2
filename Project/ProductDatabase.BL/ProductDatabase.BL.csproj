@@ -71,7 +71,7 @@
     <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />
     <Compile Include="TextReportShower.cs" />
-  </ItemGroup>
+	  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProductDatabase.DA\ProductDatabase.DA.csproj">
       <Project>{14a1a22c-a1d4-4852-8858-c94226bd772c}</Project>
