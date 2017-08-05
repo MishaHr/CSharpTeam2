@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProductDatabase.BL
 {
-    static class Validation
+    public static class Validation
     {
         /// <summary>
         /// Check is valid data

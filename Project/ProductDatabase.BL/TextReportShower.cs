@@ -41,6 +41,10 @@ namespace ProductDatabase.BL
             return strings;
         }
 
+        /// <summary>
+        /// Підготовляє повний звіт по всіх товарах
+        /// </summary>
+        /// <returns>Ліст стрінгів всієї інформації по всіх товарах</returns>
         public static List<string> ShowFullProductReport()
         {
             ReportBuilder reportBuilder = new ReportBuilder();
@@ -53,6 +57,60 @@ namespace ProductDatabase.BL
             }
             return textFullProductReports;
         }
+
+        public static List<string> ShowFullProductReportByCategory(int categoryId)
+        {
+            ReportBuilder reportBuilder = new ReportBuilder();
+            CategoryRepository categoryRepository =new CategoryRepository();
+            var categories = (List<Category>)categoryRepository.GetAll();
+            var fullReports = reportBuilder.GenerateFullProductReport();
+
+            var filteredList = (
+                from fullReport in fullReports
+                join category in categories on fullReport.Category equals category.CategoryName
+                where category.CategoryId == categoryId
+                select fullReport).ToList();
+
+            List<string> textFullProductReports = new List<string>();
+            foreach (FullProductReport report in filteredList)
+            {
+                textFullProductReports.Add(report.ToPrint());
+            }
+            return textFullProductReports;
+        }
+
+        public static List<string> ShowFullWarehousereport()
+        {
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var fullWarehouseReport = reportBuilder.GenerateWarehouseRecordReport();
+
+            List<string> textWarehouseReport = new List<string>();
+            foreach (WarehouseRecordReport report in fullWarehouseReport)
+            {
+                textWarehouseReport.Add(report.ToString());
+            }
+            return textWarehouseReport;
+        }
+
+        public static List<string> ShowWarehouseReportByCategory(int id)
+        {
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var fullWarehouseReport = reportBuilder.GenerateWarehouseRecordReport();
+
+            var reportList =
+            (from report in fullWarehouseReport
+                where report.CategoryId == id
+                select report).ToList();
+
+            List<string> textReport = new List<string>();
+            foreach (var record in reportList)
+            {
+                textReport.Add(record.ToPrint());
+            }
+            return textReport;
+        }
+
+       
 
     }
 }

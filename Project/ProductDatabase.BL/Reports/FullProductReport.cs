@@ -36,5 +36,21 @@ namespace ProductDatabase.BL.Reports
                 $"{Price};{Supplier};{SupplierPhoneNumber};{DeliveryDate.ToString("dd.MM.yyyy")};{WarehouseNumber};" +
                 $"{Description};{Memo}");
         }
+
+        public string ToPrint()
+        {
+            return string.Format($"Код: {ProductId}" +
+                                 $"\nКатегорія: {Category}" +
+                                 $"\nМодель: {Manufacturer} {Model}" +
+                                 $"\nДата виробництва: {ProductionDate.ToString("dd.MM.yyy")}" +
+                                 $"\nТермін придатності: {ExpirationDate}" +
+                                 $"\nКількість: {Ammount}" +
+                                 $"\nЦіна: {Price}" +
+                                 $"\nПостачальник: {Supplier} тел: {SupplierPhoneNumber}" +
+                                 $"\nДата поставки: {DeliveryDate}" +
+                                 $"\nСклад №{WarehouseNumber}" +
+                                 $"\nКороткий опис: {Description}" +
+                                 $"\nПримітка: {Memo}");
+        }
     }
 }

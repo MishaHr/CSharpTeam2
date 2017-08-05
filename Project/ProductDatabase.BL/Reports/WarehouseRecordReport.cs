@@ -8,6 +8,7 @@ namespace ProductDatabase.BL.Reports
 {
     internal class WarehouseRecordReport
     {
+        #region Properties
         public int ProductId { get; set; }
         public int CategoryId { get; set; }
         public string ManufacturerName { get; set; }
@@ -18,15 +19,16 @@ namespace ProductDatabase.BL.Reports
         public DateTime DeliveryDate { get; set; }
         public string ExpirationDate { get; set; }
         public int WarehouseNumber { get; set; }
+        #endregion
 
         public WarehouseRecordReport(int id)
         {
             ProductId = id;
         }
 
-        public override string ToString()
+        public string ToPrint()
         {
-            return string.Format($"Код: " +
+            return string.Format($"Код: {ProductId}" +
                                  $"\nМодель: {ManufacturerName} {Model}" +
                                  $"\nКількість на скалді: {Ammount}" +
                                  $"\nЦіна: {Price}" +
@@ -35,5 +37,7 @@ namespace ProductDatabase.BL.Reports
                                  $"\nТермін привдатності: {ExpirationDate}" +
                                  $"\nСклад №{WarehouseNumber}");
         }
+
+
     }
 }
