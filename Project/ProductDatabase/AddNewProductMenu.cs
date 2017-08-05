@@ -215,6 +215,34 @@ namespace ProductDatabase
             Back();
         }
 
+        public static void NewProductArray(string ProductCategory, string ProductManufacturer, string ProductName, string ProductManufactureDate, string ProductWarranty, string ProductProvider)
+        {
+            string[] ProductArray = new string[] { ProductCategory, ProductManufacturer, ProductName, ProductManufactureDate, ProductWarranty, ProductProvider };
+            foreach (string PA in ProductArray)
+            {
+                WriteLine(PA);
+            }
+        }
+
+        public static void NewWarehouseRecordArray(string ProductCategory, string ProductManufacturer, string ProductName, string ProductManufactureDate, string ProductWarranty, string ProductProvider)
+        {
+            string[] WarehouseRecordArray = new string[] { ProductCategory, ProductManufacturer, ProductName, ProductManufactureDate, ProductWarranty, ProductProvider };
+            foreach (string WRA in WarehouseRecordArray)
+            {
+                WriteLine(WRA);
+            }
+        }
+
+        public static void NewDescriptionArray(string ProductDescription)
+        {
+            string DescriptionArray = ProductDescription;
+        }
+
+        public static void NewMemoArray(string ProductNotes)
+        {
+            string MemoArray = ProductNotes;
+        }
+
         public static void Back()
         {
             MainMenu.Show();
