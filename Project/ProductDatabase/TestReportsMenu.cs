@@ -53,7 +53,7 @@ namespace ProductDatabase
                         Console.Write("Виберіть: ");
 
                         string textid = Console.ReadLine();
-                        bool valid=Validation.Id(textid);
+                        bool valid = true;
                         Console.Clear();
                         if (valid == true)
                         {
