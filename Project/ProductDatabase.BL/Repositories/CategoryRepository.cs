@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.DA;
 
-namespace ProductDatabase.BL.Repos
+namespace ProductDatabase.BL.Reposirories
 {
     
 
@@ -67,7 +67,14 @@ namespace ProductDatabase.BL.Repos
         /// </summary>
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            List<string> textcategoryList = new List<string>();
+            foreach (var category in _categoryList)
+            {
+                textcategoryList.Add(category.ToString());
+
+            }
+            SaveService save = new SaveService();
+            save.WrightToFile(textcategoryList);
         }
     }
 }

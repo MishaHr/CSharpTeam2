@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductDatabase.BL.Main_Classes
+namespace ProductDatabase.BL.Entities
 {
     public class WarehouseRecord:IGetable
     {
@@ -13,7 +13,7 @@ namespace ProductDatabase.BL.Main_Classes
         /// </summary>
         public int ProductId { get; private set; }
         public int WarehouseNumber { get; set; }
-        public int Ammmount { get; set; }
+        public int Ammount { get; set; }
         public double Price { get; set; }
         public DateTime DeliveryDate { get; set; }
         public int SupplierId { get; set; }
@@ -25,7 +25,7 @@ namespace ProductDatabase.BL.Main_Classes
 
         public override string ToString()
         {
-            return string.Format($"{ProductId};{WarehouseNumber};{Ammmount};{Price};{DeliveryDate.Date.ToString("dd.MM.yyyy")};{SupplierId}");
+            return string.Format($"{ProductId};{WarehouseNumber};{Ammount};{Price};{DeliveryDate.Date.ToString("dd.MM.yyyy")};{SupplierId}");
         }
     }
 }

@@ -3,8 +3,9 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using ProductDatabase.BL.Main_Classes;
-    using ProductDatabase.BL.Repos;
+    using ProductDatabase.BL.Entities;
+    using ProductDatabase.BL.Reposirories;
+    using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL
 {
@@ -81,28 +82,42 @@ namespace ProductDatabase.BL
         }
 
         /// <summary>
-        /// Метод формує Список Постачальників у текстовому форматі
+        /// Метод формує скорочений Список Постачальників у текстовому форматі 
+        /// (без телефону, тільки ІД та назва)
         /// </summary>
-        /// <returns>Список постачальників у вигляді стрінгів</returns>
+        /// <returns>скорочений Список постачальників у вигляді стрінгів</returns>
         public List<string> SuppliersListToText()
         {
-            //тимчасовий код для тестів
-            //List<string> list = new List<string>();
-            //list[0] = "1. Samsung";
-            //list[1] = "2. HP";
-            //return list;
-            //Завантажуємо всі категорії з бази
             SupplierRepository supplierRepository = new SupplierRepository();
-            List<string> strings = new List<string>();
+            List<string> suppliers = new List<string>();
+            var supplierList = (List<Supplier>) supplierRepository.GetAll();
+
+            foreach (var supplier in supplierList)
+            {
+                Text = $"{supplier.SupplierId}. {supplier.SupplierName}";
+                suppliers.Add(Text);
+            }
+            return suppliers;
+        }
+
+
+        /// <summary>
+        /// Метод формує повний Список Постачальників у текстовому форматі 
+        /// (всі поля разом з телефоном)
+        /// </summary>
+        /// <returns>Повний Список постачальників у вигляді стрінгів</returns>
+        public List<string> SuppliersListToTextFull()
+        {
+            SupplierRepository supplierRepository = new SupplierRepository();
+            List<string> suppliers = new List<string>();
             var supplierList = (List<Supplier>)supplierRepository.GetAll();
 
-            //заповнюємо Ліст текстовим представленням кожного об’єкту Category
-            foreach (var s in supplierList)
+            foreach (var supplier in supplierList)
             {
-                Text = $"{s.SupplierId}. {s.SupplierName}, тел:{s.SupplierPhoneNumber}";
-                strings.Add(Text);
+                Text = $"{supplier.SupplierId}. {supplier.SupplierName}, тел: {supplier.SupplierPhoneNumber}";
+                suppliers.Add(Text);
             }
-            return strings;
+            return suppliers;
         }
 
         /// <summary>
@@ -113,9 +128,7 @@ namespace ProductDatabase.BL
         /// <returns>Стрінга, відповідно сформатована для виведення на екран</returns>
         public string ManufacturerToText(int id)
         {
-            //тимчасовий код для тестів
-            //return "1. Samsung";
-            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
+            ManufacturerRepository manufacturerRepository   =new ManufacturerRepository();
             Manufacturer man = (Manufacturer)manufacturerRepository.Get(id);
             try
             {
@@ -124,7 +137,7 @@ namespace ProductDatabase.BL
             }
             catch (NullReferenceException e)
             {
-                throw new NullReferenceException("Категорії з таким ІД не існує");
+                throw new NullReferenceException("Виробника з таким ІД не існує");
             }
         }
 
@@ -134,25 +147,32 @@ namespace ProductDatabase.BL
         /// <returns>Список Виробників у вигляді стрінгів</returns>
         public List<string> ManufacturerListToText()
         {
-            //тимчасовий код для тестів
-            //List<string> list = new List<string>();
-            //list[0] = "1. Samsung";
-            //list[1] = "2. HP";
-            //return list;
-            //Завантажуємо всі категорії з бази
-            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
-            List<string> strings = new List<string>();
-            var manufacturerList = (List<Manufacturer>)manufacturerRepository.GetAll();
+            ManufacturerRepository manufacturerRepository =new ManufacturerRepository();
+            List<Manufacturer> manufacturerList = (List<Manufacturer>)manufacturerRepository.GetAll();
+            List<string> manufacturerStringList = new List<string>();
 
-            //заповнюємо Ліст текстовим представленням кожного об’єкту Category
-            foreach (var m in manufacturerList)
+            foreach (var man in manufacturerList)
             {
-                Text = $"{m.ManufacturerId}. {m.ManufacturerName}";
-                strings.Add(Text);
+                Text = $"{man.ManufacturerId}. {man.ManufacturerName}";
+                manufacturerStringList.Add(Text);
             }
-            return strings;
+            return manufacturerStringList;
         }
 
+        public List<string> LastIdList()
+        {
+            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
+            List<LastIdKeeper> idList = (List<LastIdKeeper>) lastIdKeeperRepository.GetAll();
+            List<string> lastIdText = new List<string>();
+
+            foreach (var lastId in idList)
+            {
+                Text =
+                    $"Prod: {lastId.LastProductId}, Cat: {lastId.LastCategoryId}, Man: {lastId.LastManufacturerId}, Sup: {lastId.LastSupplierId}";
+                lastIdText.Add(Text);
+            }
+            return lastIdText;
+        }
 
 
     }

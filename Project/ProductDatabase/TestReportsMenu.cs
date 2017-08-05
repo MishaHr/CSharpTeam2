@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ProductDatabase.BL;
 using ProductDatabase.BL.Reports;
 
+
 namespace ProductDatabase
 {
     /// <summary>
@@ -19,8 +20,8 @@ namespace ProductDatabase
         {
             Console.Clear();
             Console.WriteLine("1. Згенерувати звіт по вибраный категорії");
-            Console.WriteLine("2. Вибрати категорую по Коду");
-            Console.WriteLine("3. Переглянути список категорій");
+            Console.WriteLine("2. Вибрати по Коду");
+            Console.WriteLine("3. Переглянути список");
             Console.WriteLine("\n0. До попереднього меню");
             Console.Write("\nВведіть ваш вибір: ");
             Choose();
@@ -33,28 +34,42 @@ namespace ProductDatabase
                choice = Console.ReadLine();
             Console.Clear();
             ObjectToStringConverter display = new ObjectToStringConverter();
+            
             switch (choice)
             {
 
                 //Тест побудови звіту
                 case "1":
                 {
-                    var text = display.CategoryListToText();
-                    foreach (var s in text)
+                    try
                     {
-                        Console.WriteLine(s);
-                    }
-                        Console.Write("Виберіть категорію: ");
-                    int id = Convert.ToInt32(Console.ReadLine());
+                        var text = display.CategoryListToText();
+                        foreach (var s in text)
+                        {
+                            Console.WriteLine(s);
+                        }
+
+                        Console.Write("Виберіть: ");
+                   
+                        int id = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
-                    var category = display.CategoryToText(id);
-                    Console.WriteLine($"{category}\n");
-                        var report = Controller.ShowByCategory(id);
-                    foreach (var item in report)
-                    {
+                        var category = display.CategoryToText(id);
+                        Console.WriteLine($"{category}\n");
+                        var report = TextReportShower.ShowShortReportByCategory(id);
+                        foreach (var item in report)
+                        {
                         Console.WriteLine(item);
                         Console.WriteLine();
+                        }
+                   
                     }
+                    catch (FileNotFoundException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        
+                    }
+                    
+                    
                         Back();
                         break;
                 }
@@ -64,9 +79,9 @@ namespace ProductDatabase
                 {
                     try
                     {
-                        Console.Write("enter Category ID:");
+                        Console.Write("enter ID:");
                         int id = Convert.ToInt32(Console.ReadLine());
-                        var text = display.CategoryToText(id);
+                        var text = display.ManufacturerToText(id);
                         Console.WriteLine(text);
                     }
                     catch (NullReferenceException e)
@@ -87,8 +102,8 @@ namespace ProductDatabase
                 //тест виводу на екран списку категорій
                 case "3":
                 {
-                        
-                        var text = display.CategoryListToText();
+
+                    var text = TextReportShower.ShowFullProductReport();
                         foreach (var s in text)
                         {
                             Console.WriteLine(s);

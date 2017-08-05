@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProductDatabase.BL.Main_Classes;
+using ProductDatabase.BL.Entities;
 
 namespace ProductDatabase.BL
 {
@@ -26,6 +26,8 @@ namespace ProductDatabase.BL
                 product.CategoryId = ToInt32(retrivedData[1]);
                 product.ManufacrirerId = ToInt32(retrivedData[2]);
                 product.ProductModel = retrivedData[3].Trim();
+                product.ProductionDate = DateTime.Parse(retrivedData[4].Trim());
+                product.ExpirationDate = retrivedData[5].Trim();
                 return product;
             }
 
@@ -87,7 +89,7 @@ namespace ProductDatabase.BL
         {
             WarehouseRecord warehouseRecord = new WarehouseRecord(ToInt32(retrivedData[0]));
             warehouseRecord.WarehouseNumber = ToInt32(retrivedData[1]);
-            warehouseRecord.Ammmount = ToInt32(retrivedData[2]);
+            warehouseRecord.Ammount = ToInt32(retrivedData[2]);
             warehouseRecord.Price = ToDouble(retrivedData[3]);
             warehouseRecord.DeliveryDate = ToDateTime(retrivedData[4]);
             warehouseRecord.SupplierId = ToInt32(retrivedData[5]);
