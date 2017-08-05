@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 using ProductDatabase.BL;
 using ProductDatabase.BL.Reports;
 
@@ -50,18 +51,29 @@ namespace ProductDatabase
                         }
 
                         Console.Write("Виберіть: ");
-                   
-                        int id = Convert.ToInt32(Console.ReadLine());
+
+                        string textid = Console.ReadLine();
+                        bool valid=Validation.Id(textid);
                         Console.Clear();
-                        var category = display.CategoryToText(id);
-                        Console.WriteLine($"{category}\n");
-                        var report = TextReportShower.ShowShortReportByCategory(id);
-                        foreach (var item in report)
+                        if (valid == true)
                         {
-                        Console.WriteLine(item);
-                        Console.WriteLine();
+                            int id = Convert.ToInt32(textid);
+
+                            var category = display.CategoryToText(id);
+                            Console.WriteLine($"{category}\n");
+                            var report = TextReportShower.ShowShortReportByCategory(id);
+                            foreach (var item in report)
+                            {
+                                Console.WriteLine(item);
+                                Console.WriteLine();
+                            }
                         }
-                   
+                        else
+                        {
+                            Console.WriteLine("Not valid");
+                        }
+
+
                     }
                     catch (FileNotFoundException e)
                     {

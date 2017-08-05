@@ -70,6 +70,7 @@
     <Compile Include="Repositories\ShortDescriptionRepository.cs" />
     <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />
+	<Compile Include="Validation.cs" />
     <Compile Include="TextReportShower.cs" />
 	  </ItemGroup>
   <ItemGroup>

@@ -163,6 +163,38 @@ namespace ProductDatabase.BL
         /// <returns>Ліст звітів WarehouseRecordReport</returns>
         internal List<WarehouseRecordReport> GenerateWarehouseRecordReport()
         {
+            ProductRepository productRepository = new ProductRepository();
+            WarehouseRecordRepository warehouseRecordRepository = new WarehouseRecordRepository();
+            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
+
+            SupplierRepository supplierRepository = new SupplierRepository();
+
+            var products = (List<Product>) productRepository.GetAll();
+            var records = (List<WarehouseRecord>) warehouseRecordRepository.GetAll();
+            var suppliers = (List<Supplier>) supplierRepository.GetAll();
+            var manufacturers = (List<Manufacturer>) manufacturerRepository.GetAll();
+
+
+            var query = (
+                from product in products
+                join record in records on product.ProductId equals record.ProductId
+                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
+                join warehouseRecord in records on product.ProductId equals warehouseRecord.ProductId
+                select new
+                {
+                    ProductId = product.ProductId,
+                    CategoryId = product.CategoryId,
+                    ManufacturerName = manufacturer.ManufacturerName,
+                    Model = product.ProductModel,
+                    Ammount = warehouseRecord.Ammount,
+                    Price = warehouseRecord.Price,
+                    Supplier = (from supplier in suppliers
+                        join record1 in records on supplier.SupplierId equals record.SupplierId
+                        select supplier.SupplierName).First(),
+                    DeliveryDate = warehouseRecord.DeliveryDate,
+                    ExpirationDate = product.ExpirationDate,
+                    WarehouseNumber = warehouseRecord.WarehouseNumber
+                }).ToList();
             return null;
         }
 
