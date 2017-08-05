@@ -67,7 +67,6 @@
     <Compile Include="Repositories\ShortDescriptionRepository.cs" />
     <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />
-    <Compile Include="Controller.cs" />
     <Compile Include="Validation.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +78,7 @@
   <ItemGroup>
     <Folder Include="CustomExceptions\" />
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
