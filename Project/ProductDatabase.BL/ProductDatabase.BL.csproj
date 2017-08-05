@@ -55,8 +55,6 @@
     <Compile Include="ObjectCreator.cs" />
     <Compile Include="ObjectToStringConverter.cs" />
     <Compile Include="Reports\FullProductReport.cs" />
-    <Compile Include="Reports\ReportBuilder.cs" />
-    <Compile Include="Reports\ReportByCategory.cs" />
     <Compile Include="Repositories\ManufacturerRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\MemoRepository.cs" />
