@@ -53,7 +53,7 @@ namespace ProductDatabase.BL
             List<string> textFullProductReports = new List<string>();
             foreach (FullProductReport report in fullReports)
             {
-                textFullProductReports.Add(report.ToPrint());
+                textFullProductReports.Add(report.ToString());
             }
             return textFullProductReports;
         }
