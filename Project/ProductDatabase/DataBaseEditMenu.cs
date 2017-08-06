@@ -51,6 +51,5 @@ namespace ProductDatabase
         {
             MainMenu.Show();
         }
-
     }
 }

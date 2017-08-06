@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\LastIdKeeper.cs" />
     <Compile Include="Interfaces\IGetable.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Entities\ShortDescription.cs" />
     <Compile Include="Entities\WarehouseRecord.cs" />
     <Compile Include="ObjectCreator.cs" />
+    <Compile Include="CategoryEditor.cs" />
     <Compile Include="ObjectToStringConverter.cs" />
     <Compile Include="Reports\FullProductReport.cs" />
     <Compile Include="ReportBuilder.cs" />
@@ -70,9 +72,10 @@
     <Compile Include="Repositories\ShortDescriptionRepository.cs" />
     <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />
-	  <Compile Include="Validation.cs" />
+    <Compile Include="Validation.cs" />
     <Compile Include="TextReportShower.cs" />
-	</ItemGroup>
+	<Compile Include="CustomExceptions\CustomeException.cs" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProductDatabase.DA\ProductDatabase.DA.csproj">
       <Project>{14a1a22c-a1d4-4852-8858-c94226bd772c}</Project>
@@ -85,5 +88,5 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
