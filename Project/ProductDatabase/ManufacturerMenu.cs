@@ -87,7 +87,7 @@ namespace ProductDatabase
             WriteLine("\nВведіть нову назву виробника : ");
             ManufacturerName = (ReadLine());
             WriteLine("\nНазву виробника змінено : {0}", ManufacturerName);
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
             Show();
         }
@@ -106,7 +106,7 @@ namespace ProductDatabase
             string ManufacturerName = display.ManufacturerToText(ManufacturerID);
             Clear();
             WriteLine("Виробника {0} видалено успішно!", ManufacturerName);
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
             Show();
         }

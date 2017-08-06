@@ -55,7 +55,7 @@ namespace ProductDatabase
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
-            var suppliers = display.SuppliersListToText();
+            var suppliers = display.SuppliersListToTextShort();
             foreach (var sup in suppliers)
             {
                 Console.WriteLine(sup);
@@ -80,7 +80,7 @@ namespace ProductDatabase
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
-            var suppliers = display.SuppliersListToText();
+            var suppliers = display.SuppliersListToTextFull();
             foreach (var sup in suppliers)
             {
                 Console.WriteLine(sup);
@@ -96,7 +96,7 @@ namespace ProductDatabase
             AddNewProductMenu.WriteAt(39, 4);
             string SupplierPhoneNumber = (ReadLine());
             WriteLine("\nДані постачальника змінено : {0}, тел:{1}", SupplierName, SupplierPhoneNumber);
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
             Show();
         }
@@ -105,7 +105,7 @@ namespace ProductDatabase
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
-            var suppliers = display.SuppliersListToText();
+            var suppliers = display.SuppliersListToTextFull();
             foreach (var sup in suppliers)
             {
                 Console.WriteLine(sup);
@@ -115,7 +115,7 @@ namespace ProductDatabase
             string SupplierInfo = display.SupplierToText(SupplierId);
             Clear();
             WriteLine("Постачальника {0} видалено успішно!", SupplierInfo);
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
             Show();
         }
