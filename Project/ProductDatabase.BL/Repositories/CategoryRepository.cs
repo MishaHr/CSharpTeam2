@@ -16,7 +16,7 @@ namespace ProductDatabase.BL.Reposirories
     public class CategoryRepository
     {
         private string _option  = "Category";
-        private List<BaseEntity> _list;
+        private List<Category> _list;
 
         public CategoryRepository()
         {
@@ -25,22 +25,29 @@ namespace ProductDatabase.BL.Reposirories
 
             //створюємо і повертаємо об’єкт
             ObjectCreator itemCreator = new ObjectCreator();
-            var _list = new List<BaseEntity>();
+            _list = new List<Category>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _list.Add(itemCreator.CreateCategory(retrivedData[index]));
+                _list.Add(CreateCategory(retrivedData[index]));
             }
         }
 
-      /// <summary>
-      /// Метод для утворення всього списку категорій
-      /// </summary>
-      /// <returns>Діст всіх об’єктів Category</returns>
-        public IEnumerable<BaseEntity> GetAll()
+        private Category CreateCategory(string[] retrivedData)
         {
-            List <BaseEntity> categories = _list;
-            return categories;
+            Category category = new Category(Convert.ToInt32(retrivedData[0]));
+            category.CategoryName = retrivedData[1].Trim();
+            return category;
+        }
+
+        /// <summary>
+        /// Метод для утворення всього списку категорій
+        /// </summary>
+        /// <returns>Діст всіх об’єктів Category</returns>
+        public IEnumerable<IGetable> GetAll()
+      {
+          
+            return _list;
         }
 
         /// <summary>
@@ -50,7 +57,7 @@ namespace ProductDatabase.BL.Reposirories
         /// <returns>об’єкт типу Category</returns>
         public BaseEntity Get(int id)
         {
-            List<Category> categoryList = (List<Category>)_list;
+            List<Category> categoryList = _list;
             Category item = _list.FirstOrDefault(product => product.CategoryId == id);
             return item;
         }
@@ -83,22 +90,30 @@ namespace ProductDatabase.BL.Reposirories
         /// <param name="newObject">Об’єкт нової категорії</param>
         private void Add(BaseEntity objectToAdd)
         {
-            _categoryList.Add((Category)objectToAdd);
+            _list.Add((Category)objectToAdd);
             SaveTable();
         }
 
         private void Update(BaseEntity objectToUpdate)
         {
+
+            Category toAdd = objectToUpdate as Category;
+            _list.Add(toAdd);
+            _list.Remove(toAdd);
+            SaveTable();
         }
 
         private void Delete(BaseEntity objectToDelete)
         {
+            Category toDelete = objectToDelete as Category;
+            _list.Remove(toDelete);
+            SaveTable();
         }
 
         private void SaveTable()
         {
             List<string> textcategoryList = new List<string>();
-            foreach (var category in _categoryList)
+            foreach (var category in _list)
             {
                 textcategoryList.Add(category.ToString());
 

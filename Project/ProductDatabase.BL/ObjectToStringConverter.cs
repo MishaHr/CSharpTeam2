@@ -56,6 +56,7 @@ namespace ProductDatabase.BL
                     Text = $"{c.CategoryId}. {c.CategoryName}";
                     strings.Add(Text);
                 }
+                strings.Sort();
                 return strings;
             }
 
