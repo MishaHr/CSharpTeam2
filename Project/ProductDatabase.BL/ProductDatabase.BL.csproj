@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\LastIdKeeper.cs" />
+    <Compile Include="CustomExceptions\CustomeException.cs" />
     <Compile Include="Interfaces\IGetable.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ISaveable.cs" />
@@ -54,13 +54,7 @@
     <Compile Include="Entities\ShortDescription.cs" />
     <Compile Include="Entities\WarehouseRecord.cs" />
     <Compile Include="ObjectCreator.cs" />
-    <Compile Include="ObjectEditor.cs" />
     <Compile Include="ObjectToStringConverter.cs" />
-    <Compile Include="Reports\FullProductReport.cs" />
-    <Compile Include="ReportBuilder.cs" />
-    <Compile Include="Reports\ShortProductReport.cs" />
-    <Compile Include="Reports\WarehouseRecordReport.cs" />
-    <Compile Include="Repositories\LastIdKeeperRepository.cs" />
     <Compile Include="Repositories\ManufacturerRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\MemoRepository.cs" />
@@ -72,7 +66,6 @@
     <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />
     <Compile Include="Validation.cs" />
-    <Compile Include="TextReportShower.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProductDatabase.DA\ProductDatabase.DA.csproj">
@@ -81,10 +74,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomExceptions\" />
+    <Folder Include="Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\DependencyValidation1\DependencyValidation1.layerdiagram">
+      <Link>DependencyValidation1.layerdiagram</Link>
+      <Visible>False</Visible>
+    </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
