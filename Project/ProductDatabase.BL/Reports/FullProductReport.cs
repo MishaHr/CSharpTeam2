@@ -31,9 +31,9 @@ namespace ProductDatabase.BL.Reports
         public override string ToString()
         {
             return string.Format(
-                $"{ProductId};{Category};{Manufacturer};{Model};" +
+                $"{ProductId};{Manufacturer} {Model};{Category};" +
                 $"{ProductionDate.ToString("dd.MM.yyyy")};{ExpirationDate};{Ammount};" +
-                $"{Price};{Supplier};{SupplierPhoneNumber};{DeliveryDate.ToString("dd.MM.yyyy")};{WarehouseNumber};" +
+                $"{Price};{Supplier};{SupplierPhoneNumber};{DeliveryDate.ToString("dd.MM.yyyy")};Склад№{WarehouseNumber};" +
                 $"{Description};{Memo}");
         }
 
