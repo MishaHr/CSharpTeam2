@@ -21,6 +21,7 @@ namespace ProductDatabase
         /// </summary>
         public static void Show()
         {
+            Title = "\tГоловне меню програми";
             Clear();
             WriteLine("\tГоловне меню:");
             WriteLine("\n1. Додати новий товар");
@@ -50,7 +51,7 @@ namespace ProductDatabase
                     ShowProductInfoMenu.Show();
                     break;
                 case "3":
-                    EditProductMenu.Show();
+                    EditProductMenu.EditProduct();
                     break;
                 case "4":
                     DeleteProductMenu.Show();
