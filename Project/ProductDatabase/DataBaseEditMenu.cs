@@ -12,6 +12,7 @@ namespace ProductDatabase
     {
         public static void Show()
         {
+            Title = "\tМеню роботи з базами";
             Clear();
             WriteLine("\tРобота з базами");
             WriteLine("\n1. Редагування бази \"Виробники\"");
