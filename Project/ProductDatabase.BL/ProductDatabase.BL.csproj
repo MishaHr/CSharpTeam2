@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomExceptions\CustomeException.cs" />
     <Compile Include="Entities\LastIdKeeper.cs" />
     <Compile Include="Interfaces\IGetable.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -80,9 +81,7 @@
       <Name>ProductDatabase.DA</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CustomExceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
