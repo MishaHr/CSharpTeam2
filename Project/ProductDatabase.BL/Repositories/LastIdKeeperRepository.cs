@@ -9,7 +9,7 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Repositories
 {
-    internal class LastIdKeeperRepository:IRepository
+    internal class LastIdKeeperRepository:IRepository,ISaveable
     {
         private string _option = "LastIdKeeper";
         private List<LastIdKeeper> _lastIdKeeperList;

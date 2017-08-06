@@ -110,7 +110,7 @@ namespace ProductDatabase
             WriteLine("Гарантійний термін : {0} років", ProductWarranty);
 
             WriteLine("\nСписок постачальників\n"); // будуть відображатись доступні виробники товару для вибору
-            var Suppliers = display.SuppliersListToText();
+            var Suppliers = display.SuppliersListToTextShort();
             foreach (var sup in Suppliers)
             {
                 Console.WriteLine(sup);

@@ -13,7 +13,10 @@ namespace ProductDatabase.DA
     {
         public  void WrightToFile(List<string> toSave)
         {
-            Console.WriteLine($"{toSave} saved succesfully");
+            foreach (string s in toSave)
+            {
+                Console.WriteLine(s);
+            }
         }
     }
 }

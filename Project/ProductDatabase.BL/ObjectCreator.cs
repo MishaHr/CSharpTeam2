@@ -36,12 +36,12 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>Об’єкт типу Category</returns>
-        public Category CreateCategory(string[] retrivedData)
-        {
-            Category category = new Category(ToInt32(retrivedData[0]));
-            category.CategoryName = retrivedData[1].Trim();
-            return category;
-        }
+        //public Category CreateCategory(string[] retrivedData)
+        //{
+        //    Category category = new Category(ToInt32(retrivedData[0]));
+        //    category.CategoryName = retrivedData[1].Trim();
+        //    return category;
+        //}
 
         /// <summary>
         /// Створює об’єкт Виробника
