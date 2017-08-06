@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using ProductDatabase.BL;
+using ProductDatabase.BL.Reports;
 
 
 namespace ProductDatabase
