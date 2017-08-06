@@ -43,7 +43,7 @@ namespace ProductDatabase
                     DeleteCategory();
                     break;
                 case "9":
-                    DataBaseEditMenu.Show();
+                    MainMenu.Show();
                     break;
                 default:
                     Show();
@@ -61,11 +61,12 @@ namespace ProductDatabase
                 Console.WriteLine(cat);
             }
             Write("\nВведіть назву категорії : ");
-            string CategoryName = (ReadLine());
+            string newCategoryName = (ReadLine());
+            CategoryEditor.Add(newCategoryName);
             Clear();
-            WriteLine("Назва категорії : {0}", CategoryName);
+            WriteLine("Назва категорії : {0}", newCategoryName);
             WriteLine("\nКатегорія введена успішно!");
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
             Show();
         }
@@ -86,8 +87,9 @@ namespace ProductDatabase
             WriteLine("Категорія : {0}", CategoryName);
             WriteLine("\nВведіть нову назву категорії : ");
             CategoryName = (ReadLine());
+            CategoryEditor.Edit(CategoryID, CategoryName);
             WriteLine("\nНазву категорії змінено : {0}", CategoryName);
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
             Show();
         }
@@ -103,10 +105,11 @@ namespace ProductDatabase
             }
             Write("\nВведіть ID категорії : ");
             int CategoryID = Convert.ToInt32(Console.ReadLine());
+            CategoryEditor.Delete(CategoryID);
             string CategoryName = display.CategoryToText(CategoryID);
             Clear();
             WriteLine("Категорію {0} видалено успішно!", CategoryName);
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
             Show();
         }

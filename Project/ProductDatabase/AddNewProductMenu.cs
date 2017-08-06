@@ -184,7 +184,7 @@ namespace ProductDatabase
             }
 
             WriteLine("\nСписок постачальників\n");
-            var Suppliers = display.SuppliersListToText();
+            var Suppliers = display.SuppliersListToTextShort();
             foreach (var sup in Suppliers)
             {
                 Console.WriteLine(sup);
