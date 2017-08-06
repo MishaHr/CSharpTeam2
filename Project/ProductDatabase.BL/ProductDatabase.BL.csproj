@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\LastIdKeeper.cs" />
     <Compile Include="Interfaces\IGetable.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="Entities\ShortDescription.cs" />
     <Compile Include="Entities\WarehouseRecord.cs" />
     <Compile Include="ObjectCreator.cs" />
-    <Compile Include="ObjectEditor.cs" />
+    <Compile Include="CategoryEditor.cs" />
     <Compile Include="ObjectToStringConverter.cs" />
     <Compile Include="Reports\FullProductReport.cs" />
     <Compile Include="ReportBuilder.cs" />

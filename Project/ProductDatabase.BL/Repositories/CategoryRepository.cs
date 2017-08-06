@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProductDatabase.BL.Entities;
 using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Reposirories
@@ -12,10 +13,10 @@ namespace ProductDatabase.BL.Reposirories
     /// <summary>
     /// Клас для добування Категорій
     /// </summary>
-    public class CategoryRepository: IRepository
+    public class CategoryRepository
     {
         private string _option  = "Category";
-        private List<Category> _categoryList;
+        private List<BaseEntity> _list;
 
         public CategoryRepository()
         {
@@ -24,11 +25,11 @@ namespace ProductDatabase.BL.Reposirories
 
             //створюємо і повертаємо об’єкт
             ObjectCreator itemCreator = new ObjectCreator();
-            _categoryList = new List<Category>();
+            var _list = new List<BaseEntity>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _categoryList.Add(itemCreator.CreateCategory(retrivedData[index]));
+                _list.Add(itemCreator.CreateCategory(retrivedData[index]));
             }
         }
 
@@ -36,9 +37,9 @@ namespace ProductDatabase.BL.Reposirories
       /// Метод для утворення всього списку категорій
       /// </summary>
       /// <returns>Діст всіх об’єктів Category</returns>
-        public IEnumerable<IGetable> GetAll()
+        public IEnumerable<BaseEntity> GetAll()
         {
-            List <Category> categories = _categoryList;
+            List <BaseEntity> categories = _list;
             return categories;
         }
 
@@ -47,25 +48,54 @@ namespace ProductDatabase.BL.Reposirories
         /// </summary>
         /// <param name="id">ІД категорії, яку треба знайти</param>
         /// <returns>об’єкт типу Category</returns>
-        public IGetable Get(int id)
+        public BaseEntity Get(int id)
         {
-            Category item = _categoryList.FirstOrDefault(product => product.CategoryId == id);
+            List<Category> categoryList = (List<Category>)_list;
+            Category item = _list.FirstOrDefault(product => product.CategoryId == id);
             return item;
+        }
+
+        
+        
+
+        /// <summary>
+        /// Фіксує зміни у записі
+        /// </summary>
+        public void Save (BaseEntity newData)
+        {
+            if (newData.IsChanged)
+            {
+                Update(newData);
+            }
+            else if (newData.IsNew)
+            {
+                Add(newData);
+            }
+            else if (newData.IsDeleted)
+            {
+                Delete(newData);
+            }
         }
 
         /// <summary>
         /// Метод додає в таблицю новостворений об’єкт Категорії
         /// </summary>
         /// <param name="newObject">Об’єкт нової категорії</param>
-        public void Add(IGetable newObject)
+        private void Add(BaseEntity objectToAdd)
         {
-            throw new NotImplementedException();
+            _categoryList.Add((Category)objectToAdd);
+            SaveTable();
         }
 
-        /// <summary>
-        /// Метод зберігає всю таблицю категорій у файл
-        /// </summary>
-        public void SaveChanges()
+        private void Update(BaseEntity objectToUpdate)
+        {
+        }
+
+        private void Delete(BaseEntity objectToDelete)
+        {
+        }
+
+        private void SaveTable()
         {
             List<string> textcategoryList = new List<string>();
             foreach (var category in _categoryList)

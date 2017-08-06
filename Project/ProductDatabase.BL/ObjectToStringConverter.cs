@@ -86,7 +86,7 @@ namespace ProductDatabase.BL
         /// (без телефону, тільки ІД та назва)
         /// </summary>
         /// <returns>скорочений Список постачальників у вигляді стрінгів</returns>
-        public List<string> SuppliersListToText()
+        public List<string> SuppliersListToTextShort()
         {
             SupplierRepository supplierRepository = new SupplierRepository();
             List<string> suppliers = new List<string>();

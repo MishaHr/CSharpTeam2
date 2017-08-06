@@ -188,13 +188,14 @@ namespace ProductDatabase
                 Console.WriteLine(cat);
             }
             Write("\nВведіть назву категорії : ");
-            string CategoryName = (ReadLine());
-            Clear();
-            WriteLine("Назва категорії : {0}", CategoryName);
-            WriteLine("\nКатегорія введена успішно!");
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
-            ReadLine();
-            DataBaseEditMenu.Category();
+            string newCategoryName = (ReadLine());
+            CategoryEditor.Add(newCategoryName);
+            //Clear();
+            //WriteLine("Назва категорії : {0}", newCategoryName);
+            //WriteLine("\nКатегорія введена успішно!");
+            //WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+            //ReadLine();
+            //DataBaseEditMenu.Category();
         }
 
         private static void EditCategory()
@@ -278,7 +279,7 @@ namespace ProductDatabase
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
-            var suppliers = display.SuppliersListToText();
+            var suppliers = display.SuppliersListToTextShort();
             foreach (var sup in suppliers)
             {
                 Console.WriteLine(sup);
@@ -303,7 +304,7 @@ namespace ProductDatabase
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
-            var suppliers = display.SuppliersListToText();
+            var suppliers = display.SuppliersListToTextFull();
             foreach (var sup in suppliers)
             {
                 Console.WriteLine(sup);
@@ -328,7 +329,7 @@ namespace ProductDatabase
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
-            var suppliers = display.SuppliersListToText();
+            var suppliers = display.SuppliersListToTextFull();
             foreach (var sup in suppliers)
             {
                 Console.WriteLine(sup);

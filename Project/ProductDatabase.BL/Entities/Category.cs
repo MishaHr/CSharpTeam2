@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProductDatabase.BL.Entities;
 
 namespace ProductDatabase.BL
 {
     /// <summary>
     /// Клас категорій товарів. 
     /// </summary>
-    public class Category: ISaveable,IGetable
+    public class Category: BaseEntity,IGetable,ISaveable
     {
         public int CategoryId { get; private set; }
 
