@@ -35,18 +35,14 @@ namespace ProductDatabase
 
         public static void DeleteProduct()
         {
-            //Clear();
-            string choice = (ReadLine());
-            switch (choice)
-            {
-                case "0":
-                    Back();
-                    break;
-                default:
-                    // метод для перевірки коректності введеного значення та подальшого видалення запису з файлу
-                    DeleteProduct();
-                    break;
-            }
+            Title = "\tМеню видалення існуючого товару";
+
+
+
+            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
+
+            ReadLine();
+            Back();
         }
 
         public static void Back()

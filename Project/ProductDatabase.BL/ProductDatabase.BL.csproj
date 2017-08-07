@@ -61,6 +61,7 @@
     <Compile Include="ReportBuilder.cs" />
     <Compile Include="Reports\ShortProductReport.cs" />
     <Compile Include="Reports\WarehouseRecordReport.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\LastIdKeeperRepository.cs" />
     <Compile Include="Repositories\ManufacturerRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="TextReportShower.cs" />
+    <Compile Include="CustomExceptions\CustomeException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProductDatabase.DA\ProductDatabase.DA.csproj">
@@ -81,9 +83,7 @@
       <Name>ProductDatabase.DA</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CustomExceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

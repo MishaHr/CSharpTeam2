@@ -46,6 +46,11 @@ namespace ProductDatabase.BL
             return (cat1 == cat2) ? true : false;
         }
 
+        public override int GetHashCode()
+        {
+            return CategoryId;
+        }
+
         public int CompareTo(object obj)
         {
             throw new NotImplementedException();
