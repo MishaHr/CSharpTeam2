@@ -22,7 +22,7 @@ namespace ProductDatabase.BL.Repositories
 
             for (int i = 0; i<retrivedData.Count;i++)
             {
-                _list.Add(CreateLastIdKeeper(retrivedData[i]));
+                _list.Add(ObjectCreator.CreateLastIdKeeper(retrivedData[i]));
             }
 
         }
@@ -84,15 +84,7 @@ namespace ProductDatabase.BL.Repositories
             save.WrightToFile(textList);
         }
 
-        private LastIdKeeper CreateLastIdKeeper(string[] retrivedData)
-        {
-            LastIdKeeper lastIdKeeper = new LastIdKeeper(Convert.ToInt32(retrivedData[0]));
-            lastIdKeeper.LastProductId = ToInt32(retrivedData[1]);
-            lastIdKeeper.LastCategoryId = ToInt32(retrivedData[2]);
-            lastIdKeeper.LastManufacturerId = ToInt32(retrivedData[3]);
-            lastIdKeeper.LastSupplierId = ToInt32(retrivedData[4]);
-            return lastIdKeeper;
-        }
+        
 
     }
 }

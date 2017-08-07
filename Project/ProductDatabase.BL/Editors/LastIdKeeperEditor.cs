@@ -12,10 +12,8 @@ namespace ProductDatabase.BL.Editors
     {
         public static void Edit(LastIdKeeper toSave)
         {
-           LastIdKeeperRepository lastRepo = new LastIdKeeperRepository();
+           Repository<LastIdKeeper> lastRepo = new Repository<LastIdKeeper>();
            lastRepo.Update(toSave); 
-            
-
         }
     }
 }

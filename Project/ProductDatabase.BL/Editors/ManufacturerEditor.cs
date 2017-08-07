@@ -8,7 +8,7 @@ using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL.Editors
 {
-    public class ManufacturerEditor:BaseEditor
+    public class ManufacturerEditor
     {
 
         public ManufacturerEditor()
@@ -17,13 +17,16 @@ namespace ProductDatabase.BL.Editors
         }
         public  void Add(string newName)
         {
-            int newId = GetLastId() + 1;
+            Repository<LastIdKeeper> lastIdKeeperRepository = new Repository<LastIdKeeper>();
+            var lastIdKeeper = (LastIdKeeper)lastIdKeeperRepository.Get(1);
+            int newId = lastIdKeeper.LastManufacturerId + 1;
             Manufacturer manufacturer = new Manufacturer(newId);
             manufacturer.IsNew = true;
+            lastIdKeeper.IsChanged = true;
             manufacturer.ManufacturerName = newName;
-            SaveLastId(newId);
+            lastIdKeeper.LastManufacturerId = newId;
+            lastIdKeeperRepository.Save(lastIdKeeper);
             SaveChanges(manufacturer);
-
         }
 
         public  void Edit(int id, string newName)
@@ -44,24 +47,8 @@ namespace ProductDatabase.BL.Editors
 
         private void SaveChanges(BaseEntity toSave)
         {
-            Repository<Manufacturer> manufacturerRepositoryRepository = new Repository<Manufacturer>();
-            manufacturerRepositoryRepository.Save(toSave);
-        }
-
-        protected internal int GetLastId()
-        {
-            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
-            var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
-            return lastId.LastManufacturerId;
-        }
-
-        protected internal static void SaveLastId(int id)
-        {
-            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
-            var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
-            lastId.LastManufacturerId = id;
-            lastId.IsChanged = true;
-            LastIdKeeperEditor.Edit(lastId);
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
+            manufacturerRepository.Save(toSave);
         }
     }
 }

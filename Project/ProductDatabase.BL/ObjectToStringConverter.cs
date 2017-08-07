@@ -129,7 +129,7 @@ namespace ProductDatabase.BL
         /// <returns>Стрінга, відповідно сформатована для виведення на екран</returns>
         public string ManufacturerToText(int id)
         {
-            ManufacturerRepository manufacturerRepository   =new ManufacturerRepository();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
             Manufacturer man = (Manufacturer)manufacturerRepository.Get(id);
             try
             {
@@ -148,7 +148,7 @@ namespace ProductDatabase.BL
         /// <returns>Список Виробників у вигляді стрінгів</returns>
         public List<string> ManufacturerListToText()
         {
-            ManufacturerRepository manufacturerRepository =new ManufacturerRepository();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
             List<Manufacturer> manufacturerList = (List<Manufacturer>)manufacturerRepository.GetAll();
             List<string> manufacturerStringList = new List<string>();
 
@@ -162,7 +162,7 @@ namespace ProductDatabase.BL
 
         public List<string> LastIdList()
         {
-            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
+            Repository<LastIdKeeper> lastIdKeeperRepository = new Repository<LastIdKeeper>();
             List<LastIdKeeper> idList = (List<LastIdKeeper>) lastIdKeeperRepository.GetAll();
             List<string> lastIdText = new List<string>();
 

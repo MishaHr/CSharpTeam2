@@ -12,7 +12,6 @@ namespace ProductDatabase.BL.Repositories
     { 
         private string _option;
         private List<BaseEntity> _list = new List<BaseEntity>();
-        private List<T> _objectList = new List<T>();
 
         public Repository()
         {
@@ -21,15 +20,11 @@ namespace ProductDatabase.BL.Repositories
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            
-
             for (int index = 0; index < retrivedData.Count; index++)
             {
                 _list.Add(GetInstance(retrivedData[index]));
             }
-
         }
-
 
         internal  IEnumerable<BaseEntity> GetAll()
         {
@@ -90,7 +85,6 @@ namespace ProductDatabase.BL.Repositories
             save.WrightToFile(textList);
         }
 
-
         protected internal BaseEntity GetInstance (string[] retrivedData)
         {
             if (_option == "Manufacturer")
@@ -103,15 +97,37 @@ namespace ProductDatabase.BL.Repositories
                 Supplier result = ObjectCreator.CreateSupplier(retrivedData);
                 return result;
             }
+            else if (_option == "Category")
+            {
+                Category result = ObjectCreator.CreateCategory(retrivedData);
+                return result;
+            }
+            else if (_option == "Memo")
+            {
+                Memo result = ObjectCreator.CreateMemo(retrivedData);
+                return result;
+            }
+            else if (_option == "ShortDescription")
+            {
+                ShortDescription result = ObjectCreator.CreateDescription(retrivedData);
+                return result;
+            }
+            else if (_option == "WarehouseRecord")
+            {
+                WarehouseRecord result = ObjectCreator.CreateWarehouseRecord(retrivedData);
+                return result;
+            }
+            else if (_option == "Product")
+            {
+                Product result = ObjectCreator.CreateProduct(retrivedData);
+                return result;
+            }
+            else if (_option == "LastIdKeeper")
+            {
+                LastIdKeeper result = ObjectCreator.CreateLastIdKeeper(retrivedData);
+                return result;
+            }
             return null;
         }
-
-       
-
-       
-        
-
-
-
     }
 }

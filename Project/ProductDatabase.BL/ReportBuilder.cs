@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProductDatabase.BL.Entities;
 using ProductDatabase.BL.Reports;
 using ProductDatabase.BL.Reposirories;
+using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL
 {
@@ -25,7 +26,7 @@ namespace ProductDatabase.BL
             //ініціалізація потрібних репозиторіїв
             ProductRepository productRepository = new ProductRepository();
             CategoryRepository categoryRepository = new CategoryRepository();
-            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
             ShortDescriptionRepository shortDescriptionRepository =new ShortDescriptionRepository();
             MemoRepository memoRepository = new MemoRepository();
 
@@ -85,7 +86,7 @@ namespace ProductDatabase.BL
             //ініціалізація потрібних репозиторіїв
             ProductRepository productRepository = new ProductRepository();
             CategoryRepository categoryRepository = new CategoryRepository();
-            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
             WarehouseRecordRepository warehouseRecordRepository = new WarehouseRecordRepository();
             SupplierRepository supplierRepository = new SupplierRepository();
             ShortDescriptionRepository shortDescriptionRepository = new ShortDescriptionRepository();
@@ -165,7 +166,7 @@ namespace ProductDatabase.BL
         {
             ProductRepository productRepository = new ProductRepository();
             WarehouseRecordRepository warehouseRecordRepository = new WarehouseRecordRepository();
-            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
             SupplierRepository supplierRepository = new SupplierRepository();
 
             var products = (List<Product>) productRepository.GetAll();

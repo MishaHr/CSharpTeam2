@@ -43,20 +43,20 @@ namespace ProductDatabase.BL
 
         private static void SaveChanges(BaseEntity toSave)
         {
-            CategoryRepository categoryRepository = new CategoryRepository();
+            Repository<Category> categoryRepository = new Repository<Category>();
             categoryRepository.Save(toSave);
         }
 
         private static int GetLastId()
         {
-            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
+            Repository<LastIdKeeper> lastIdKeeperRepository = new Repository<LastIdKeeper>();
             var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
             return lastId.LastCategoryId;
         }
 
         private static void SaveLastId(int id)
         {
-            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
+            Repository<LastIdKeeper> lastIdKeeperRepository = new Repository<LastIdKeeper>();
             var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
             lastId.LastManufacturerId = id;
             lastId.IsChanged = true;

@@ -13,13 +13,7 @@ namespace ProductDatabase.BL
         /// </summary>
     internal static class ObjectCreator
         {
-            //private string _option;
-
-            //public ObjectCreator(string option)
-            //{
-            //    _option = option;
-            //}
-
+            
            
             /// <summary>
         /// Створює об’єкт Товару
@@ -42,12 +36,12 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>Об’єкт типу Category</returns>
-        //public Category CreateCategory(string[] retrivedData)
-        //{
-        //    Category category = new Category(ToInt32(retrivedData[0]));
-        //    category.CategoryName = retrivedData[1].Trim();
-        //    return category;
-        //}
+        public static Category CreateCategory(string[] retrivedData)
+        {
+            Category category = new Category(ToInt32(retrivedData[0]));
+            category.CategoryName = retrivedData[1].Trim();
+            return category;
+        }
 
         /// <summary>
         /// Створює об’єкт Виробника
@@ -113,6 +107,17 @@ namespace ProductDatabase.BL
             description.DescriptionText = retrivedData[1];
             return description;
         }
+
+        public static LastIdKeeper CreateLastIdKeeper(string[] retrivedData)
+        {
+                LastIdKeeper lastIdKeeper = new LastIdKeeper(Convert.ToInt32(retrivedData[0]));
+                lastIdKeeper.LastProductId = ToInt32(retrivedData[1]);
+                lastIdKeeper.LastCategoryId = ToInt32(retrivedData[2]);
+                lastIdKeeper.LastManufacturerId = ToInt32(retrivedData[3]);
+                lastIdKeeper.LastSupplierId = ToInt32(retrivedData[4]);
+                return lastIdKeeper;
+        }
+
 
 
     }
