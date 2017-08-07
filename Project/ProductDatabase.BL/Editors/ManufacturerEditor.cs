@@ -44,7 +44,7 @@ namespace ProductDatabase.BL.Editors
 
         private void SaveChanges(BaseEntity toSave)
         {
-            ManufacturerRepository manufacturerRepositoryRepository = new ManufacturerRepository();
+            Repository<Manufacturer> manufacturerRepositoryRepository = new Repository<Manufacturer>();
             manufacturerRepositoryRepository.Save(toSave);
         }
 

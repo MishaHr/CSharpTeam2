@@ -24,6 +24,7 @@ namespace ProductDatabase
             Console.WriteLine("1. Add");
             Console.WriteLine("2. Edit");
             Console.WriteLine("3. Delete");
+            Console.WriteLine("4. Test");
             Console.WriteLine("\n0. До попереднього меню");
             Console.Write("\nВведіть ваш вибір: ");
             Choose();
@@ -84,6 +85,14 @@ namespace ProductDatabase
                     int id = Convert.ToInt32(Console.ReadLine());
                         manEd.Delete(id);
                         break;    
+                }
+                case "4":
+                {
+
+                        TestEditor test = new TestEditor();
+                        test.Test();
+                        Back();
+                        break;
                 }
                 case "0":
                 {

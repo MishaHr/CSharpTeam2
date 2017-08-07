@@ -24,7 +24,7 @@ namespace ProductDatabase.BL
     
         public override string ToString()
         {
-            return string.Format($"{id};{SupplierName}");
+            return string.Format($"{id};{SupplierName};{SupplierPhoneNumber}");
         }
 
 
