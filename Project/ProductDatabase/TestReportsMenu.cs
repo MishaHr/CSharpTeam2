@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using ProductDatabase.BL;
+using ProductDatabase.BL.Editors;
 using ProductDatabase.BL.Reports;
 
 
@@ -120,13 +121,9 @@ namespace ProductDatabase
                 case "3":
                 {
 
-                    var text = TextReportShower.ShowFullProductReport();
-                        foreach (var s in text)
-                        {
-                            Console.WriteLine(s);
-                        }
+               ManufacturerEditor.Add();
                         Back();
-                        break;
+                        break;    
                 }
                 case "0":
                 {

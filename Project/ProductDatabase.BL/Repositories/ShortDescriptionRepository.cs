@@ -26,12 +26,12 @@ namespace ProductDatabase.BL.Reposirories
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator();
+            
             _shortDescriptions = new List<ShortDescription>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _shortDescriptions.Add(itemCreator.CreateDescription(retrivedData[index]));
+                _shortDescriptions.Add(ObjectCreator.CreateDescription(retrivedData[index]));
             }
         }
 

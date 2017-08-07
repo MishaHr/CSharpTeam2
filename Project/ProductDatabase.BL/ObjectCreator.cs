@@ -11,16 +11,22 @@ namespace ProductDatabase.BL
         /// <summary>
         /// Клас для створення об’єктів на основі отриманих з текстових бази даних
         /// </summary>
-    internal class ObjectCreator
-    {
-        
+    internal static class ObjectCreator
+        {
+            //private string _option;
 
-        /// <summary>
+            //public ObjectCreator(string option)
+            //{
+            //    _option = option;
+            //}
+
+           
+            /// <summary>
         /// Створює об’єкт Товару
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>Об’єкт типу Product</returns>
-        public Product CreateProduct (string [] retrivedData )
+        public static Product CreateProduct (string [] retrivedData )
         {
             Product product = new Product(ToInt32(retrivedData[0]));
                 product.CategoryId = ToInt32(retrivedData[1]);
@@ -48,7 +54,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу Manufacturer</returns>
-        public Manufacturer CreateManufacturer(string[] retrivedData)
+        public static Manufacturer CreateManufacturer(string[] retrivedData)
         {
             Manufacturer manufacturer = new Manufacturer(Convert.ToInt32(retrivedData[0]));
             manufacturer.ManufacturerName = retrivedData[1].Trim();
@@ -60,7 +66,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу Supplier</returns>
-        public Supplier CreateSupplier(string[] retrivedData)
+        public static Supplier CreateSupplier(string[] retrivedData)
         {
             Supplier supplier =new Supplier(ToInt32(retrivedData[0]));
             supplier.SupplierName = retrivedData[1];
@@ -73,7 +79,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу Memo</returns>
-        public Memo CreateMemo(string[] retrivedData)
+        public static Memo CreateMemo(string[] retrivedData)
         {
             Memo memo = new Memo(ToInt32(retrivedData[0]));
             memo.MemoText = retrivedData[1];
@@ -85,7 +91,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу WarehouseRecord</returns>
-        public WarehouseRecord CreateWarehouseRecord (string[] retrivedData)
+        public static WarehouseRecord CreateWarehouseRecord (string[] retrivedData)
         {
             WarehouseRecord warehouseRecord = new WarehouseRecord(ToInt32(retrivedData[0]));
             warehouseRecord.WarehouseNumber = ToInt32(retrivedData[1]);
@@ -101,7 +107,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу ShortDescription</returns>
-        public ShortDescription CreateDescription(string[] retrivedData)
+        public static ShortDescription CreateDescription(string[] retrivedData)
         {
             ShortDescription description =new ShortDescription(ToInt32(retrivedData[0]));
             description.DescriptionText = retrivedData[1];

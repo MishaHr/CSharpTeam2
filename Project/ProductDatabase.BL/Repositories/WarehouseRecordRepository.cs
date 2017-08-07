@@ -18,12 +18,11 @@ namespace ProductDatabase.BL.Reposirories
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator();
             _warehouseRecordsList = new List<WarehouseRecord>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _warehouseRecordsList.Add(itemCreator.CreateWarehouseRecord(retrivedData[index]));
+                _warehouseRecordsList.Add(ObjectCreator.CreateWarehouseRecord(retrivedData[index]));
             }
         }
 

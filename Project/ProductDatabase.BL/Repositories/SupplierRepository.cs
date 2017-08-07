@@ -22,12 +22,11 @@ namespace ProductDatabase.BL
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator();
             _supplierList = new List<Supplier>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _supplierList.Add(itemCreator.CreateSupplier(retrivedData[index]));
+                _supplierList.Add(ObjectCreator.CreateSupplier(retrivedData[index]));
             }
 
         }

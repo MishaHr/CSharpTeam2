@@ -24,12 +24,12 @@ namespace ProductDatabase.BL
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator();
+            
             _productList = new List<Product>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-               _productList.Add(itemCreator.CreateProduct(retrivedData[index]));
+               _productList.Add(ObjectCreator.CreateProduct(retrivedData[index]));
             }
         }
 

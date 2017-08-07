@@ -22,12 +22,11 @@ namespace ProductDatabase.BL.Entities
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator();
             _manufacturerList = new List<Manufacturer>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _manufacturerList.Add(itemCreator.CreateManufacturer(retrivedData[index]));
+                _manufacturerList.Add(ObjectCreator.CreateManufacturer(retrivedData[index]));
             }
         }
 

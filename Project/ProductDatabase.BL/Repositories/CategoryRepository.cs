@@ -25,7 +25,7 @@ namespace ProductDatabase.BL.Reposirories
             List<string[]> retrivedData = load.ReadAll();
 
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator();
+           
             _list = new List<Category>();
 
             foreach (string[] t in retrivedData)

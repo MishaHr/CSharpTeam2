@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\ManufacturerEditor.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\LastIdKeeper.cs" />
     <Compile Include="Interfaces\IGetable.cs" />
@@ -55,7 +56,7 @@
     <Compile Include="Entities\ShortDescription.cs" />
     <Compile Include="Entities\WarehouseRecord.cs" />
     <Compile Include="ObjectCreator.cs" />
-    <Compile Include="CategoryEditor.cs" />
+    <Compile Include="Editors\CategoryEditor.cs" />
     <Compile Include="ObjectToStringConverter.cs" />
     <Compile Include="Reports\FullProductReport.cs" />
     <Compile Include="ReportBuilder.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\ShortDescriptionRepository.cs" />
     <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Repositories\WarehouseRecordRepository.cs" />

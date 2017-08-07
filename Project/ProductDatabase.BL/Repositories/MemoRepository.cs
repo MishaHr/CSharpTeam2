@@ -19,12 +19,11 @@ namespace ProductDatabase.BL.Reposirories
             List<string[]> retrivedData = load.ReadAll();
            
             //створюємо і повертаємо об’єкт
-            ObjectCreator itemCreator = new ObjectCreator();
             _memoList = new List<Memo>();
 
             for (int index = 0; index < retrivedData.Count; index++)
             {
-                _memoList.Add(itemCreator.CreateMemo(retrivedData[index]));
+                _memoList.Add(ObjectCreator.CreateMemo(retrivedData[index]));
             }
 
         }
