@@ -149,10 +149,12 @@ namespace ProductDatabase.BL
         public List<string> ManufacturerListToText()
         {
             Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
-            List<Manufacturer> manufacturerList = (List<Manufacturer>)manufacturerRepository.GetAll();
+            var manList = manufacturerRepository.GetAll();
+            
+
             List<string> manufacturerStringList = new List<string>();
 
-            foreach (var man in manufacturerList)
+            foreach (var man in manList)
             {
                 Text = $"{man.id}. {man.ManufacturerName}";
                 manufacturerStringList.Add(Text);

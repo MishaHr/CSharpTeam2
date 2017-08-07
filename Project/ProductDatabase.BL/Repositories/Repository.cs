@@ -26,9 +26,14 @@ namespace ProductDatabase.BL.Repositories
             }
         }
 
-        internal  IEnumerable<BaseEntity> GetAll()
+        internal  List<T> GetAll()
         {
-            return _list;
+            List<T> result = new List<T>();
+            for (int index = 0; index < _list.Count(); index++)
+            {
+                result.Add(_list[index] as T);
+            }
+            return result;
         }
 
         internal  BaseEntity Get(int id)
