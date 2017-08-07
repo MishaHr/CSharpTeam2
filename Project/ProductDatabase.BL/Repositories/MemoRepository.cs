@@ -8,7 +8,7 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Reposirories
 {
-    public class MemoRepository:IRepository
+    internal class MemoRepository
     {
         private string _option = "Memo";
         public List<Memo> _memoList;
@@ -29,15 +29,15 @@ namespace ProductDatabase.BL.Reposirories
         }
 
 
-        public IEnumerable<IGetable> GetAll()
+        public IEnumerable<BaseEntity> GetAll()
         {
             List<Memo> memoList = _memoList;
             return memoList;
         }
 
-        public IGetable Get(int id)
+        public BaseEntity Get(int id)
         {
-            Memo memo = _memoList.FirstOrDefault(m => m.ProductId == 1);
+            Memo memo = _memoList.FirstOrDefault(m => m.id == 1);
             return memo;
         }
 

@@ -45,7 +45,7 @@ namespace ProductDatabase.BL.Reposirories
         /// Метод для утворення всього списку категорій
         /// </summary>
         /// <returns>Діст всіх об’єктів Category</returns>
-        protected internal override IEnumerable<IGetable> GetAll()
+         internal override IEnumerable<BaseEntity> GetAll()
         {
             return _list;
         }
@@ -55,10 +55,10 @@ namespace ProductDatabase.BL.Reposirories
         /// </summary>
         /// <param name="id">ІД категорії, яку треба знайти</param>
         /// <returns>об’єкт типу Category</returns>
-        internal override IGetable Get(int id)
+        internal override BaseEntity Get(int id)
         {
             List<Category> categoryList = _list;
-            Category item = _list.FirstOrDefault(product => product.CategoryId == id);
+            Category item = _list.FirstOrDefault(product => product.id == id);
             return item;
         }
 

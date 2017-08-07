@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 
 namespace ProductDatabase.BL.Entities
 {
-    internal class LastIdKeeper:IGetable,ISaveable
+    internal class LastIdKeeper:BaseEntity
     {
-        public int LastProductId { get; set; }
+
+        internal int LastProductId { get; set; }
         public int LastCategoryId { get; set; }
         public int LastManufacturerId { get; set; }
         public int LastSupplierId { get; set; }
 
+        public LastIdKeeper(int id): base(1)
+        {
+            
+        }
+
         public override string ToString()
         {
-            return string.Format($"{LastProductId};{LastCategoryId};{LastManufacturerId};{LastSupplierId}");
+            return string.Format($"{id};{LastCategoryId};{LastManufacturerId};{LastSupplierId}");
         }
     }
 }

@@ -9,19 +9,21 @@ namespace ProductDatabase.BL.Entities
     /// <summary>
     /// Клас Виробників продукції.
     /// </summary>
-    public class Manufacturer: ISaveable,IGetable
+    internal class Manufacturer: BaseEntity
     {
-        public int ManufacturerId { get; private set; }
+        //internal static int id { get; private set; }
         public string ManufacturerName { get; set; }
 
-        public Manufacturer(int manufacturerId)
+        public Manufacturer(int id): base (id)
         {
-            ManufacturerId = manufacturerId;
+            //id = manufacturerId;
         }
 
         public override string ToString()
         {
-            return string.Format($"{ManufacturerId};{ManufacturerName}");
+            return string.Format($"{id};{ManufacturerName}");
         }
+
+        
     }
 }

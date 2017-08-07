@@ -10,9 +10,9 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас категорій товарів. 
     /// </summary>
-    public class Category: BaseEntity,IGetable,ISaveable,IComparable
-    {
-        public int CategoryId { get; private set; }
+    internal class Category: BaseEntity
+        {
+        
 
         public string CategoryName { get; set; }
 
@@ -20,14 +20,14 @@ namespace ProductDatabase.BL
         /// Основний коснтруктор
         /// </summary>
         /// <param name="categoryId"></param>
-        public Category (int categoryId)
+        internal Category (int id):base(id)
         {
-            CategoryId = categoryId;
+           
         }
 
         public override string ToString()
         {
-            return string.Format($"{CategoryId};{CategoryName}");
+            return string.Format($"{id};{CategoryName}");
         }
 
         public override bool Equals(object cn)
@@ -41,14 +41,14 @@ namespace ProductDatabase.BL
             {
                 return false;
             }
-            int cat1 = this.CategoryId;
-            int cat2 = obj.CategoryId;
+            int cat1 = this.id;
+            int cat2 = obj.id;
             return (cat1 == cat2) ? true : false;
         }
 
         public override int GetHashCode()
         {
-            return CategoryId;
+            return id;
         }
 
         public int CompareTo(object obj)

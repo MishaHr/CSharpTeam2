@@ -10,12 +10,12 @@ namespace ProductDatabase.BL.Repositories
 {
     internal abstract class BaseRepository
     {
-        protected internal IEnumerable<IGetable> _list;
+        protected internal IEnumerable<BaseEntity> _list;
 
-        protected internal abstract IEnumerable<IGetable> GetAll();
+        internal abstract IEnumerable<BaseEntity> GetAll();
       
 
-        internal abstract IGetable Get(int id);
+        internal abstract BaseEntity Get(int id);
 
         internal abstract void Save(BaseEntity newData);
       

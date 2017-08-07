@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\BaseEditor.cs" />
+    <Compile Include="Editors\LastIdKeeperEditor.cs" />
     <Compile Include="Editors\ManufacturerEditor.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\LastIdKeeper.cs" />

@@ -39,13 +39,13 @@ namespace ProductDatabase.BL
             //об’єднання даних по ІД. Вибірка по необхідній категорії
             var list =
                 (from product in products
-                join category in catgories on product.CategoryId equals category.CategoryId
-                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
-                join description in descriptions on product.ProductId equals description.ProductId
-                join memo in memos on product.ProductId equals memo.ProductId
+                join category in catgories on product.CategoryId equals category.id
+                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.id
+                join description in descriptions on product.id equals description.id
+                join memo in memos on product.id equals memo.id
                 select new
                 {
-                    ID = product.ProductId,
+                    ID = product.id,
                     Category = category.CategoryName,
                     Manufacturer = manufacturer.ManufacturerName,
                     Model = product.ProductModel,
@@ -104,14 +104,14 @@ namespace ProductDatabase.BL
             //об’єднання даних по ІД. Вибірка по необхідній категорії
             var list =
             (from product in products
-                join category in catgories on product.CategoryId equals category.CategoryId
-                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
-                join description in descriptions on product.ProductId equals description.ProductId
-                join memo in memos on product.ProductId equals memo.ProductId
-                join record in warehouseRecords on product.ProductId equals record.ProductId 
+                join category in catgories on product.CategoryId equals category.id
+                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.id
+                join description in descriptions on product.id equals description.id
+                join memo in memos on product.id equals memo.id
+                join record in warehouseRecords on product.id equals record.id 
                 select new
                 {
-                    ID = product.ProductId,
+                    ID = product.id,
                     Category = category.CategoryName,
                     Manufacturer = manufacturer.ManufacturerName,
                     Model = product.ProductModel,
@@ -120,10 +120,10 @@ namespace ProductDatabase.BL
                     Ammount = record.Ammount,
                     Price = record.Price,
                     Supplier = (from supplier in suppliers
-                                join warehouseRec in warehouseRecords on supplier.SupplierId equals record.SupplierId
+                                join warehouseRec in warehouseRecords on supplier.id equals record.SupplierId
                                 select supplier.SupplierName).First(),
                     SupplierPhoneNumber = (from sup in suppliers
-                                           join warehouse in warehouseRecords on sup.SupplierId equals  warehouse.SupplierId
+                                           join warehouse in warehouseRecords on sup.id equals  warehouse.SupplierId
                                            select sup.SupplierPhoneNumber).First(),
                     DeliveryDate = record.DeliveryDate,
                     WarehouseNumber = record.WarehouseNumber,
@@ -176,19 +176,19 @@ namespace ProductDatabase.BL
 
             var query = (
                 from product in products
-                join record in records on product.ProductId equals record.ProductId
-                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
-                join warehouseRecord in records on product.ProductId equals warehouseRecord.ProductId
+                join record in records on product.id equals record.id
+                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.id
+                join warehouseRecord in records on product.id equals warehouseRecord.id
                 select new
                 {
-                    ProductId = product.ProductId,
+                    ProductId = product.id,
                     CategoryId = product.CategoryId,
                     ManufacturerName = manufacturer.ManufacturerName,
                     Model = product.ProductModel,
                     Ammount = warehouseRecord.Ammount,
                     Price = warehouseRecord.Price,
                     Supplier = (from supplier in suppliers
-                        join record1 in records on supplier.SupplierId equals record.SupplierId
+                        join record1 in records on supplier.id equals record.SupplierId
                         select supplier.SupplierName).First(),
                     DeliveryDate = warehouseRecord.DeliveryDate,
                     ExpirationDate = product.ExpirationDate,

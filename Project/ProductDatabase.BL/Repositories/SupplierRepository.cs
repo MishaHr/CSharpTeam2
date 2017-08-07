@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProductDatabase.BL.Entities;
 
 namespace ProductDatabase.BL
 {
     /// <summary>
     /// Клас для добування Постачальників з бази даних
     /// </summary>
-    public class SupplierRepository:IRepository
+    internal class SupplierRepository
     {
         private string _option = "Supplier";
         private List<Supplier> _supplierList;
@@ -35,7 +36,7 @@ namespace ProductDatabase.BL
         /// Повертає повний список всіх постачальників
         /// </summary>
         /// <returns>Ліст постачальників</returns>
-        public IEnumerable<IGetable> GetAll()
+        public IEnumerable<BaseEntity> GetAll()
         {
             return _supplierList;
         }
@@ -45,9 +46,9 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="productId">ID постачальника</param>
         /// <returns>Об’єкт класу Supplier з відповідни ID</returns>
-        public IGetable Get(int id)
+        public BaseEntity Get(int id)
         {
-            Supplier supplier = _supplierList.FirstOrDefault(s => s.SupplierId == id);
+            Supplier supplier = _supplierList.FirstOrDefault(s => s.id == id);
             return supplier;
         }
 

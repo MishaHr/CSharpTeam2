@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace ProductDatabase.BL.Entities
 {
-    public class Memo:ISaveable,IGetable 
+    internal class Memo:BaseEntity
     {
-        public int ProductId { get; private set; }
+        
         public string MemoText { get; set; }
 
-        public Memo(int productId)
+        public Memo(int id):base (id)
         {
-            ProductId = productId;
+            
         }
 
         public override string ToString()
         {
-            return string.Format($"{ProductId};{MemoText}");
+            return string.Format($"{id};{MemoText}");
         }
     }
 }

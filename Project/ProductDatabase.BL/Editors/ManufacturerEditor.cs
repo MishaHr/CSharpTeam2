@@ -8,11 +8,60 @@ using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL.Editors
 {
-    public static class ManufacturerEditor
+    public class ManufacturerEditor:BaseEditor
     {
-        public static void Add()
+
+        public ManufacturerEditor()
         {
-            Repository<Manufacturer> manuf = new Repository<Manufacturer>();
+            
+        }
+        public  void Add(string newName)
+        {
+            int newId = GetLastId() + 1;
+            Manufacturer manufacturer = new Manufacturer(newId);
+            manufacturer.IsNew = true;
+            manufacturer.ManufacturerName = newName;
+            SaveLastId(newId);
+            SaveChanges(manufacturer);
+
+        }
+
+        public  void Edit(int id, string newName)
+        {
+            Manufacturer toEdit = new Manufacturer(id);
+            toEdit.ManufacturerName = newName;
+            toEdit.IsChanged = true;
+            SaveChanges(toEdit);
+
+        }
+
+        public  void Delete(int id)
+        {
+            Manufacturer toDelete = new Manufacturer(id);
+            toDelete.IsDeleted = true;
+            SaveChanges(toDelete);
+        }
+
+        private void SaveChanges(BaseEntity toSave)
+        {
+            ManufacturerRepository manufacturerRepositoryRepository = new ManufacturerRepository();
+            manufacturerRepositoryRepository.Save(toSave);
+        }
+
+        protected internal int GetLastId()
+        {
+            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
+            var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
+            return lastId.LastManufacturerId;
+        }
+
+        protected internal static void SaveLastId(int id)
+        {
+            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
+            var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
+            lastId.LastManufacturerId = id;
+            lastId.IsChanged = true;
+            LastIdKeeperEditor.Edit(lastId);
         }
     }
 }

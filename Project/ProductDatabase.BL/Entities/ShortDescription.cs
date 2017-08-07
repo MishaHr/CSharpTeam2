@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace ProductDatabase.BL.Entities
 {
-    public class ShortDescription: ISaveable,IGetable
+    internal class ShortDescription: BaseEntity
     {
         /// <summary>
         /// Клас який містить коротку інформацію про кожен товар
         /// </summary>
-        public int ProductId { get; private set; }
+       
         public string DescriptionText { get; set; }
 
-        public ShortDescription(int productId)
+        public ShortDescription(int id): base(id)
         {
-            ProductId = productId;
+           
         }
 
         public override string ToString()
         {
-            return string.Format($"{ProductId};{DescriptionText}");
+            return string.Format($"{id};{DescriptionText}");
         }
     }
 }

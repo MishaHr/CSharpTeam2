@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProductDatabase.BL.Entities;
 
 namespace ProductDatabase.BL
 {
     /// <summary>
     /// Клас Постачальника продукції
     /// </summary>
-    public class Supplier:ISaveable,IGetable
+    internal class Supplier:BaseEntity
     {
 
-        public int SupplierId { get; private set; }
-        public string SupplierName { get; set; }
-        public string SupplierPhoneNumber { get; set; }
+        internal string SupplierName { get; set; }
+        internal string SupplierPhoneNumber { get; set; }
 
-        public Supplier(int supplierId)
+        public Supplier(int id) : base (id)
         {
-            SupplierId = supplierId;
+            
         }
 
     
         public override string ToString()
         {
-            return string.Format($"{SupplierId};{SupplierName}");
+            return string.Format($"{id};{SupplierName}");
         }
 
 

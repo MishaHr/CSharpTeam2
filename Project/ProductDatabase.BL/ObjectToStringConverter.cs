@@ -30,7 +30,7 @@ namespace ProductDatabase.BL
                 Category cat = (Category)categoryRepository.Get(id);
                 try
                 {
-                    string result = $"{cat.CategoryId}. {cat.CategoryName}";
+                    string result = $"{cat.id}. {cat.CategoryName}";
                     return result;
                 }
                 catch (NullReferenceException e)
@@ -53,7 +53,7 @@ namespace ProductDatabase.BL
             //заповнюємо Ліст текстовим представленням кожного об’єкту Category
                 foreach (var c in categoryList)
                 {
-                    Text = $"{c.CategoryId}. {c.CategoryName}";
+                    Text = $"{c.id}. {c.CategoryName}";
                     strings.Add(Text);
                 }
                 strings.Sort();
@@ -73,7 +73,7 @@ namespace ProductDatabase.BL
            try
            {
                string result =
-                   $"{supplier.SupplierId}. {supplier.SupplierName}, тел:{supplier.SupplierPhoneNumber}";
+                   $"{supplier.id}. {supplier.SupplierName}, тел:{supplier.SupplierPhoneNumber}";
                     return result;
            }
            catch (NullReferenceException e)
@@ -95,7 +95,7 @@ namespace ProductDatabase.BL
 
             foreach (var supplier in supplierList)
             {
-                Text = $"{supplier.SupplierId}. {supplier.SupplierName}";
+                Text = $"{supplier.id}. {supplier.SupplierName}";
                 suppliers.Add(Text);
             }
             return suppliers;
@@ -115,7 +115,7 @@ namespace ProductDatabase.BL
 
             foreach (var supplier in supplierList)
             {
-                Text = $"{supplier.SupplierId}. {supplier.SupplierName}, тел: {supplier.SupplierPhoneNumber}";
+                Text = $"{supplier.id}. {supplier.SupplierName}, тел: {supplier.SupplierPhoneNumber}";
                 suppliers.Add(Text);
             }
             return suppliers;
@@ -133,7 +133,7 @@ namespace ProductDatabase.BL
             Manufacturer man = (Manufacturer)manufacturerRepository.Get(id);
             try
             {
-                string result = $"{man.ManufacturerId}. {man.ManufacturerName}";
+                string result = $"{man.id}. {man.ManufacturerName}";
                 return result;
             }
             catch (NullReferenceException e)
@@ -154,7 +154,7 @@ namespace ProductDatabase.BL
 
             foreach (var man in manufacturerList)
             {
-                Text = $"{man.ManufacturerId}. {man.ManufacturerName}";
+                Text = $"{man.id}. {man.ManufacturerName}";
                 manufacturerStringList.Add(Text);
             }
             return manufacturerStringList;
@@ -169,7 +169,7 @@ namespace ProductDatabase.BL
             foreach (var lastId in idList)
             {
                 Text =
-                    $"Prod: {lastId.LastProductId}, Cat: {lastId.LastCategoryId}, Man: {lastId.LastManufacturerId}, Sup: {lastId.LastSupplierId}";
+                    $"Prod: {lastId.id}, Cat: {lastId.LastCategoryId}, Man: {lastId.LastManufacturerId}, Sup: {lastId.LastSupplierId}";
                 lastIdText.Add(Text);
             }
             return lastIdText;

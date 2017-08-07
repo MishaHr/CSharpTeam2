@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using ProductDatabase.BL.Entities;
 using ProductDatabase.DA;
 
 namespace ProductDatabase.BL
@@ -13,7 +14,7 @@ namespace ProductDatabase.BL
     /// <summary>
     /// Клас для добування Продуктів
     /// </summary>
-    public class ProductRepository: IRepository
+    internal class ProductRepository
     {
         private string _option = "Product";
         private List<Product> _productList;
@@ -35,15 +36,15 @@ namespace ProductDatabase.BL
 
         //метод зчитування всіх записів
        
-        public IEnumerable<IGetable> GetAll()
+        public IEnumerable<BaseEntity> GetAll()
         {
             List<Product> products = _productList;
             return products;
         }
 
-        public IGetable Get(int id)
+        public BaseEntity Get(int id)
         {
-            Product item = _productList.FirstOrDefault(product => product.ProductId == id);
+            Product item = _productList.FirstOrDefault(product => product.id == id);
             return item;
         }
 

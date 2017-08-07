@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProductDatabase.BL.Entities;
 using ProductDatabase.BL.Reposirories;
 using ProductDatabase.BL.Repositories;
+using ProductDatabase.BL.Editors;
 
 namespace ProductDatabase.BL
 {
@@ -18,7 +19,9 @@ namespace ProductDatabase.BL
             Category addedCategory = new Category(newId);
             addedCategory.IsNew = true;
             addedCategory.CategoryName = newName;
+            SaveLastId(newId);
             SaveChanges(addedCategory);
+            
 
         }
 
@@ -38,7 +41,7 @@ namespace ProductDatabase.BL
             SaveChanges(deleteCategory);
         }
 
-        private static void SaveChanges(Category toSave)
+        private static void SaveChanges(BaseEntity toSave)
         {
             CategoryRepository categoryRepository = new CategoryRepository();
             categoryRepository.Save(toSave);
@@ -47,14 +50,17 @@ namespace ProductDatabase.BL
         private static int GetLastId()
         {
             LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
-            var lastId = (List<LastIdKeeper>) lastIdKeeperRepository.GetAll();
-            return lastId[0].LastCategoryId;
+            var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
+            return lastId.LastCategoryId;
         }
 
         private static void SaveLastId(int id)
         {
             LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
-            lastIdKeeperRepository.SaveChanges();
+            var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
+            lastId.LastManufacturerId = id;
+            lastId.IsChanged = true;
+            LastIdKeeperEditor.Edit(lastId);
         }
     }
 }

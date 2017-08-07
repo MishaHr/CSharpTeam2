@@ -28,7 +28,7 @@ namespace ProductDatabase.BL
             var shortReportsList =
                 (from rep in reports
                 join cat in categories on rep.Category equals cat.CategoryName
-				 where cat.CategoryId==id
+				 where cat.id==id
                  select rep
 				 ).ToList();
 
@@ -68,7 +68,7 @@ namespace ProductDatabase.BL
             var filteredList = (
                 from fullReport in fullReports
                 join category in categories on fullReport.Category equals category.CategoryName
-                where category.CategoryId == categoryId
+                where category.id == categoryId
                 select fullReport).ToList();
 
             List<string> textFullProductReports = new List<string>();

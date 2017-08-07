@@ -11,7 +11,7 @@ namespace ProductDatabase.BL.Reposirories
     /// <summary>
     /// Клас для добування всіх записів з файлу Коротких приміток
     /// </summary>
-    public class ShortDescriptionRepository:IRepository
+    internal class ShortDescriptionRepository
     {
         private string _option = "ShortDescription";
         public List<ShortDescription> _shortDescriptions;
@@ -36,15 +36,15 @@ namespace ProductDatabase.BL.Reposirories
         }
 
 
-        public IEnumerable<IGetable> GetAll()
+        public IEnumerable<BaseEntity> GetAll()
         {
             List<ShortDescription> descriptions = _shortDescriptions;
             return descriptions;
         }
 
-        public IGetable Get(int id)
+        public BaseEntity Get(int id)
         {
-            ShortDescription description = _shortDescriptions.FirstOrDefault(d => d.ProductId == id);
+            ShortDescription description = _shortDescriptions.FirstOrDefault(d => d.id == id);
             return description;
         }
 

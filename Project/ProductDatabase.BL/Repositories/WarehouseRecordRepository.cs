@@ -8,7 +8,7 @@ using ProductDatabase.DA;
 
 namespace ProductDatabase.BL.Reposirories
 {
-    public class WarehouseRecordRepository:IRepository
+    internal class WarehouseRecordRepository
     {
         private string _option = "WarehouseRecord";
         private List<WarehouseRecord> _warehouseRecordsList;
@@ -26,13 +26,13 @@ namespace ProductDatabase.BL.Reposirories
             }
         }
 
-        public IEnumerable<IGetable> GetAll()
+        public IEnumerable<BaseEntity> GetAll()
         {
             List<WarehouseRecord> warehouseRecords = _warehouseRecordsList;
             return warehouseRecords;
         }
 
-        public IGetable Get(int id)
+        public BaseEntity Get(int id)
         {
             throw new NotImplementedException();
         }

@@ -11,7 +11,7 @@ namespace ProductDatabase.BL.Repositories
     internal class Repository <T>
     {
         private string _option;
-        private List<IGetable> _list = new List<IGetable>();
+        private List<BaseEntity> _list = new List<BaseEntity>();
         private List<T> _objectList = new List<T>();
 
         public Repository()
@@ -30,7 +30,7 @@ namespace ProductDatabase.BL.Repositories
 
         }
 
-        public IGetable GetInstance (string[] retrivedData)
+        protected internal BaseEntity GetInstance (string[] retrivedData)
         {
             if (_option == "Manufacturer")
             {
@@ -38,17 +38,19 @@ namespace ProductDatabase.BL.Repositories
                 return result;
             }
             return null;
-
         }
 
-        public  Manufacturer CreateManufacturer(string[] retrivedData)
+        protected internal  Manufacturer CreateManufacturer(string[] retrivedData)
         {
             Manufacturer manufacturer = new Manufacturer(Convert.ToInt32(retrivedData[0]));
             manufacturer.ManufacturerName = retrivedData[1].Trim();
             return manufacturer;
         }
 
-
+        protected internal  IEnumerable<BaseEntity> GetAll()
+        {
+            return _list;
+        }
 
 
 

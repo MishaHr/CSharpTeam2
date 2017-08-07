@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace ProductDatabase.BL.Entities
 {
-    public class WarehouseRecord:IGetable
+    internal class WarehouseRecord:BaseEntity
     {
         /// <summary>
         /// Клас зберігання записів навяності товару на складі (кількість, ціна, дата поставки)
         /// </summary>
-        public int ProductId { get; private set; }
+        public int id { get; set; }
         public int WarehouseNumber { get; set; }
         public int Ammount { get; set; }
         public double Price { get; set; }
         public DateTime DeliveryDate { get; set; }
         public int SupplierId { get; set; }
 
-        public WarehouseRecord(int productId)
+        public WarehouseRecord(int id):base(id)
         {
-            ProductId = productId;
+            
         }
 
         public override string ToString()
         {
-            return string.Format($"{ProductId};{WarehouseNumber};{Ammount};{Price};{DeliveryDate.Date.ToString("dd.MM.yyyy")};{SupplierId}");
+            return string.Format($"{id};{WarehouseNumber};{Ammount};{Price};{DeliveryDate.Date.ToString("dd.MM.yyyy")};{SupplierId}");
         }
     }
 }
