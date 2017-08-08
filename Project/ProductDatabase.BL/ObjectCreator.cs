@@ -16,7 +16,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>Об’єкт типу Product</returns>
-        public static Product CreateProduct (string [] retrivedData )
+        internal static Product CreateProduct (string [] retrivedData )
         {
             Product product = new Product(ToInt32(retrivedData[0]));
                 product.CategoryId = ToInt32(retrivedData[1]);
@@ -32,7 +32,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>Об’єкт типу Category</returns>
-        public static Category CreateCategory(string[] retrivedData)
+        internal static Category CreateCategory(string[] retrivedData)
         {
             Category category = new Category(ToInt32(retrivedData[0]));
             category.CategoryName = retrivedData[1].Trim();
@@ -44,7 +44,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу Manufacturer</returns>
-        public static Manufacturer CreateManufacturer(string[] retrivedData)
+        internal static Manufacturer CreateManufacturer(string[] retrivedData)
         {
             Manufacturer manufacturer = new Manufacturer(ToInt32(retrivedData[0]));
             manufacturer.ManufacturerName = retrivedData[1].Trim();
@@ -56,7 +56,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу Supplier</returns>
-        public static Supplier CreateSupplier(string[] retrivedData)
+        internal static Supplier CreateSupplier(string[] retrivedData)
         {
             Supplier supplier =new Supplier(ToInt32(retrivedData[0]));
             supplier.SupplierName = retrivedData[1];
@@ -69,7 +69,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу Memo</returns>
-        public static Memo CreateMemo(string[] retrivedData)
+        internal static Memo CreateMemo(string[] retrivedData)
         {
             Memo memo = new Memo(ToInt32(retrivedData[0]));
             memo.MemoText = retrivedData[1];
@@ -81,7 +81,7 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу WarehouseRecord</returns>
-        public static WarehouseRecord CreateWarehouseRecord (string[] retrivedData)
+        internal static WarehouseRecord CreateWarehouseRecord (string[] retrivedData)
         {
             WarehouseRecord warehouseRecord = new WarehouseRecord(ToInt32(retrivedData[0]));
             warehouseRecord.WarehouseNumber = ToInt32(retrivedData[1]);
@@ -97,14 +97,14 @@ namespace ProductDatabase.BL
         /// </summary>
         /// <param name="retrivedData">Масив стрінгів, добутий з текстового файлу</param>
         /// <returns>>Об’єкт типу ShortDescription</returns>
-        public static ShortDescription CreateDescription(string[] retrivedData)
+        internal static ShortDescription CreateDescription(string[] retrivedData)
         {
             ShortDescription description =new ShortDescription(ToInt32(retrivedData[0]));
             description.DescriptionText = retrivedData[1];
             return description;
         }
 
-        public static LastIdKeeper CreateLastIdKeeper(string[] retrivedData)
+        internal static LastIdKeeper CreateLastIdKeeper(string[] retrivedData)
         {
                 LastIdKeeper lastIdKeeper = new LastIdKeeper(ToInt32(retrivedData[0]));
                 lastIdKeeper.LastProductId = ToInt32(retrivedData[1]);

@@ -1,7 +1,6 @@
 ﻿    using System;
     using System.Collections.Generic;
     using ProductDatabase.BL.Entities;
-    using ProductDatabase.BL.Reposirories;
     using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL
