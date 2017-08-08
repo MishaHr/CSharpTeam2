@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using ProductDatabase.BL.Reports;
 
-namespace TextReport
+namespace ProductDatabase.BL
 {
-    class TextReport
+    public class TextReportSave
     {
         List<Tuple<string, int>> mainColumn = new List<Tuple<string, int>>();
-
         List<Tuple<string, int>> columnContent = new List<Tuple<string, int>>();
 
         private const char cellHorizontalLine = '─';
@@ -22,60 +22,154 @@ namespace TextReport
         const int dataWidth = 12;
         const int intWidth = 10;
         const int stringWidth = 16;
+        const int numberWidth = 17;
 
         // Конструктор по замовчуванні створює Звіт у папці Debug
-        public TextReport()
-        {
-            SetMainColumn();
-            SetSeparateLine();
-
-            Path = @"Звіт.txt";
-
-            using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
-
-            PrintTextReport(mainColumn);
-        }
+        public TextReportSave()
+        {        }
 
         // Конструктор отримує як параметр стрінг який буде адресою створення Звіту
-        public TextReport(string path)
+        public TextReportSave(string path)
         {
-            SetMainColumn();
-            SetSeparateLine();
-
             Path = @path;
-
-            using (StreamWriter report = File.CreateText(@path)) report.WriteLine(separateLine);
-
-            PrintTextReport(mainColumn);
         }
 
         // Метод встановлює головні колонки та відповідні довжини
-        private void SetMainColumn()
+        private void SetFullColumn()
         {
+            mainColumn.Clear();
             mainColumn.Add(new Tuple<string, int>("ID", intWidth));
-            mainColumn.Add(new Tuple<string, int>("Назва товару", stringWidth));
             mainColumn.Add(new Tuple<string, int>("Категорiя", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Виробник", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Модель", stringWidth));
             mainColumn.Add(new Tuple<string, int>("Дата виготовлення", dataWidth));
             mainColumn.Add(new Tuple<string, int>("Термiн придатностi", stringWidth));
             mainColumn.Add(new Tuple<string, int>("Кількість одиниць", intWidth));
             mainColumn.Add(new Tuple<string, int>("Ціна за одиницю", intWidth));
             mainColumn.Add(new Tuple<string, int>("Постачальник", stringWidth));
-            mainColumn.Add(new Tuple<string, int>("Телефон постачальника", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Телефон постачальника", numberWidth));
             mainColumn.Add(new Tuple<string, int>("Дата поставки", dataWidth));
-            mainColumn.Add(new Tuple<string, int>("Номер складу", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Номер складу", intWidth));
             mainColumn.Add(new Tuple<string, int>("Короткий опис", stringWidth));
             mainColumn.Add(new Tuple<string, int>("Поле для приміток", stringWidth));
+            SetSeparateLine();
+        }
+
+        private void SetShortColumn()
+        {
+            mainColumn.Clear();
+            mainColumn.Add(new Tuple<string, int>("ID", intWidth));
+            mainColumn.Add(new Tuple<string, int>("Категорiя", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Виробник", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Модель", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Короткий опис", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Дата виготовлення", dataWidth));
+            mainColumn.Add(new Tuple<string, int>("Термiн придатностi", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Поле для приміток", stringWidth));
+            SetSeparateLine();
+        }
+
+        private void SetWarehouseRecordColumn()
+        {
+            mainColumn.Clear();
+            mainColumn.Add(new Tuple<string, int>("ID", intWidth));
+            mainColumn.Add(new Tuple<string, int>("Категорiя", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Виробник", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Модель", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Кількість одиниць", intWidth));
+            mainColumn.Add(new Tuple<string, int>("Ціна за одиницю", intWidth));
+            mainColumn.Add(new Tuple<string, int>("Постачальник", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Дата виготовлення", dataWidth));
+            mainColumn.Add(new Tuple<string, int>("Термiн придатностi", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Номер складу", intWidth));
+            SetSeparateLine();
+        }
+
+        public void SafeFullProductReport()
+        {
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var fullReports = reportBuilder.GenerateFullProductReport();
+
+            List<string> textFullProductReports = new List<string>();
+
+            foreach (FullProductReport report in fullReports)
+            {
+                textFullProductReports.Add(report.ToString());
+            }
+
+            Path = @"Звіт.txt";
+            SetFullColumn();
+
+            using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
+
+            PrintTextReport(mainColumn);
+
+            foreach (string report in textFullProductReports)
+            {
+                SetAndPrintInfo(report);
+            }
+        }
+
+        public void SafeShortProductReport()
+        {
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var shortReports = reportBuilder.GenerateShortProductReport();
+
+            List<string> textShortProductReports = new List<string>();
+
+            foreach (ShortProductReport report in shortReports)
+            {
+                textShortProductReports.Add(report.ToString());
+            }
+
+            Path = @"Короткий Звіт.txt";
+            SetShortColumn();
+
+            using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
+
+            PrintTextReport(mainColumn);
+
+            foreach (string report in textShortProductReports)
+            {
+                SetAndPrintInfo(report);
+            }
+        }
+
+        public void SafeWarehouseRecordProductReport()
+        {
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var warehouseRecord = reportBuilder.GenerateWarehouseRecordReport();
+
+            List<string> textWarehouseRecordReports = new List<string>();
+
+            foreach (WarehouseRecordReport report in warehouseRecord)
+            {
+                textWarehouseRecordReports.Add(report.ToString());
+            }
+
+            Path = @"Звіт по складу.txt";
+            SetWarehouseRecordColumn();
+
+            using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
+
+            PrintTextReport(mainColumn);
+
+            foreach (string report in textWarehouseRecordReports)
+            {
+                SetAndPrintInfo(report);
+            }
         }
 
         // Метод створює розділяючу лінію для звіту, за допомогою довжини колонок (+Знаки розділу колонок)
         private void SetSeparateLine()
         {
+            tableSize = 0;
             for (int i = 0; i < mainColumn.Count; i++) tableSize = tableSize + mainColumn[i].Item2;
             separateLine = new string(cellHorizontalLine, tableSize + mainColumn.Count + 1);
         }
 
         // Метод приймає стрінг, розподіляє його по відповідним колонкам з відповідними довжнами
-        public void SetAndPrintInfo(string text)
+        private void SetAndPrintInfo(string text)
         {
             string[] columnStrings = text.Split(';');
 
