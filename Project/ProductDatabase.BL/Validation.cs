@@ -35,7 +35,10 @@ namespace ProductDatabase.BL
             //"Length of the product name shoud be up to 50 characters"
             string trimStr = str.Trim();
             if (trimStr.Length > 0 && trimStr.Length <= shortText)
-                return true;
+                if (!str.Contains(";"))
+                    return true;
+                else
+                    throw new CustomeException("В цьому полі не можна використовувати \";\"");
             else
                 throw new CustomeException($"Довжина назви продукту повинна бути до {shortText} символів");
         }
@@ -45,7 +48,10 @@ namespace ProductDatabase.BL
             //"Length of the category name shoud be up to 50 characters"
             string trimStr = str.Trim();
             if (trimStr.Length > 0 && trimStr.Length <= shortText)
-                return true;
+                if (!str.Contains(";"))
+                    return true;
+                else
+                    throw new CustomeException("В цьому полі не можна використовувати \";\"");
             else
                 throw new CustomeException($"Довжина назви категорії повинна бути до {shortText} символів");
         }
@@ -68,7 +74,10 @@ namespace ProductDatabase.BL
             //"Length of the expiration date shoud be up to 50 characters"
             string trimStr = str.Trim();
             if (trimStr.Length > 0 && trimStr.Length <= shortText)
-                return true;
+                if (!str.Contains(";"))
+                    return true;
+                else
+                    throw new CustomeException("В цьому полі не можна використовувати \";\"");
             else
                 throw new CustomeException($"Довжина поля тексту придатності повинна бути до {shortText} символів");
         }
@@ -105,7 +114,10 @@ namespace ProductDatabase.BL
             //"Length of the supplier name shoud be up to 50 characters"
             string trimStr = str.Trim();
             if (trimStr.Length > 0 && trimStr.Length <= shortText)
-                return true;
+                if (!str.Contains(";"))
+                    return true;
+                else
+                    throw new CustomeException("В цьому полі не можна використовувати \";\"");
             else
                 throw new CustomeException($"Довжина поля Постачальник повинна бути до {shortText} символів");
         }
@@ -147,7 +159,10 @@ namespace ProductDatabase.BL
             //"Length of the short description shoud be up to 100 characters"
             string trimStr = str.Trim();
             if (trimStr.Length <= longText)
-                return true;
+                if (!str.Contains(";"))
+                    return true;
+                else
+                    throw new CustomeException("В цьому полі не можна використовувати \";\"");
             else
                 throw new CustomeException($"Довжина поля Короткий опис повинна бути до {longText} символів");
         }
@@ -157,7 +172,10 @@ namespace ProductDatabase.BL
             //"Length of the Memo shoud be up to 100 characters"
             string trimStr = str.Trim();
             if (trimStr.Length <= longText)
-                return true;
+                if (!str.Contains(";"))
+                    return true;
+                else
+                    throw new CustomeException("В цьому полі не можна використовувати \";\"");
             else
                 throw new CustomeException($"Довжина поля Короткий опис повинна бути до {longText} символів");
         }

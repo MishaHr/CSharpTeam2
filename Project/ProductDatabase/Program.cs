@@ -20,6 +20,7 @@ namespace ProductDatabase
         {
             //Вхідна точка програми
             Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
             MainMenu.Show();
             TestReportsMenu.Show();
 
