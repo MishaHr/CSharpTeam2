@@ -114,8 +114,8 @@ namespace ProductDatabase.BL.Reposirories
             {
             textList.Add(category.ToString());
             }
-        SaveService save = new SaveService();
-        save.WrightToFile(textList);
+        //SaveService save = new SaveService();
+        //save.WrightToFile(textList);
         }
     }
 }
