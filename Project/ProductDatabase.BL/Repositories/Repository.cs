@@ -83,8 +83,7 @@ namespace ProductDatabase.BL.Repositories
             {
                 textList.Add(item.ToString());
             }
-            SaveService save = new SaveService();
-            save.WrightToFile(textList);
+            SaveService.SaveToFile(_option,textList);
         }
 
         protected internal BaseEntity GetInstance (string[] retrivedData)
