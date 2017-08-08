@@ -10,8 +10,6 @@ namespace ProductDatabase.BL
         List<Tuple<string, int>> mainColumn = new List<Tuple<string, int>>();
         List<Tuple<string, int>> columnContent = new List<Tuple<string, int>>();
 
-        List<string> FullProductReport = new List<string>();
-
         private const char cellHorizontalLine = '─';
         private const string cellVerticalLine = "│";
 
