@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProductDatabase.BL.Entities
+﻿namespace ProductDatabase.BL.Entities
 {
-    internal class LastIdKeeper:IGetable,ISaveable
+    internal class LastIdKeeper:BaseEntity
     {
-        public int LastProductId { get; set; }
+
+        internal int LastProductId { get; set; }
         public int LastCategoryId { get; set; }
         public int LastManufacturerId { get; set; }
         public int LastSupplierId { get; set; }
 
+        internal LastIdKeeper(int id): base(id)
+        {
+            
+        }
+
         public override string ToString()
         {
-            return string.Format($"{LastProductId};{LastCategoryId};{LastManufacturerId};{LastSupplierId}");
+            return string.Format($"{id};{LastProductId};{LastCategoryId};{LastManufacturerId};{LastSupplierId}");
         }
     }
 }

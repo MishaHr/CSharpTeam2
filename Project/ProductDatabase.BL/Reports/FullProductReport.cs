@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductDatabase.BL.Reports
 {
@@ -31,9 +27,9 @@ namespace ProductDatabase.BL.Reports
         public override string ToString()
         {
             return string.Format(
-                $"{ProductId};{Manufacturer} {Model};{Category};" +
+                $"{ProductId};{Category};{Manufacturer};{Model};" +
                 $"{ProductionDate.ToString("dd.MM.yyyy")};{ExpirationDate};{Ammount};" +
-                $"{Price};{Supplier};{SupplierPhoneNumber};{DeliveryDate.ToString("dd.MM.yyyy")};Склад№{WarehouseNumber};" +
+                $"{Price};{Supplier};{SupplierPhoneNumber};{DeliveryDate.ToString("dd.MM.yyyy")};{WarehouseNumber};" +
                 $"{Description};{Memo}");
         }
 

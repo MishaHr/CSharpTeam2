@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProductDatabase.BL.Entities;
 using ProductDatabase.BL.Reports;
-using ProductDatabase.BL.Reposirories;
+using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL
 {
@@ -23,35 +20,35 @@ namespace ProductDatabase.BL
         internal List<ShortProductReport> GenerateShortProductReport()
         {
             //ініціалізація потрібних репозиторіїв
-            ProductRepository productRepository = new ProductRepository();
-            CategoryRepository categoryRepository = new CategoryRepository();
-            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
-            ShortDescriptionRepository shortDescriptionRepository =new ShortDescriptionRepository();
-            MemoRepository memoRepository = new MemoRepository();
+            Repository<Product> productRepository = new Repository<Product>();
+            Repository<Category> categoryRepository = new Repository<Category>();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
+            Repository<ShortDescription> shortDescriptionRepository =new Repository<ShortDescription>();
+            Repository<Memo> memoRepository = new Repository<Memo>();
 
             //завантаження всіх необхідних "таблиць" даних
-            var products = (List<Product>) productRepository.GetAll();
-            var catgories = (List<Category>) categoryRepository.GetAll();
-            var manufacturers = (List<Manufacturer>) manufacturerRepository.GetAll();
-            var descriptions = (List<ShortDescription>) shortDescriptionRepository.GetAll();
-            List<Memo> memos = (List<Memo>)memoRepository.GetAll();
+            var products = productRepository.GetAll();
+            var catgories = categoryRepository.GetAll();
+            var manufacturers = manufacturerRepository.GetAll();
+            var descriptions =  shortDescriptionRepository.GetAll();
+            List<Memo> memos = memoRepository.GetAll();
 
             //об’єднання даних по ІД. Вибірка по необхідній категорії
             var list =
                 (from product in products
-                join category in catgories on product.CategoryId equals category.CategoryId
-                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
-                join description in descriptions on product.ProductId equals description.ProductId
-                join memo in memos on product.ProductId equals memo.ProductId
+                join category in catgories on product.CategoryId equals category.id
+                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.id
+                join description in descriptions on product.id equals description.id
+                join memo in memos on product.id equals memo.id
                 select new
                 {
-                    ID = product.ProductId,
+                    ID = product.id,
                     Category = category.CategoryName,
                     Manufacturer = manufacturer.ManufacturerName,
                     Model = product.ProductModel,
                     Description = description.DescriptionText,
-                    ProductionDate = product.ProductionDate,
-                    ExpirationDate = product.ExpirationDate,
+                    product.ProductionDate,
+                    product.ExpirationDate,
                     Memo = memo.MemoText
 
                 }).ToList();
@@ -83,50 +80,52 @@ namespace ProductDatabase.BL
         internal List<FullProductReport> GenerateFullProductReport()
         {
             //ініціалізація потрібних репозиторіїв
-            ProductRepository productRepository = new ProductRepository();
-            CategoryRepository categoryRepository = new CategoryRepository();
-            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
-            WarehouseRecordRepository warehouseRecordRepository = new WarehouseRecordRepository();
-            SupplierRepository supplierRepository = new SupplierRepository();
-            ShortDescriptionRepository shortDescriptionRepository = new ShortDescriptionRepository();
-            MemoRepository memoRepository = new MemoRepository();
+            Repository<Product> productRepository = new Repository<Product>();
+            Repository<Category> categoryRepository = new Repository<Category>();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
+            Repository<ShortDescription> shortDescriptionRepository = new Repository<ShortDescription>();
+            Repository<Memo> memoRepository = new Repository<Memo>();
+            Repository<WarehouseRecord> warehouseRecordRepository = new Repository<WarehouseRecord>();
+            Repository<Supplier> supplierRepository = new Repository<Supplier>();
+           
+            
 
             //завантаження всіх необхідних "таблиць" даних
-            var products = (List<Product>)productRepository.GetAll();
-            var catgories = (List<Category>)categoryRepository.GetAll();
-            var manufacturers = (List<Manufacturer>)manufacturerRepository.GetAll();
-            var descriptions = (List<ShortDescription>)shortDescriptionRepository.GetAll();
-            List<Memo> memos = (List<Memo>)memoRepository.GetAll();
-            var warehouseRecords = (List<WarehouseRecord>) warehouseRecordRepository.GetAll();
-            var suppliers = (List<Supplier>) supplierRepository.GetAll();
+            var products = productRepository.GetAll();
+            var catgories = categoryRepository.GetAll();
+            var manufacturers = manufacturerRepository.GetAll();
+            var descriptions = shortDescriptionRepository.GetAll();
+            List<Memo> memos = memoRepository.GetAll();
+            var warehouseRecords = warehouseRecordRepository.GetAll();
+            var suppliers = supplierRepository.GetAll();
 
 
             //об’єднання даних по ІД. Вибірка по необхідній категорії
             var list =
             (from product in products
-                join category in catgories on product.CategoryId equals category.CategoryId
-                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
-                join description in descriptions on product.ProductId equals description.ProductId
-                join memo in memos on product.ProductId equals memo.ProductId
-                join record in warehouseRecords on product.ProductId equals record.ProductId 
+                join category in catgories on product.CategoryId equals category.id
+                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.id
+                join description in descriptions on product.id equals description.id
+                join memo in memos on product.id equals memo.id
+                join record in warehouseRecords on product.id equals record.id 
                 select new
                 {
-                    ID = product.ProductId,
+                    ID = product.id,
                     Category = category.CategoryName,
                     Manufacturer = manufacturer.ManufacturerName,
                     Model = product.ProductModel,
-                    ProductionDate = product.ProductionDate,
-                    ExpirationDate = product.ExpirationDate,
-                    Ammount = record.Ammount,
-                    Price = record.Price,
+                    product.ProductionDate,
+                    product.ExpirationDate,
+                    record.Ammount,
+                    record.Price,
                     Supplier = (from supplier in suppliers
-                                join warehouseRec in warehouseRecords on supplier.SupplierId equals record.SupplierId
+                                join warehouseRec in warehouseRecords on supplier.id equals record.SupplierId
                                 select supplier.SupplierName).First(),
                     SupplierPhoneNumber = (from sup in suppliers
-                                           join warehouse in warehouseRecords on sup.SupplierId equals  warehouse.SupplierId
+                                           join warehouse in warehouseRecords on sup.id equals  warehouse.SupplierId
                                            select sup.SupplierPhoneNumber).First(),
-                    DeliveryDate = record.DeliveryDate,
-                    WarehouseNumber = record.WarehouseNumber,
+                    record.DeliveryDate,
+                    record.WarehouseNumber,
                     Memo = memo.MemoText,
                     Description = description.DescriptionText
                     
@@ -163,36 +162,36 @@ namespace ProductDatabase.BL
         /// <returns>Ліст звітів WarehouseRecordReport</returns>
         internal List<WarehouseRecordReport> GenerateWarehouseRecordReport()
         {
-            ProductRepository productRepository = new ProductRepository();
-            WarehouseRecordRepository warehouseRecordRepository = new WarehouseRecordRepository();
-            ManufacturerRepository manufacturerRepository = new ManufacturerRepository();
-            SupplierRepository supplierRepository = new SupplierRepository();
+            Repository<Product> productRepository = new Repository<Product>();
+            Repository<WarehouseRecord> warehouseRecordRepository = new Repository<WarehouseRecord>();
+            Repository<Supplier> supplierRepository = new Repository<Supplier>();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
 
-            var products = (List<Product>) productRepository.GetAll();
-            var records = (List<WarehouseRecord>) warehouseRecordRepository.GetAll();
-            var suppliers = (List<Supplier>) supplierRepository.GetAll();
-            var manufacturers = (List<Manufacturer>) manufacturerRepository.GetAll();
+            var products = productRepository.GetAll();
+            var records = warehouseRecordRepository.GetAll();
+            var suppliers = supplierRepository.GetAll();
+            var manufacturers = manufacturerRepository.GetAll();
 
 
             var query = (
                 from product in products
-                join record in records on product.ProductId equals record.ProductId
-                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.ManufacturerId
-                join warehouseRecord in records on product.ProductId equals warehouseRecord.ProductId
+                join record in records on product.id equals record.id
+                join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.id
+                join warehouseRecord in records on product.id equals warehouseRecord.id
                 select new
                 {
-                    ProductId = product.ProductId,
-                    CategoryId = product.CategoryId,
-                    ManufacturerName = manufacturer.ManufacturerName,
+                    ProductId = product.id,
+                    product.CategoryId,
+                    manufacturer.ManufacturerName,
                     Model = product.ProductModel,
-                    Ammount = warehouseRecord.Ammount,
-                    Price = warehouseRecord.Price,
+                    warehouseRecord.Ammount,
+                    warehouseRecord.Price,
                     Supplier = (from supplier in suppliers
-                        join record1 in records on supplier.SupplierId equals record.SupplierId
+                        join record1 in records on supplier.id equals record.SupplierId
                         select supplier.SupplierName).First(),
-                    DeliveryDate = warehouseRecord.DeliveryDate,
-                    ExpirationDate = product.ExpirationDate,
-                    WarehouseNumber = warehouseRecord.WarehouseNumber
+                    warehouseRecord.DeliveryDate,
+                    product.ExpirationDate,
+                    warehouseRecord.WarehouseNumber
                 }).ToList();
 
             List<WarehouseRecordReport> reportList = new List<WarehouseRecordReport>();
@@ -213,9 +212,5 @@ namespace ProductDatabase.BL
             }
             return reportList;
         }
-
-
-
-
     }
 }

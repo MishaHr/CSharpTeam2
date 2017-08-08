@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using ProductDatabase.BL;
+using ProductDatabase.BL.Editors;
 using ProductDatabase.BL.Reports;
 
 
@@ -20,9 +21,10 @@ namespace ProductDatabase
         public static void Show()
         {
             Console.Clear();
-            Console.WriteLine("1. Згенерувати звіт по вибраный категорії");
-            Console.WriteLine("2. Вибрати по Коду");
-            Console.WriteLine("3. Переглянути список");
+            Console.WriteLine("1. Add");
+            Console.WriteLine("2. Edit");
+            Console.WriteLine("3. Delete");
+            Console.WriteLine("4. Test");
             Console.WriteLine("\n0. До попереднього меню");
             Console.Write("\nВведіть ваш вибір: ");
             Choose();
@@ -35,55 +37,31 @@ namespace ProductDatabase
                choice = Console.ReadLine();
             Console.Clear();
             ObjectToStringConverter display = new ObjectToStringConverter();
-            
+            ManufacturerEditor manEd = new ManufacturerEditor();
+            string newName = "NewMan";
             switch (choice)
             {
-
+                
                 //Тест побудови звіту
                 case "1":
                 {
-                    try
-                    {
-                        var text = display.CategoryListToText();
-                        foreach (var s in text)
-                        {
-                            Console.WriteLine(s);
-                        }
-
-                        Console.Write("Виберіть: ");
-
-                        string textid = Console.ReadLine();
-                        bool valid = true;
-                        Console.Clear();
-                        if (valid == true)
-                        {
-                            int id = Convert.ToInt32(textid);
-
-                            var category = display.CategoryToText(id);
-                            Console.WriteLine($"{category}\n");
-                            var report = TextReportShower.ShowFullProductReportByCategory(id);
-                            foreach (var item in report)
-                            {
-                                Console.WriteLine(item);
-                                Console.WriteLine();
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Not valid");
-                        }
-
-
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        Console.WriteLine(e.Message);
-                        
-                    }
+                    string[] add = {newName};
+                    manEd.Add(add);
+                    int id = 1;
                     
-                    
-                        Back();
-                        break;
+
+
+
+                    var category = display.CategoryToText(id);
+                    Console.WriteLine($"{category}\n");
+                    var report = TextReportShower.ShowFullProductReportByCategory(id);
+                    foreach (var item in report)
+                    {
+                        Console.WriteLine(item);
+                        Console.WriteLine();
+                    }
+                    Back();
+                    break;
                 }
 
                 //тест виводу на екран категорії по ій-ді
@@ -92,13 +70,9 @@ namespace ProductDatabase
                     try
                     {
                         Console.Write("enter ID:");
-                        int id = Convert.ToInt32(Console.ReadLine());
-                        bool check = true;//Validation.Id(id);
-                        if (check==true)
-                        {
-                            var text = display.ManufacturerToText(id);
-                            Console.WriteLine(text);
-                        }
+                        string id = Console.ReadLine();
+                        string[] edit = {id, newName};
+                        manEd.Edit(edit);
                         
                     }
                     catch (NullReferenceException e)
@@ -119,12 +93,20 @@ namespace ProductDatabase
                 //тест виводу на екран списку категорій
                 case "3":
                 {
+                    Console.Write("enter ID:");
+                    int id = Convert.ToInt32(Console.ReadLine());
+                        manEd.Delete(id);
+                        break;    
+                }
+                case "4":
+                {
 
                     var text = TextReportShower.ShowFullProductReport();
-                        foreach (var s in text)
-                        {
-                            Console.WriteLine(s);
-                        }
+                    foreach (var s in text)
+                    {
+                        Console.WriteLine(s);
+                        Console.WriteLine();
+                    }
                         Back();
                         break;
                 }

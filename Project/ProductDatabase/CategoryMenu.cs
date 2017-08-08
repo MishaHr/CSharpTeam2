@@ -62,35 +62,16 @@ namespace ProductDatabase
             {
                 Console.WriteLine(cat);
             }
-            string newCategoryName = null;
-            do
-            {
-                Write("\nВведіть назву категорії : ");
-                try
-                {
-                    newCategoryName = (ReadLine());
-
-                    Validation.CategoryName(newCategoryName);
-
-                    CategoryEditor.Add(newCategoryName);
-                    Clear();
-                    WriteLine("Назва категорії : {0}", newCategoryName);
-                    WriteLine("\nКатегорія введена успішно!");
-                    WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
-                    ReadLine();
-                    Show();
-                    check = true;
-                }
-                catch (CustomeException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                catch (NullReferenceException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            while (!check);
+            Write("\nВведіть назву категорії : ");
+            string []newCategoryName = {(ReadLine())};
+            CategoryEditor edit = new CategoryEditor();
+            edit.Add(newCategoryName);
+            Clear();
+            WriteLine("Назва категорії : {0}", newCategoryName);
+            WriteLine("\nКатегорія введена успішно!");
+            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
+            ReadLine();
+            Show();
         }
 
         private static void EditCategory()
@@ -103,13 +84,15 @@ namespace ProductDatabase
                 Console.WriteLine(cat);
             }
             Write("\nВведіть ID категорії : ");
-            int CategoryID = Convert.ToInt32(Console.ReadLine());
-            string CategoryName = display.CategoryToText(CategoryID);
+            string CategoryID = Console.ReadLine();
+            //string CategoryName = display.CategoryToText(CategoryID);
             Clear();
-            WriteLine("Категорія : {0}", CategoryName);
+            //WriteLine("Категорія : {0}", CategoryName);
             WriteLine("\nВведіть нову назву категорії : ");
-            CategoryName = (ReadLine());
-            CategoryEditor.Edit(CategoryID, CategoryName);
+            string CategoryName = (ReadLine());
+            string[] edited = {CategoryID, CategoryName};
+            CategoryEditor edit=new CategoryEditor();
+            edit.Edit(edited);
             WriteLine("\nНазву категорії змінено : {0}", CategoryName);
             WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
@@ -127,10 +110,11 @@ namespace ProductDatabase
             }
             Write("\nВведіть ID категорії : ");
             int CategoryID = Convert.ToInt32(Console.ReadLine());
-            CategoryEditor.Delete(CategoryID);
-            string CategoryName = display.CategoryToText(CategoryID);
+            CategoryEditor edit = new CategoryEditor();
+            edit.Delete(CategoryID);
+            //string CategoryName = display.CategoryToText(CategoryID);
             Clear();
-            WriteLine("Категорію {0} видалено успішно!", CategoryName);
+            //WriteLine("Категорію {0} видалено успішно!", CategoryName);
             WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
             Show();

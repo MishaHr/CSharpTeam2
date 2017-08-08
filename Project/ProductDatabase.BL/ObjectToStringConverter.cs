@@ -1,10 +1,6 @@
 ﻿    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using ProductDatabase.BL.Entities;
-    using ProductDatabase.BL.Reposirories;
     using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL
@@ -26,16 +22,16 @@ namespace ProductDatabase.BL
         /// <returns>Стрінга, відповідно сформатована для виведення на екран</returns>
         public string CategoryToText(int id)
         {
-                CategoryRepository categoryRepository = new CategoryRepository();
+                Repository<Category> categoryRepository = new Repository<Category>();
                 Category cat = (Category)categoryRepository.Get(id);
                 try
                 {
-                    string result = $"{cat.CategoryId}. {cat.CategoryName}";
+                    string result = $"{cat.id}. {cat.CategoryName}";
                     return result;
                 }
                 catch (NullReferenceException e)
                 {
-                    throw new NullReferenceException("Категорії з таким ІД не існує");
+                    throw new NullReferenceException($"There is no Category with ID:{id}");
                 }
         }
 
@@ -46,19 +42,26 @@ namespace ProductDatabase.BL
         public List<string> CategoryListToText()
             {
             //Завантажуємо всі категорії з бази
-                CategoryRepository categoryRepository = new CategoryRepository();
-                List<string> strings = new List<string>();
+            Repository<Category> categoryRepository = new Repository<Category>();
+            List<string> strings = new List<string>();
                 var categoryList = (List<Category>)categoryRepository.GetAll();
 
             //заповнюємо Ліст текстовим представленням кожного об’єкту Category
-                foreach (var c in categoryList)
+                try
                 {
-                    Text = $"{c.CategoryId}. {c.CategoryName}";
-                    strings.Add(Text);
+                    foreach (var c in categoryList)
+                    {
+                        Text = $"{c.id}. {c.CategoryName}";
+                        strings.Add(Text);
+                    }
+                    strings.Sort();
+                    return strings;
                 }
-                strings.Sort();
-                return strings;
-            }
+                catch (NullReferenceException e)
+                {
+                    throw new NullReferenceException($"There are no Categories");
+                }
+        }
 
         /// <summary>
         /// Метод перетворює об’єкт типу Supplier в стрінгу
@@ -68,17 +71,17 @@ namespace ProductDatabase.BL
         /// <returns>Стрінга, відповідно сформатована для виведення на екран</returns>
         public string SupplierToText(int id)
         {
-           SupplierRepository supplierRepository = new SupplierRepository();
+           Repository<Supplier> supplierRepository = new Repository<Supplier>();
            Supplier supplier = (Supplier) supplierRepository.Get(id);
            try
            {
                string result =
-                   $"{supplier.SupplierId}. {supplier.SupplierName}, тел:{supplier.SupplierPhoneNumber}";
+                   $"{supplier.id}. {supplier.SupplierName}, тел:{supplier.SupplierPhoneNumber}";
                     return result;
            }
            catch (NullReferenceException e)
            {
-                throw new NullReferenceException("Постачальника з таким ІД не існує");
+                throw new NullReferenceException($"There is no Supplier with ID:{id}");
            }
         }
 
@@ -89,16 +92,24 @@ namespace ProductDatabase.BL
         /// <returns>скорочений Список постачальників у вигляді стрінгів</returns>
         public List<string> SuppliersListToTextShort()
         {
-            SupplierRepository supplierRepository = new SupplierRepository();
+            Repository<Supplier> supplierRepository = new Repository<Supplier>();
             List<string> suppliers = new List<string>();
             var supplierList = (List<Supplier>) supplierRepository.GetAll();
 
-            foreach (var supplier in supplierList)
+            try
             {
-                Text = $"{supplier.SupplierId}. {supplier.SupplierName}";
-                suppliers.Add(Text);
+                foreach (var supplier in supplierList)
+                {
+                    Text = $"{supplier.id}. {supplier.SupplierName}";
+                    suppliers.Add(Text);
+                }
+                suppliers.Sort();
+                return suppliers;
             }
-            return suppliers;
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("There are no Suppliers");
+            }
         }
 
 
@@ -109,16 +120,23 @@ namespace ProductDatabase.BL
         /// <returns>Повний Список постачальників у вигляді стрінгів</returns>
         public List<string> SuppliersListToTextFull()
         {
-            SupplierRepository supplierRepository = new SupplierRepository();
+            Repository<Supplier> supplierRepository = new Repository<Supplier>();
             List<string> suppliers = new List<string>();
             var supplierList = (List<Supplier>)supplierRepository.GetAll();
-
-            foreach (var supplier in supplierList)
+            try
             {
-                Text = $"{supplier.SupplierId}. {supplier.SupplierName}, тел: {supplier.SupplierPhoneNumber}";
-                suppliers.Add(Text);
+                foreach (var supplier in supplierList)
+                {
+                    Text = $"{supplier.id}. {supplier.SupplierName}, тел: {supplier.SupplierPhoneNumber}";
+                    suppliers.Add(Text);
+                }
+                suppliers.Sort();
+                return suppliers;
             }
-            return suppliers;
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("There are no Suppliers");
+            }
         }
 
         /// <summary>
@@ -129,16 +147,16 @@ namespace ProductDatabase.BL
         /// <returns>Стрінга, відповідно сформатована для виведення на екран</returns>
         public string ManufacturerToText(int id)
         {
-            ManufacturerRepository manufacturerRepository   =new ManufacturerRepository();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
             Manufacturer man = (Manufacturer)manufacturerRepository.Get(id);
             try
             {
-                string result = $"{man.ManufacturerId}. {man.ManufacturerName}";
+                string result = $"{man.id}. {man.ManufacturerName}";
                 return result;
             }
             catch (NullReferenceException e)
             {
-                throw new NullReferenceException("Виробника з таким ІД не існує");
+                throw new NullReferenceException($"There is no Manufacturer with ID:{id}");
             }
         }
 
@@ -148,28 +166,35 @@ namespace ProductDatabase.BL
         /// <returns>Список Виробників у вигляді стрінгів</returns>
         public List<string> ManufacturerListToText()
         {
-            ManufacturerRepository manufacturerRepository =new ManufacturerRepository();
-            List<Manufacturer> manufacturerList = (List<Manufacturer>)manufacturerRepository.GetAll();
+            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
+            var manList = manufacturerRepository.GetAll();
             List<string> manufacturerStringList = new List<string>();
-
-            foreach (var man in manufacturerList)
+            try
             {
-                Text = $"{man.ManufacturerId}. {man.ManufacturerName}";
-                manufacturerStringList.Add(Text);
+                foreach (var man in manList)
+                {
+                    Text = $"{man.id}. {man.ManufacturerName}";
+                    manufacturerStringList.Add(Text);
+                }
+                manufacturerStringList.Sort();
+                return manufacturerStringList;
             }
-            return manufacturerStringList;
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("There are no Manufacturers");
+            }
         }
 
-        public List<string> LastIdList()
+        public  List<string> LastIdList()
         {
-            LastIdKeeperRepository lastIdKeeperRepository = new LastIdKeeperRepository();
-            List<LastIdKeeper> idList = (List<LastIdKeeper>) lastIdKeeperRepository.GetAll();
+            Repository<LastIdKeeper> lastIdKeeperRepository = new Repository<LastIdKeeper>();
+            List<LastIdKeeper> idList = lastIdKeeperRepository.GetAll();
             List<string> lastIdText = new List<string>();
 
             foreach (var lastId in idList)
             {
                 Text =
-                    $"Prod: {lastId.LastProductId}, Cat: {lastId.LastCategoryId}, Man: {lastId.LastManufacturerId}, Sup: {lastId.LastSupplierId}";
+                    $"Prod: {lastId.id}, Cat: {lastId.LastCategoryId}, Man: {lastId.LastManufacturerId}, Sup: {lastId.LastSupplierId}";
                 lastIdText.Add(Text);
             }
             return lastIdText;
