@@ -8,14 +8,14 @@
         public int LastManufacturerId { get; set; }
         public int LastSupplierId { get; set; }
 
-        public LastIdKeeper(int id): base(1)
+        internal LastIdKeeper(int id): base(id)
         {
             
         }
 
         public override string ToString()
         {
-            return string.Format($"{id};{LastCategoryId};{LastManufacturerId};{LastSupplierId}");
+            return string.Format($"{id};{LastProductId};{LastCategoryId};{LastManufacturerId};{LastSupplierId}");
         }
     }
 }
