@@ -26,9 +26,7 @@ namespace ProductDatabase.BL
 
         // Конструктор по замовчуванні створює Звіт у папці Debug
         public TextReportSave()
-        {
-            Path = @"Звіт.txt";
-        }
+        {        }
 
         // Конструктор отримує як параметр стрінг який буде адресою створення Звіту
         public TextReportSave(string path)
@@ -99,7 +97,7 @@ namespace ProductDatabase.BL
                 textFullProductReports.Add(report.ToString());
             }
 
-            Path = @"C:\Users\Misha\Desktop\Звіт.txt";
+            Path = @"Звіт.txt";
             SetFullColumn();
 
             using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
@@ -124,7 +122,7 @@ namespace ProductDatabase.BL
                 textShortProductReports.Add(report.ToString());
             }
 
-            Path = @"C:\Users\Misha\Desktop\Короткий Звіт.txt";
+            Path = @"Короткий Звіт.txt";
             SetShortColumn();
 
             using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
@@ -149,7 +147,7 @@ namespace ProductDatabase.BL
                 textWarehouseRecordReports.Add(report.ToString());
             }
 
-            Path = @"C:\Users\Misha\Desktop\Звіт по складу.txt";
+            Path = @"Звіт по складу.txt";
             SetWarehouseRecordColumn();
 
             using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
