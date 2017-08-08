@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.BL;
+using ProductDatabase.BL.CustomExceptions;
 
 namespace ProductDatabase
 {
@@ -54,21 +55,42 @@ namespace ProductDatabase
         public static void AddCategory()
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
+            bool check = false;
             WriteLine("Список існуючих категорій\n");
             var category = display.CategoryListToText();
             foreach (var cat in category)
             {
                 Console.WriteLine(cat);
             }
-            Write("\nВведіть назву категорії : ");
-            string newCategoryName = (ReadLine());
-            CategoryEditor.Add(newCategoryName);
-            Clear();
-            WriteLine("Назва категорії : {0}", newCategoryName);
-            WriteLine("\nКатегорія введена успішно!");
-            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
-            ReadLine();
-            Show();
+            string newCategoryName = null;
+            do
+            {
+                Write("\nВведіть назву категорії : ");
+                try
+                {
+                    newCategoryName = (ReadLine());
+
+                    Validation.CategoryName(newCategoryName);
+
+                    CategoryEditor.Add(newCategoryName);
+                    Clear();
+                    WriteLine("Назва категорії : {0}", newCategoryName);
+                    WriteLine("\nКатегорія введена успішно!");
+                    WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
+                    ReadLine();
+                    Show();
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            while (!check);
         }
 
         private static void EditCategory()

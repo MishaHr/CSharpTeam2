@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.BL;
 using System.IO;
+using ProductDatabase.BL.CustomExceptions;
 
 namespace ProductDatabase
 {
@@ -55,6 +56,8 @@ namespace ProductDatabase
         {
             Title = "Меню додавання нового товару";
             ObjectToStringConverter display = new ObjectToStringConverter();
+            bool check = false;
+
             WriteLine("Список категорій\n");
             var Category = display.CategoryListToText();
             foreach (var cat in Category)
@@ -64,28 +67,35 @@ namespace ProductDatabase
             string CategoryID = null;
             int CatID;
             string ProductCategory = null;
-            Write("\nВведіть ID категорії зі списку : ");
-            try
+            do
             {
-                CategoryID = (Console.ReadLine());
-                bool valid = Validation.Id(CategoryID);
-
-                if (valid == true)
+                Write("\nВведіть ID категорії зі списку : ");
+                try
                 {
+                    CategoryID = Console.ReadLine();
+
+                    Validation.Id(CategoryID);
+
                     CatID = Convert.ToInt32(CategoryID); ;
                     ProductCategory = display.CategoryToText(CatID);
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    Console.WriteLine(fnfe.Message);
                 }
             }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
             WriteLine("\nСписок виробників\n");
             var Manufacturer = display.ManufacturerListToText();
@@ -93,95 +103,124 @@ namespace ProductDatabase
             {
                 Console.WriteLine(man);
             }
-            Write("\nВведіть ID виробника зі списку : ");
-            string ManufacturerID = (Console.ReadLine());
+            string ManufacturerID = null;
             int ManID;
             string ProductManufacturer = null;
-            try
+            do
             {
-                bool valid = Validation.Id(ManufacturerID);
-
-                if (valid == true)
+                Write("\nВведіть ID виробника зі списку : ");
+                try
                 {
+                    ManufacturerID = Console.ReadLine();
+
+                    Validation.Id(ManufacturerID);
+
                     ManID = Convert.ToInt32(ManufacturerID);
                     ProductManufacturer = display.ManufacturerToText(ManID);
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
+                    check = true;
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    Console.WriteLine(fnfe.Message);
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nВведіть назву товару : ");
             string ProductName = null;
-            try
+            do
             {
-                ProductName = ReadLine();
-                bool valid = Validation.ProductName(ProductName);
-
-                if (valid == true)
+                Write("\nВведіть назву товару : ");
+                try
                 {
+                    ProductName = ReadLine();
+
+                    Validation.ProductName(ProductName);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
                     WriteLine("Назва товару : {0}", ProductName);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nВведіть дату виготовлення : 00.00.0000"); // потрібно буде привести приклад правильного формату
-            WriteAt(28, 4);
             string ProductManufactureDate = null;
-            try
+            do
             {
-                ProductManufactureDate = ReadLine();
-                bool valid = Validation.ProductionDate(ProductManufactureDate);
-
-                if (valid == true)
+                Write("\nВведіть дату виготовлення : 00.00.0000"); // потрібно буде привести приклад правильного формату
+                WriteAt(28, 4);
+                try
                 {
+                    ProductManufactureDate = ReadLine();
+
+                    Validation.ProductionDate(ProductManufactureDate);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
                     WriteLine("Назва товару : {0}", ProductName);
                     WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nВведіть гарантійний термін : ");
             string ProductWarranty = null;
-            try
+            Write("\nВведіть гарантійний термін : ");
+            do
             {
-                ProductWarranty = ReadLine();
-                bool valid = Validation.ExpirationDateTxt(ProductWarranty);
-
-                if (valid == true)
+                try
                 {
+                    ProductWarranty = ReadLine();
+
+                    Validation.ExpirationDateTxt(ProductWarranty);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
                     WriteLine("Назва товару : {0}", ProductName);
                     WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
                     WriteLine("Гарантійний термін : {0} років", ProductWarranty);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
             WriteLine("\nСписок постачальників\n");
             var Suppliers = display.SuppliersListToTextShort();
@@ -189,17 +228,18 @@ namespace ProductDatabase
             {
                 Console.WriteLine(sup);
             }
-            Write("\nВведіть ID постачальника зі списку : ");
             string SupplierId = null;
             int SupID;
             string ProductProvider = null;
-            try
+            do
             {
-                SupplierId = ReadLine();
-                bool valid = Validation.Id(ManufacturerID);
-
-                if (valid == true)
+                Write("\nВведіть ID постачальника зі списку : ");
+                try
                 {
+                    SupplierId = ReadLine();
+
+                    Validation.Id(ManufacturerID);
+
                     SupID = Convert.ToInt32(SupplierId);
                     ProductProvider = display.SupplierToText(SupID);
                     Clear();
@@ -209,27 +249,33 @@ namespace ProductDatabase
                     WriteLine("Дата виготовлення : {0}", ProductManufactureDate);
                     WriteLine("Гарантійний термін : {0}", ProductWarranty);
                     WriteLine("Постачальник : {0}", ProductProvider);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    Console.WriteLine(fnfe.Message);
                 }
             }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nВведіть дату поставки : 00.00.0000");
-            WriteAt(24, 7);
             string ProductDeliveryDate = null;
-            try
+            do
             {
-                ProductDeliveryDate = ReadLine();
-                bool valid = Validation.DeliveryDate(ProductDeliveryDate);
-
-                if (valid == true)
+                Write("\nВведіть дату поставки : 00.00.0000");
+                WriteAt(24, 7);
+                try
                 {
+                    ProductDeliveryDate = ReadLine();
+                    Validation.DeliveryDate(ProductDeliveryDate);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -238,22 +284,29 @@ namespace ProductDatabase
                     WriteLine("Гарантійний термін : {0}", ProductWarranty);
                     WriteLine("Постачальник : {0}", ProductProvider);
                     WriteLine("Дата поставки : {0}", ProductDeliveryDate);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nВведіть кількість одиниць : ");
             string ProductAmount = null;
-            try
+            do
             {
-                ProductAmount = ReadLine();
-                bool valid = Validation.Amount(ProductAmount);
-
-                if (valid == true)
+                Write("\nВведіть кількість одиниць : ");
+                try
                 {
+                    ProductAmount = ReadLine();
+
+                    Validation.Amount(ProductAmount);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -263,22 +316,29 @@ namespace ProductDatabase
                     WriteLine("Постачальник : {0}", ProductProvider);
                     WriteLine("Дата поставки : {0}", ProductDeliveryDate);
                     WriteLine("Кількість одиниць : {0}", ProductAmount);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nВведіть ціну за одиницю : ");
             string ProductPrice = null;
-            try
+            do
             {
-                ProductPrice = ReadLine();
-                bool valid = Validation.Price(ProductPrice);
-
-                if (valid == true)
+                Write("\nВведіть ціну за одиницю : ");
+                try
                 {
+                    ProductPrice = ReadLine();
+
+                    Validation.Price(ProductPrice);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -289,22 +349,29 @@ namespace ProductDatabase
                     WriteLine("Дата поставки : {0}", ProductDeliveryDate);
                     WriteLine("Кількість одиниць : {0}", ProductAmount);
                     WriteLine("Ціна за одиницю : {0}", ProductPrice);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nВведіть номер складу : ");
             string ProductWarehouse = null;
-            try
+            do
             {
-                ProductWarehouse = ReadLine();
-                bool valid = Validation.WarehouseNumber(ProductWarehouse);
+                Write("\nВведіть номер складу : ");
 
-                if (valid == true)
+                try
                 {
+                    ProductWarehouse = ReadLine();
+                    bool valid = Validation.WarehouseNumber(ProductWarehouse);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -316,22 +383,29 @@ namespace ProductDatabase
                     WriteLine("Кількість одиниць : {0}", ProductAmount);
                     WriteLine("Ціна за одиницю : {0}", ProductPrice);
                     WriteLine("Номер складу : {0}", ProductWarehouse);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nВведіть короткий опис : ");
             string ProductDescription = null;
-            try
+            do
             {
-                ProductDescription = ReadLine();
-                bool valid = Validation.ShortDescription(ProductDescription);
-
-                if (valid == true)
+                Write("\nВведіть короткий опис : ");
+                try
                 {
+                    ProductDescription = ReadLine();
+
+                    Validation.ShortDescription(ProductDescription);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -344,22 +418,29 @@ namespace ProductDatabase
                     WriteLine("Ціна за одиницю : {0}", ProductPrice);
                     WriteLine("Номер складу : {0}", ProductWarehouse);
                     WriteLine("Короткий опис : {0}", ProductDescription);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
-            Write("\nЗаповніть поле для приміток якщо потрібно : ");
             string ProductNotes = null;
-            try
+            do
             {
-                ProductNotes = ReadLine();
-                bool valid = Validation.Memo(ProductNotes);
-
-                if (valid == true)
+                Write("\nЗаповніть поле для приміток якщо потрібно : ");
+                try
                 {
+                    ProductNotes = ReadLine();
+
+                    Validation.Memo(ProductNotes);
+
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -373,12 +454,18 @@ namespace ProductDatabase
                     WriteLine("Номер складу : {0}", ProductWarehouse);
                     WriteLine("Короткий опис : {0}", ProductDescription);
                     WriteLine("Примітка : {0}", ProductNotes);
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (FileNotFoundException fnfe)
-            {
-                Console.WriteLine(fnfe.Message);
-            }
+            while (!check);
 
             WriteLine("\nІнформація введена успішно!");
             WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
