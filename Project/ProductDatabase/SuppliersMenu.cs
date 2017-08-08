@@ -169,7 +169,7 @@ namespace ProductDatabase
 
                                     string[] edited = { SupplierId, SupplierName, SupplierPhone };
                                     SupplierEditor editor = new SupplierEditor();
-                                    editor.Add(edited);
+                                    editor.Edit(edited);
 
                                     WriteLine("\nДані постачальника змінено : {0}, тел: {1}", SupplierName, SupplierPhone);
                                     WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
@@ -247,7 +247,7 @@ namespace ProductDatabase
                     SupplierEditor editor = new SupplierEditor();
                     editor.Delete(SupplierId);
 
-                    WriteLine("Постачальника {0} видалено успішно!", SupplierInfo);
+                    WriteLine("\nПостачальника {0} видалено успішно!", SupplierInfo);
                     WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
                     ReadLine();
                     Show();

@@ -135,7 +135,7 @@ namespace ProductDatabase
                             ManufacturerEditor editor = new ManufacturerEditor();
                             editor.Edit(edited);
 
-                            WriteLine("Назву виробника змінено : {0}", ManufacturerName);
+                            WriteLine("\nНазву виробника змінено : {0}", ManufacturerName);
                             WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
                             ReadLine();
                             Show();
@@ -198,7 +198,7 @@ namespace ProductDatabase
                     ManufacturerEditor editor = new ManufacturerEditor();
                     editor.Delete(ManufacturerID);
 
-                    WriteLine("Виробника {0} видалено успішно!", ManufacturerName);
+                    WriteLine("\nВиробника {0} видалено успішно!", ManufacturerName);
                     WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
                     ReadLine();
                     Show();
