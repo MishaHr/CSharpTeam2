@@ -51,7 +51,19 @@ namespace ProductDatabase
 
                         break;
 
-                }
+                            var category = display.CategoryToText(id);
+                            Console.WriteLine($"{category}\n");
+                            var report = TextReportShower.ShowFullProductReportByCategory(id);
+                            foreach (var item in report)
+                            {
+                                Console.WriteLine(item);
+                                Console.WriteLine();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not valid");
+                        }
 
                 //тест виводу на екран категорії по ій-ді
                 case "2":
