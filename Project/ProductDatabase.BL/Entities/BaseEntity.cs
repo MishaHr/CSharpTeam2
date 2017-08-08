@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProductDatabase.BL.Entities
+﻿namespace ProductDatabase.BL.Entities
 {
     internal abstract class BaseEntity
     {
@@ -25,11 +19,11 @@ namespace ProductDatabase.BL.Entities
                 return false;
             }
             BaseEntity obj = cn as BaseEntity;
-            if ((object)obj == null)
+            if (obj == null)
             {
                 return false;
             }
-            int cat1 = this.id;
+            int cat1 = id;
             int cat2 = obj.id;
             return (cat1 == cat2) ? true : false;
         }

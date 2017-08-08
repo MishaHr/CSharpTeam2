@@ -102,8 +102,12 @@ namespace ProductDatabase
                 case "4":
                 {
 
-                        TestEditor test = new TestEditor();
-                        test.Test();
+                    var text = TextReportShower.ShowFullProductReport();
+                    foreach (var s in text)
+                    {
+                        Console.WriteLine(s);
+                        Console.WriteLine();
+                    }
                         Back();
                         break;
                 }

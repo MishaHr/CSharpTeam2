@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProductDatabase.BL.Reports;
-using ProductDatabase.BL.Reposirories;
+using ProductDatabase.BL.Repositories;
+
 
 namespace ProductDatabase.BL
 {
@@ -20,8 +18,8 @@ namespace ProductDatabase.BL
         {
            
             ReportBuilder report = new ReportBuilder();
-			CategoryRepository categoryRepository = new CategoryRepository();
-            var categories = (List<Category>)categoryRepository.GetAll();
+			Repository<Category> categoryRepository = new Repository<Category>();
+            var categories = categoryRepository.GetAll();
             var reports = report.GenerateShortProductReport();
 
 			//вибираэмо з Ліста звітів тільки ті, які відповідають ІД категорії
@@ -61,7 +59,7 @@ namespace ProductDatabase.BL
         public static List<string> ShowFullProductReportByCategory(int categoryId)
         {
             ReportBuilder reportBuilder = new ReportBuilder();
-            CategoryRepository categoryRepository =new CategoryRepository();
+            Repository<Category> categoryRepository = new Repository<Category>();
             var categories = (List<Category>)categoryRepository.GetAll();
             var fullReports = reportBuilder.GenerateFullProductReport();
 

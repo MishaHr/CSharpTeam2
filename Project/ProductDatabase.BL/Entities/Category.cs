@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProductDatabase.BL.Entities;
 
 namespace ProductDatabase.BL
@@ -12,8 +8,6 @@ namespace ProductDatabase.BL
     /// </summary>
     internal class Category: BaseEntity
         {
-        
-
         public string CategoryName { get; set; }
 
         /// <summary>
@@ -37,11 +31,11 @@ namespace ProductDatabase.BL
                 return false;
             }
             Category obj = cn as Category;
-            if ((object)obj == null)
+            if (obj == null)
             {
                 return false;
             }
-            int cat1 = this.id;
+            int cat1 = id;
             int cat2 = obj.id;
             return (cat1 == cat2) ? true : false;
         }

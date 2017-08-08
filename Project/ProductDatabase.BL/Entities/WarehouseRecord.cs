@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductDatabase.BL.Entities
 {
@@ -11,7 +7,6 @@ namespace ProductDatabase.BL.Entities
         /// <summary>
         /// Клас зберігання записів навяності товару на складі (кількість, ціна, дата поставки)
         /// </summary>
-        public int id { get; set; }
         public int WarehouseNumber { get; set; }
         public int Ammount { get; set; }
         public double Price { get; set; }

@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProductDatabase.BL.Entities;
+﻿using ProductDatabase.BL.Entities;
 using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL.Editors
 {
     public class ManufacturerEditor:BaseEditor
     {
-
-        public ManufacturerEditor()
-        {
-            
-        }
         public override void Add(string[] add)
         {
             int newId = GetLastId() + 1;
