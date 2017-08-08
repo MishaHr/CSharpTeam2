@@ -8,41 +8,34 @@ using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL.Editors
 {
-    public class ManufacturerEditor:BaseEditor
+    public class ShortDescriptionEditor:BaseEditor
     {
-
-        public ManufacturerEditor()
-        {
-            
-        }
         public override void Add(string[] add)
         {
             int newId = GetLastId() + 1;
-            Manufacturer manufacturer = new Manufacturer(newId);
-            manufacturer.IsNew = true;
-            manufacturer.ManufacturerName = add[0];
-            SaveLastId(newId);
-            SaveChanges(manufacturer);
+            ShortDescription added = new ShortDescription(newId);
+            added.IsNew = true;
+            added.DescriptionText = add[0];
+            SaveChanges(added);
         }
 
-        public override void Edit(string [] edit)
+        public override void Edit(string[] edit)
         {
-            Manufacturer edited= ObjectCreator.CreateManufacturer(edit);
+            ShortDescription edited = ObjectCreator.CreateDescription(edit);
             edited.IsChanged = true;
             SaveChanges(edited);
-
         }
 
-        public  override void Delete(int id)
+        public override void Delete(int id)
         {
-            Manufacturer toDelete = new Manufacturer(id);
+            ShortDescription toDelete = new ShortDescription(id);
             toDelete.IsDeleted = true;
             SaveChanges(toDelete);
         }
 
         internal override void SaveChanges(BaseEntity toSave)
         {
-            Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
+            Repository<Memo> manufacturerRepository = new Repository<Memo>();
             manufacturerRepository.Save(toSave);
         }
 
@@ -50,17 +43,13 @@ namespace ProductDatabase.BL.Editors
         {
             Repository<LastIdKeeper> lastIdKeeperRepository = new Repository<LastIdKeeper>();
             var lastIdKeeper = (LastIdKeeper)lastIdKeeperRepository.Get(1);
-            int lastId = lastIdKeeper.LastManufacturerId;
+            int lastId = lastIdKeeper.LastProductId;
             return lastId;
         }
 
         protected internal override void SaveLastId(int id)
         {
-            Repository<LastIdKeeper> lastIdKeeperRepository = new Repository<LastIdKeeper>();
-            var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
-            lastId.LastManufacturerId = id;
-            lastId.IsChanged = true;
-            LastIdKeeperEditor.Edit(lastId);
+            
         }
     }
 }

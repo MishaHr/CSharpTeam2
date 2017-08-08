@@ -4,44 +4,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.BL.Entities;
-using ProductDatabase.BL.Reposirories;
 using ProductDatabase.BL.Repositories;
-using ProductDatabase.BL.Editors;
 
-namespace ProductDatabase.BL
+namespace ProductDatabase.BL.Editors
 {
-    public  class CategoryEditor:BaseEditor
+    public class ProductEditor:BaseEditor
     {
-
-        public override void Add(string [] newValue)
+        public override void Add(string[] newValues)
         {
             int newId = GetLastId() + 1;
-            Category addedCategory = new Category(newId);
-            addedCategory.IsNew = true;
-            addedCategory.CategoryName = newValue[0];
+            Product added = new Product(newId);
+            added.CategoryId = Convert.ToInt32(newValues[0]);
+            added.ManufacrirerId = Convert.ToInt32(newValues[1]);
+            added.ProductModel = newValues[2];
+            added.ProductionDate = DateTime.Parse(newValues[3]);
+            added.ExpirationDate = newValues[4];
+            added.IsNew = true;
             SaveLastId(newId);
-            SaveChanges(addedCategory);
+            SaveChanges(added);
+
+
         }
 
-        public override void Edit(string[] edit)
+        public override void Edit(string[] newValues)
         {
-            Category edited = ObjectCreator.CreateCategory(edit);
+            Product edited = ObjectCreator.CreateProduct(newValues);
             edited.IsChanged = true;
             SaveChanges(edited);
-            
+
         }
 
         public override void Delete(int id)
         {
-            Category deleteCategory = new Category(id);
-            deleteCategory.IsDeleted = true;
-            SaveChanges(deleteCategory);
+            Product delete = new Product(id);
+            delete.IsDeleted = true;
+            SaveChanges(delete);
         }
 
-        internal  override void SaveChanges(BaseEntity toSave)
+        internal override void SaveChanges(BaseEntity toSave)
         {
-            Repository<Category> categoryRepository = new Repository<Category>();
-            categoryRepository.Save(toSave);
+            Repository<Product> repository = new Repository<Product>();
+            repository.Save(toSave);
         }
 
         protected internal override int GetLastId()
@@ -55,9 +58,11 @@ namespace ProductDatabase.BL
         {
             Repository<LastIdKeeper> lastIdKeeperRepository = new Repository<LastIdKeeper>();
             var lastId = (LastIdKeeper)lastIdKeeperRepository.Get(1);
-            lastId.LastCategoryId = id;
+            lastId.LastProductId = id;
             lastId.IsChanged = true;
             LastIdKeeperEditor.Edit(lastId);
         }
+
     }
 }
+

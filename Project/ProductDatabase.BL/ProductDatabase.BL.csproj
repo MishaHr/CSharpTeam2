@@ -44,9 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\BaseEditor.cs" />
     <Compile Include="Editors\LastIdKeeperEditor.cs" />
     <Compile Include="Editors\ManufacturerEditor.cs" />
+    <Compile Include="Editors\MemoEditor.cs" />
+    <Compile Include="Editors\ProductEditor.cs" />
+    <Compile Include="Editors\ShortDescriptionEditor.cs" />
+    <Compile Include="Editors\SupplierEditor.cs" />
     <Compile Include="Editors\TestEditor.cs" />
+    <Compile Include="Editors\WarehouseRecordEditor.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\LastIdKeeper.cs" />
     <Compile Include="Interfaces\IGetable.cs" />
@@ -65,8 +71,6 @@
     <Compile Include="Reports\ShortProductReport.cs" />
     <Compile Include="Reports\WarehouseRecordReport.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
-    <Compile Include="Repositories\LastIdKeeperRepository.cs" />
-    <Compile Include="Repositories\ManufacturerRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\MemoRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />

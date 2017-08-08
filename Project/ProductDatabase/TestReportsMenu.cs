@@ -45,8 +45,8 @@ namespace ProductDatabase
                 //Тест побудови звіту
                 case "1":
                 {
-                    
-                    manEd.Add(newName);
+                    string[] add = {newName};
+                    manEd.Add(add);
                     Back();
 
                         break;
@@ -59,8 +59,9 @@ namespace ProductDatabase
                     try
                     {
                         Console.Write("enter ID:");
-                        int id = Convert.ToInt32(Console.ReadLine());
-                        manEd.Edit(id, newName);
+                        string id = Console.ReadLine();
+                        string[] edit = {id, newName};
+                        manEd.Edit(edit);
                         
                     }
                     catch (NullReferenceException e)
