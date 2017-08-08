@@ -1,6 +1,7 @@
 ﻿using System;
 using static System.Console;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,17 +58,51 @@ namespace ProductDatabase
             ObjectToStringConverter display = new ObjectToStringConverter();
             bool check = false;
             WriteLine("Список існуючих категорій\n");
-            var category = display.CategoryListToText();
-            foreach (var cat in category)
+            try
             {
-                Console.WriteLine(cat);
+                var category = display.CategoryListToText();
+                foreach (var cat in category)
+                {
+                    Console.WriteLine(cat);
+                }
+            }
+            catch (NullReferenceException ne)
+            {
+                Console.WriteLine(ne.Message);
+                
             }
             Write("\nВведіть назву категорії : ");
-            string []newCategoryName = {(ReadLine())};
-            CategoryEditor edit = new CategoryEditor();
-            edit.Add(newCategoryName);
-            Clear();
-            WriteLine("Назва категорії : {0}", newCategoryName);
+            do
+            {
+                try
+                {
+                    string newCategoryName = (ReadLine());
+                    Validation.CategoryName(newCategoryName);
+                    string[] toAdd = {newCategoryName};
+                    CategoryEditor edit = new CategoryEditor();
+                    edit.Add(toAdd);
+                    Clear();
+                    check = true;
+                    WriteLine("Назва категорії : {0}", newCategoryName);
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    Console.WriteLine(fnfe.Message);
+                }
+                catch (IOException ie)
+                {
+                    Console.WriteLine(ie.Message);
+                }
+            }
+            while (!check);
             WriteLine("\nКатегорія введена успішно!");
             WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
@@ -78,23 +113,53 @@ namespace ProductDatabase
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих категорій\n");
-            var category = display.CategoryListToText();
-            foreach (var cat in category)
+                try
+                {
+                    var category = display.CategoryListToText();
+                    foreach (var cat in category)
+                    {
+                        Console.WriteLine(cat);
+                    }
+                }
+            catch (NullReferenceException e)
             {
-                Console.WriteLine(cat);
+                WriteLine(e.Message);
             }
-            Write("\nВведіть ID категорії : ");
-            string CategoryID = Console.ReadLine();
-            //string CategoryName = display.CategoryToText(CategoryID);
-            Clear();
-            //WriteLine("Категорія : {0}", CategoryName);
-            WriteLine("\nВведіть нову назву категорії : ");
-            string CategoryName = (ReadLine());
-            string[] edited = {CategoryID, CategoryName};
-            CategoryEditor edit=new CategoryEditor();
-            edit.Edit(edited);
-            WriteLine("\nНазву категорії змінено : {0}", CategoryName);
-            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
+            bool check = false;
+            do
+            {
+                try
+                {
+                    Write("\nВведіть ID категорії : ");
+                    string CategoryID = Console.ReadLine();
+                    Validation.Id(CategoryID);
+                    Write("\nВведіть нову назву категорії : ");
+                    string newCategoryName = (ReadLine());
+                    Validation.CategoryName(newCategoryName);
+                    string[] edited = {CategoryID, newCategoryName};
+                    CategoryEditor edit = new CategoryEditor();
+                    edit.Edit(edited);
+                    check = true;
+                    WriteLine("\nНазву категорії змінено : {0}", newCategoryName);
+                    WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    Console.WriteLine(fnfe.Message);
+                }
+                catch (IOException ie)
+                {
+                    Console.WriteLine(ie.Message);
+                }
+            } while (!check);
             ReadLine();
             Show();
         }
@@ -102,22 +167,53 @@ namespace ProductDatabase
         private static void DeleteCategory()
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
+            bool check = false;
             WriteLine("Список існуючих категорій\n");
-            var category = display.CategoryListToText();
-            foreach (var cat in category)
+            try
             {
-                Console.WriteLine(cat);
+                var category = display.CategoryListToText();
+                foreach (var cat in category)
+                {
+                    Console.WriteLine(cat);
+                }
             }
-            Write("\nВведіть ID категорії : ");
-            int CategoryID = Convert.ToInt32(Console.ReadLine());
-            CategoryEditor edit = new CategoryEditor();
-            edit.Delete(CategoryID);
-            //string CategoryName = display.CategoryToText(CategoryID);
-            Clear();
-            //WriteLine("Категорію {0} видалено успішно!", CategoryName);
-            WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
-            ReadLine();
-            Show();
+            catch (NullReferenceException ne)
+            {
+                Console.WriteLine(ne.Message);
+            }
+            do
+            {
+                try
+                {
+                    Write("\nВведіть ID категорії : ");
+                    string categoryID = Console.ReadLine();
+                    Validation.Id(categoryID);
+                    CategoryEditor edit = new CategoryEditor();
+                    edit.Delete(Convert.ToInt32(categoryID));
+                    Clear();
+                    WriteLine("Категорію видалено успішно!");
+                    WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
+                    ReadLine();
+                    Show();
+                    check = true;
+                }
+                catch (CustomeException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    Console.WriteLine(fnfe.Message);
+                }
+                catch (IOException ie)
+                {
+                    Console.WriteLine(ie.Message);
+                }
+            } while (!check);
         }
     }
 }
