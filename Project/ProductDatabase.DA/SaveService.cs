@@ -63,7 +63,7 @@ namespace ProductDatabase.DA
             //створюємо новий файл з обновленими даними
             FileInfo file = new FileInfo(path);
             FileStream stream = file.Open(FileMode.Create, FileAccess.Write);
-            using (StreamWriter writer = new StreamWriter(stream))
+            using (StreamWriter writer = new StreamWriter(stream, Encoding.Unicode))
             {
                 foreach (var text in list)
                 {
