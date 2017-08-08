@@ -1,10 +1,6 @@
 ﻿using System;
-using static System.Convert;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProductDatabase.BL.Entities;
+using static System.Convert;
 
 namespace ProductDatabase.BL
 {
@@ -50,7 +46,7 @@ namespace ProductDatabase.BL
         /// <returns>>Об’єкт типу Manufacturer</returns>
         public static Manufacturer CreateManufacturer(string[] retrivedData)
         {
-            Manufacturer manufacturer = new Manufacturer(Convert.ToInt32(retrivedData[0]));
+            Manufacturer manufacturer = new Manufacturer(ToInt32(retrivedData[0]));
             manufacturer.ManufacturerName = retrivedData[1].Trim();
             return manufacturer;
         }
@@ -110,7 +106,7 @@ namespace ProductDatabase.BL
 
         public static LastIdKeeper CreateLastIdKeeper(string[] retrivedData)
         {
-                LastIdKeeper lastIdKeeper = new LastIdKeeper(Convert.ToInt32(retrivedData[0]));
+                LastIdKeeper lastIdKeeper = new LastIdKeeper(ToInt32(retrivedData[0]));
                 lastIdKeeper.LastProductId = ToInt32(retrivedData[1]);
                 lastIdKeeper.LastCategoryId = ToInt32(retrivedData[2]);
                 lastIdKeeper.LastManufacturerId = ToInt32(retrivedData[3]);

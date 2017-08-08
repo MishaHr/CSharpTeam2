@@ -1,11 +1,6 @@
 ﻿using System;
-using static System.Convert;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using ProductDatabase.BL.Entities;
 using ProductDatabase.DA;
 
