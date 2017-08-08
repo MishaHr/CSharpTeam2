@@ -61,7 +61,7 @@ namespace ProductDatabase
 
                             var category = display.CategoryToText(id);
                             Console.WriteLine($"{category}\n");
-                            var report = TextReportShower.ShowFullProductReportByCategory(id);
+                            var report = TextReportShower.ShowWarehouseReportByCategory(id);
                             foreach (var item in report)
                             {
                                 Console.WriteLine(item);
