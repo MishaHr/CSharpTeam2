@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.BL;
+using ProductDatabase.BL.CustomExceptions;
 
 namespace ProductDatabase
 {
@@ -54,6 +55,7 @@ namespace ProductDatabase
         public static void AddCategory()
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
+            bool check = false;
             WriteLine("Список існуючих категорій\n");
             var category = display.CategoryListToText();
             foreach (var cat in category)
