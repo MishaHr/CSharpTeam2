@@ -30,7 +30,7 @@ namespace ProductDatabase.BL.Editors
 
         internal override void SaveChanges(BaseEntity toSave)
         {
-            Repository<Memo> manufacturerRepository = new Repository<Memo>();
+            Repository<ShortDescription> manufacturerRepository = new Repository<ShortDescription>();
             manufacturerRepository.Save(toSave);
         }
 
