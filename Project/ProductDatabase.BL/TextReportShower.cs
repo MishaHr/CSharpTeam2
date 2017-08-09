@@ -39,6 +39,19 @@ namespace ProductDatabase.BL
             return strings;
         }
 
+        public static List<string> ShowShortProductReport()
+        {
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var fullReports = reportBuilder.GenerateShortProductReport();
+
+            List<string> textShortProductReports = new List<string>();
+            foreach (var report in fullReports)
+            {
+                textShortProductReports.Add(report.ToPrint());
+            }
+            return textShortProductReports;
+        }
+
         /// <summary>
         /// Підготовляє повний звіт по всіх товарах
         /// </summary>
@@ -85,7 +98,7 @@ namespace ProductDatabase.BL
             List<string> textWarehouseReport = new List<string>();
             foreach (WarehouseRecordReport report in fullWarehouseReport)
             {
-                textWarehouseReport.Add(report.ToString());
+                textWarehouseReport.Add(report.ToPrint());
             }
             return textWarehouseReport;
         }

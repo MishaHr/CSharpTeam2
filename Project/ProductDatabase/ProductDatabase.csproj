@@ -70,6 +70,16 @@
     <Compile Include="ManufacturerMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportGenerationMenus\FullReportMenu\FullReportByCategory.cs" />
+    <Compile Include="ReportGenerationMenus\FullReportMenu\FullReportOutputChoice.cs" />
+    <Compile Include="ReportGenerationMenus\FullReportMenu\FullReportTypeChoise.cs" />
+    <Compile Include="ReportGenerationMenus\ReportOutputChoice.cs" />
+    <Compile Include="ReportGenerationMenus\ShortReportMenu\ShortReportByCategory.cs" />
+    <Compile Include="ReportGenerationMenus\ShortReportMenu\ShortReportOutputChoice.cs" />
+    <Compile Include="ReportGenerationMenus\ShortReportMenu\ShortReportTypeChoice.cs" />
+    <Compile Include="ReportGenerationMenus\WarehouseReportMenu\WarehouseReportBycategory.cs" />
+    <Compile Include="ReportGenerationMenus\WarehouseReportMenu\WarehouseReportOutputChoice.cs" />
+    <Compile Include="ReportGenerationMenus\WarehouseReportMenu\WarehouseReportTypeChoice.cs" />
     <Compile Include="SuppliersMenu.cs" />
     <Compile Include="TestReportsMenu.cs" />
     <Compile Include="ReportGenerationMenu.cs" />
@@ -105,6 +115,9 @@
       <Project>{bc0ddaa7-f217-4604-95da-36f16d0a22d3}</Project>
       <Name>ProductDatabase.BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EditProductMenus\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

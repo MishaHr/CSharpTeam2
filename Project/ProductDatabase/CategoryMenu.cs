@@ -10,8 +10,10 @@ using ProductDatabase.BL.CustomExceptions;
 
 namespace ProductDatabase
 {
-    class CategoryMenu
+    static class  CategoryMenu
     {
+        
+
         public static void Show()
         {
             Title = "\tМеню роботи з базою \"Категорії\"";
@@ -56,7 +58,7 @@ namespace ProductDatabase
         public static void AddCategory()
         {
             ObjectToStringConverter display = new ObjectToStringConverter();
-            bool check = false;
+            bool сheck = false;
             WriteLine("Список існуючих категорій\n");
             try
             {
@@ -82,7 +84,7 @@ namespace ProductDatabase
                     CategoryEditor edit = new CategoryEditor();
                     edit.Add(toAdd);
                     Clear();
-                    check = true;
+                    сheck = true;
                     WriteLine("Назва категорії : {0}", newCategoryName);
                 }
                 catch (CustomeException e)
@@ -102,7 +104,7 @@ namespace ProductDatabase
                     Console.WriteLine(ie.Message);
                 }
             }
-            while (!check);
+            while (!сheck);
             WriteLine("\nКатегорія введена успішно!");
             WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
