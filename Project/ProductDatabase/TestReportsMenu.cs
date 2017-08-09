@@ -101,11 +101,10 @@ namespace ProductDatabase
                 case "4":
                 {
 
-                    var text = TextReportShower.ShowFullProductReport();
-                    foreach (var s in text)
+                    var list =TextReportShower.ShowFullProductReportByCategory(2);
+                    foreach (string s in list)
                     {
                         Console.WriteLine(s);
-                        Console.WriteLine();
                     }
                         Back();
                         break;

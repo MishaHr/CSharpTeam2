@@ -22,7 +22,7 @@ namespace ProductDatabase
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
             MainMenu.Show();
-            //TestReportsMenu.Show();
+            TestReportsMenu.Show();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
