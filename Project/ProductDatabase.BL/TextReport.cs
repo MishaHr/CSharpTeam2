@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using ProductDatabase.BL.Reports;
+using ProductDatabase.BL.Repositories;
 
 namespace ProductDatabase.BL
 {
@@ -29,9 +31,9 @@ namespace ProductDatabase.BL
         {        }
 
         // Конструктор отримує як параметр стрінг який буде адресою створення Звіту
-        public TextReportSave(string path)
+        public TextReportSave(string @path)
         {
-            Path = @path;
+            Path = path;
         }
 
         // Метод встановлює головні колонки та відповідні довжини
@@ -62,9 +64,9 @@ namespace ProductDatabase.BL
             mainColumn.Add(new Tuple<string, int>("Категорiя", stringWidth));
             mainColumn.Add(new Tuple<string, int>("Виробник", stringWidth));
             mainColumn.Add(new Tuple<string, int>("Модель", stringWidth));
-            mainColumn.Add(new Tuple<string, int>("Короткий опис", stringWidth));
             mainColumn.Add(new Tuple<string, int>("Дата виготовлення", dataWidth));
             mainColumn.Add(new Tuple<string, int>("Термiн придатностi", stringWidth));
+            mainColumn.Add(new Tuple<string, int>("Короткий опис", stringWidth));
             mainColumn.Add(new Tuple<string, int>("Поле для приміток", stringWidth));
             SetSeparateLine();
         }
@@ -110,6 +112,44 @@ namespace ProductDatabase.BL
             }
         }
 
+        public void SafeFullProductReportBycategory(int categoryId)
+        {
+            Repository<Category> categoryRepository = new Repository<Category>();
+            var categories = categoryRepository.GetAll();
+
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var fullReports = reportBuilder.GenerateFullProductReport();
+
+            var filteredList = (
+                           from fullReport in fullReports
+                           join category in categories on fullReport.Category equals category.CategoryName
+                           where category.id == categoryId
+                           select fullReport).ToList();
+
+            List<string> textFullProductReports = new List<string>();
+
+            foreach (FullProductReport report in filteredList)
+            {
+                textFullProductReports.Add(report.ToString());
+            }
+
+            string CategoryName = (from category in categories
+                                   where category.id == categoryId
+                                   select category.CategoryName).FirstOrDefault();
+
+            Path = $@"Звіт по {CategoryName}.txt";
+            SetFullColumn();
+
+            using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
+
+            PrintTextReport(mainColumn);
+
+            foreach (string report in textFullProductReports)
+            {
+                SetAndPrintInfo(report);
+            }
+        }
+
         public void SafeShortProductReport()
         {
             ReportBuilder reportBuilder = new ReportBuilder();
@@ -122,7 +162,7 @@ namespace ProductDatabase.BL
                 textShortProductReports.Add(report.ToString());
             }
 
-            Path = @"Короткий Звіт.txt";
+            Path = @"Короткий звіт.txt";
             SetShortColumn();
 
             using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
