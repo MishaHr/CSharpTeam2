@@ -6,7 +6,7 @@ namespace ProductDatabase.BL.Reports
     {
         #region Properties
         public int ProductId { get; set; }
-        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public string ManufacturerName { get; set; }
         public string Model { get; set; }
         public int Ammount { get; set; }
@@ -34,6 +34,11 @@ namespace ProductDatabase.BL.Reports
                                  $"\nСклад №{WarehouseNumber}");
         }
 
-
+        public override string ToString()
+        {
+            return string.Format($"{ProductId};{CategoryName};{ManufacturerName};" +
+                                 $"{Ammount};{Price};{SupplierName};{DeliveryDate};" +
+                                 $"{ExpirationDate};{WarehouseNumber}");
+        }
     }
 }

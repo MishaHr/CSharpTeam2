@@ -25,7 +25,7 @@ namespace ProductDatabase.BL
 			//вибираэмо з Ліста звітів тільки ті, які відповідають ІД категорії
             var shortReportsList =
                 (from rep in reports
-                join cat in categories on rep.Category equals cat.CategoryName
+                join cat in categories on rep.CategoryName equals cat.CategoryName
 				 where cat.id==id
                  select rep
 				 ).ToList();
@@ -60,7 +60,7 @@ namespace ProductDatabase.BL
         {
             ReportBuilder reportBuilder = new ReportBuilder();
             Repository<Category> categoryRepository = new Repository<Category>();
-            var categories = (List<Category>)categoryRepository.GetAll();
+            var categories = categoryRepository.GetAll();
             var fullReports = reportBuilder.GenerateFullProductReport();
 
             var filteredList = (
@@ -94,10 +94,13 @@ namespace ProductDatabase.BL
         {
             ReportBuilder reportBuilder = new ReportBuilder();
             var fullWarehouseReport = reportBuilder.GenerateWarehouseRecordReport();
+            Repository<Category> categoryRepository = new Repository<Category>();
+            var categories = categoryRepository.GetAll();
 
             var reportList =
             (from report in fullWarehouseReport
-                where report.CategoryId == id
+                join category in categories on report.CategoryName equals category.CategoryName 
+                where category.id == id
                 select report).ToList();
 
             List<string> textReport = new List<string>();

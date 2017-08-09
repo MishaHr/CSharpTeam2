@@ -58,7 +58,7 @@ namespace ProductDatabase.BL
             foreach (var item in list)
             {
                 ShortProductReport report = new ShortProductReport(item.ID);
-                report.Category = item.Category;
+                report.CategoryName = item.Category;
                 report.Manufacturer = item.Manufacturer;
                 report.Model = item.Model;
                 report.Description = item.Description;
@@ -166,22 +166,24 @@ namespace ProductDatabase.BL
             Repository<WarehouseRecord> warehouseRecordRepository = new Repository<WarehouseRecord>();
             Repository<Supplier> supplierRepository = new Repository<Supplier>();
             Repository<Manufacturer> manufacturerRepository = new Repository<Manufacturer>();
+            Repository<Category> categoryRepository = new Repository<Category>();
 
             var products = productRepository.GetAll();
             var records = warehouseRecordRepository.GetAll();
             var suppliers = supplierRepository.GetAll();
             var manufacturers = manufacturerRepository.GetAll();
-
+            var categories = categoryRepository.GetAll();
 
             var query = (
                 from product in products
                 join record in records on product.id equals record.id
                 join manufacturer in manufacturers on product.ManufacrirerId equals manufacturer.id
                 join warehouseRecord in records on product.id equals warehouseRecord.id
+                join category in categories on product.CategoryId equals category.id 
                 select new
                 {
                     ProductId = product.id,
-                    product.CategoryId,
+                    CategoryName = category.CategoryName,
                     manufacturer.ManufacturerName,
                     Model = product.ProductModel,
                     warehouseRecord.Ammount,
@@ -198,7 +200,7 @@ namespace ProductDatabase.BL
             foreach (var item in query)
             {
                 WarehouseRecordReport report = new WarehouseRecordReport(item.ProductId);
-                report.CategoryId = item.CategoryId;
+                report.CategoryName = item.CategoryName;
                 report.ManufacturerName = item.ManufacturerName;
                 report.Model = item.Model;
                 report.Ammount = item.Ammount;
