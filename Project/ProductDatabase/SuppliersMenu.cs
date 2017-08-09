@@ -56,8 +56,10 @@ namespace ProductDatabase
 
         private static void AddSuppliers()
         {
-            ObjectToStringConverter display = new ObjectToStringConverter();
+            //змінна що вказую правельність проходження меню 
             bool check = false;
+
+            ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
             var suppliers = display.SuppliersListToTextShort();
             foreach (var sup in suppliers)
@@ -68,6 +70,7 @@ namespace ProductDatabase
             string SupplierPhone = null;
             do
             {
+                check = false;
                 Write("\nВведіть назву постачальника : ");
                 try
                 {
@@ -128,8 +131,9 @@ namespace ProductDatabase
 
         private static void EditSuppliers()
         {
-            ObjectToStringConverter display = new ObjectToStringConverter();
+            //змінна що вказую правельність проходження меню 
             bool check = false;
+            ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
             var suppliers = display.SuppliersListToTextFull();
             foreach (var sup in suppliers)
@@ -141,6 +145,7 @@ namespace ProductDatabase
             string SupplierPhone = null;
             do
             {
+                check = false;
                 Write("\nВведіть ID постачальника : ");
                 try
                 {
@@ -226,8 +231,9 @@ namespace ProductDatabase
 
         private static void DeleteSuppliers()
         {
-            ObjectToStringConverter display = new ObjectToStringConverter();
+            //змінна що вказую правельність проходження меню 
             bool check = false;
+            ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих постачальників\n");
             var suppliers = display.SuppliersListToTextFull();
             foreach (var sup in suppliers)
@@ -236,6 +242,7 @@ namespace ProductDatabase
             }
             do
             {
+                check = false;
                 Write("\nВведіть ID постачальника : ");
                 try
                 {

@@ -54,9 +54,13 @@ namespace ProductDatabase
 
         public static void AddProduct()
         {
+            /*змінна що вказую правельність проходження меню 
+            (якщо вибивають помилки чек вертає для повторного проходження)*/
+            bool check = false;
+
             Title = "Меню додавання нового товару";
             ObjectToStringConverter display = new ObjectToStringConverter();
-            bool check = false;
+            
 
             WriteLine("Список категорій\n");
             var Category = display.CategoryListToText();
@@ -72,6 +76,7 @@ namespace ProductDatabase
                 Write("\nВведіть ID категорії зі списку : ");
                 try
                 {
+                    check = false;
                     CategoryID = Console.ReadLine();
 
                     Validation.Id(CategoryID);
@@ -111,6 +116,7 @@ namespace ProductDatabase
                 Write("\nВведіть ID виробника зі списку : ");
                 try
                 {
+                    check = false;
                     ManufacturerID = Console.ReadLine();
 
                     Validation.Id(ManufacturerID);
@@ -143,6 +149,7 @@ namespace ProductDatabase
                 Write("\nВведіть назву товару : ");
                 try
                 {
+                    check = false;
                     ProductName = ReadLine();
 
                     Validation.ProductName(ProductName);
@@ -167,10 +174,11 @@ namespace ProductDatabase
             string ProductManufactureDate = null;
             do
             {
-                Write("\nВведіть дату виготовлення : 00.00.0000"); // потрібно буде привести приклад правильного формату
-                WriteAt(28, 4);
+                Write("\nВведіть дату виготовлення (дд.мм.рррр): "); 
+                //WriteAt(28, 4);
                 try
                 {
+                    check = false;
                     ProductManufactureDate = ReadLine();
 
                     Validation.ProductionDate(ProductManufactureDate);
@@ -199,6 +207,7 @@ namespace ProductDatabase
             {
                 try
                 {
+                    check = false;
                     ProductWarranty = ReadLine();
 
                     Validation.ExpirationDateTxt(ProductWarranty);
@@ -236,6 +245,7 @@ namespace ProductDatabase
                 Write("\nВведіть ID постачальника зі списку : ");
                 try
                 {
+                    check = false;
                     SupplierId = ReadLine();
 
                     Validation.Id(ManufacturerID);
@@ -269,10 +279,11 @@ namespace ProductDatabase
             string ProductDeliveryDate = null;
             do
             {
-                Write("\nВведіть дату поставки : 00.00.0000");
-                WriteAt(24, 7);
+                Write("\nВведіть дату поставки (дд.мм.рррр): ");
+                //WriteAt(24, 7);
                 try
                 {
+                    check = false;
                     ProductDeliveryDate = ReadLine();
                     Validation.DeliveryDate(ProductDeliveryDate);
 
@@ -303,6 +314,7 @@ namespace ProductDatabase
                 Write("\nВведіть кількість одиниць : ");
                 try
                 {
+                    check = false;
                     ProductAmount = ReadLine();
 
                     Validation.Amount(ProductAmount);
@@ -335,6 +347,7 @@ namespace ProductDatabase
                 Write("\nВведіть ціну за одиницю : ");
                 try
                 {
+                    check = false;
                     ProductPrice = ReadLine();
 
                     Validation.Price(ProductPrice);
@@ -369,6 +382,7 @@ namespace ProductDatabase
 
                 try
                 {
+                    check = false;
                     ProductWarehouse = ReadLine();
                     bool valid = Validation.WarehouseNumber(ProductWarehouse);
 
@@ -402,6 +416,7 @@ namespace ProductDatabase
                 Write("\nВведіть короткий опис : ");
                 try
                 {
+                    check = false;
                     ProductDescription = ReadLine();
 
                     Validation.ShortDescription(ProductDescription);
@@ -437,6 +452,7 @@ namespace ProductDatabase
                 Write("\nЗаповніть поле для приміток якщо потрібно : ");
                 try
                 {
+                    check = false;
                     ProductNotes = ReadLine();
 
                     Validation.Memo(ProductNotes);

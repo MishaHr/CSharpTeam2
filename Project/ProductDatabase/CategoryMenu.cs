@@ -55,8 +55,11 @@ namespace ProductDatabase
 
         public static void AddCategory()
         {
-            ObjectToStringConverter display = new ObjectToStringConverter();
+            /*змінна що вказую правельність проходження меню 
+            (якщо вибивають помилки чек вертає для повторного проходження)*/
             bool check = false;
+
+            ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих категорій\n");
             try
             {
@@ -76,6 +79,7 @@ namespace ProductDatabase
             {
                 try
                 {
+                    check = false;
                     string newCategoryName = (ReadLine());
                     Validation.CategoryName(newCategoryName);
                     string[] toAdd = {newCategoryName};
@@ -111,6 +115,9 @@ namespace ProductDatabase
 
         private static void EditCategory()
         {
+            //змінна що вказую правельність проходження меню 
+            bool check = false;
+
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих категорій\n");
                 try
@@ -125,11 +132,11 @@ namespace ProductDatabase
             {
                 WriteLine(e.Message);
             }
-            bool check = false;
             do
             {
                 try
                 {
+                    check = false;
                     Write("\nВведіть ID категорії : ");
                     string CategoryID = Console.ReadLine();
                     Validation.Id(CategoryID);
@@ -166,8 +173,10 @@ namespace ProductDatabase
 
         private static void DeleteCategory()
         {
-            ObjectToStringConverter display = new ObjectToStringConverter();
+            //змінна що вказую правельність проходження меню 
             bool check = false;
+
+            ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих категорій\n");
             try
             {
@@ -185,6 +194,7 @@ namespace ProductDatabase
             {
                 try
                 {
+                    check = false;
                     Write("\nВведіть ID категорії : ");
                     string categoryID = Console.ReadLine();
                     Validation.Id(categoryID);
