@@ -43,7 +43,7 @@ namespace ProductDatabase.BL.Reports
                                  $"\nКількість: {Ammount}" +
                                  $"\nЦіна: {Price}" +
                                  $"\nПостачальник: {Supplier} тел: {SupplierPhoneNumber}" +
-                                 $"\nДата поставки: {DeliveryDate}" +
+                                 $"\nДата поставки: {DeliveryDate.ToString("dd.MM.yyyy")}" +
                                  $"\nСклад №{WarehouseNumber}" +
                                  $"\nКороткий опис: {Description}" +
                                  $"\nПримітка: {Memo}");
