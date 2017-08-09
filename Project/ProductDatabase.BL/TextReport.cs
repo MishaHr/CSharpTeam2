@@ -99,7 +99,7 @@ namespace ProductDatabase.BL
                 textFullProductReports.Add(report.ToString());
             }
 
-            Path = @"Звіт.txt";
+            Path = @"Повний звіт.txt";
             SetFullColumn();
 
             using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
@@ -155,6 +155,7 @@ namespace ProductDatabase.BL
             ReportBuilder reportBuilder = new ReportBuilder();
             var shortReports = reportBuilder.GenerateShortProductReport();
 
+
             List<string> textShortProductReports = new List<string>();
 
             foreach (ShortProductReport report in shortReports)
@@ -163,6 +164,44 @@ namespace ProductDatabase.BL
             }
 
             Path = @"Короткий звіт.txt";
+            SetShortColumn();
+
+            using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
+
+            PrintTextReport(mainColumn);
+
+            foreach (string report in textShortProductReports)
+            {
+                SetAndPrintInfo(report);
+            }
+        }
+
+        public void SafeShortProductReportBycategory(int categoryId)
+        {
+            Repository<Category> categoryRepository = new Repository<Category>();
+            var categories = categoryRepository.GetAll();
+
+            ReportBuilder reportBuilder = new ReportBuilder();
+            var shortReports = reportBuilder.GenerateShortProductReport();
+
+            var filteredList = (
+                           from shortReport in shortReports
+                           join category in categories on shortReport.CategoryName equals category.CategoryName
+                           where category.id == categoryId
+                           select shortReport).ToList();
+
+            List<string> textShortProductReports = new List<string>();
+
+            foreach (ShortProductReport report in filteredList)
+            {
+                textShortProductReports.Add(report.ToString());
+            }
+
+            string CategoryName = (from category in categories
+                                   where category.id == categoryId
+                                   select category.CategoryName).FirstOrDefault();
+
+            Path = $@"Короткий звіт по {CategoryName}.txt";
             SetShortColumn();
 
             using (StreamWriter report = File.CreateText(Path)) report.WriteLine(separateLine);
