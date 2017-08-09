@@ -34,7 +34,8 @@ namespace ProductDatabase.BL.Reports
 
         public override string ToString()
         {
-            return string.Format($"{ID};{CategoryName};{Manufacturer};{Model};{ProductionDate};{ExpirationDate};{Description};{Memo}");
+            return string.Format($"{ID};{CategoryName};{Manufacturer};{Model};{ProductionDate.ToString("dd.MM.yyyy")};" +
+                                 $"{ExpirationDate};{Description};{Memo}");
         }
     }
 }
