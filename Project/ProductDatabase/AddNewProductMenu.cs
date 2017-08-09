@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ProductDatabase.BL;
 using System.IO;
 using ProductDatabase.BL.CustomExceptions;
+using ProductDatabase.BL.Editors;
 
 namespace ProductDatabase
 {
@@ -54,9 +55,16 @@ namespace ProductDatabase
 
         public static void AddProduct()
         {
+            /*змінна що вказую правельність проходження меню 
+            (якщо вибивають помилки чек вертає для повторного проходження)*/
+            bool check = false;
+            //для запису в файл Product.dat
+            string[] productToSave=new string [5];
+            ProductEditor prodEditor = new ProductEditor();
+
             Title = "Меню додавання нового товару";
             ObjectToStringConverter display = new ObjectToStringConverter();
-            bool check = false;
+            
 
             WriteLine("Список категорій\n");
             var Category = display.CategoryListToText();
@@ -72,10 +80,10 @@ namespace ProductDatabase
                 Write("\nВведіть ID категорії зі списку : ");
                 try
                 {
+                    check = false;
                     CategoryID = Console.ReadLine();
-
                     Validation.Id(CategoryID);
-
+                    productToSave[0] = CategoryID;
                     CatID = Convert.ToInt32(CategoryID); ;
                     ProductCategory = display.CategoryToText(CatID);
                     Clear();
@@ -111,10 +119,10 @@ namespace ProductDatabase
                 Write("\nВведіть ID виробника зі списку : ");
                 try
                 {
+                    check = false;
                     ManufacturerID = Console.ReadLine();
-
                     Validation.Id(ManufacturerID);
-
+                    productToSave[1] = ManufacturerID;
                     ManID = Convert.ToInt32(ManufacturerID);
                     ProductManufacturer = display.ManufacturerToText(ManID);
                     Clear();
@@ -143,10 +151,10 @@ namespace ProductDatabase
                 Write("\nВведіть назву товару : ");
                 try
                 {
+                    check = false;
                     ProductName = ReadLine();
-
                     Validation.ProductName(ProductName);
-
+                    productToSave[2] = ProductName;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -167,14 +175,14 @@ namespace ProductDatabase
             string ProductManufactureDate = null;
             do
             {
-                Write("\nВведіть дату виготовлення : 00.00.0000"); // потрібно буде привести приклад правильного формату
-                WriteAt(28, 4);
+                Write("\nВведіть дату виготовлення (дд.мм.рррр): "); 
+                //WriteAt(28, 4);
                 try
                 {
+                    check = false;
                     ProductManufactureDate = ReadLine();
-
                     Validation.ProductionDate(ProductManufactureDate);
-
+                    productToSave[3] = ProductManufactureDate;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -199,10 +207,11 @@ namespace ProductDatabase
             {
                 try
                 {
+                    check = false;
                     ProductWarranty = ReadLine();
 
                     Validation.ExpirationDateTxt(ProductWarranty);
-
+                    productToSave[4] = ProductWarranty;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -222,6 +231,13 @@ namespace ProductDatabase
             }
             while (!check);
 
+            //запис у файл Product.dat
+            prodEditor.Add(productToSave);
+
+            //для запису в файл WarehouseRecord.dat
+            string[] warehouseToSave = new string[5];
+            WarehouseRecordEditor warehouseEditor = new WarehouseRecordEditor();
+
             WriteLine("\nСписок постачальників\n");
             var Suppliers = display.SuppliersListToTextShort();
             foreach (var sup in Suppliers)
@@ -236,10 +252,10 @@ namespace ProductDatabase
                 Write("\nВведіть ID постачальника зі списку : ");
                 try
                 {
+                    check = false;
                     SupplierId = ReadLine();
-
-                    Validation.Id(ManufacturerID);
-
+                    Validation.Id(SupplierId);
+                    warehouseToSave[4] = SupplierId;
                     SupID = Convert.ToInt32(SupplierId);
                     ProductProvider = display.SupplierToText(SupID);
                     Clear();
@@ -269,13 +285,14 @@ namespace ProductDatabase
             string ProductDeliveryDate = null;
             do
             {
-                Write("\nВведіть дату поставки : 00.00.0000");
-                WriteAt(24, 7);
+                Write("\nВведіть дату поставки (дд.мм.рррр): ");
+                //WriteAt(24, 7);
                 try
                 {
+                    check = false;
                     ProductDeliveryDate = ReadLine();
                     Validation.DeliveryDate(ProductDeliveryDate);
-
+                    warehouseToSave[3] = ProductDeliveryDate;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -303,10 +320,11 @@ namespace ProductDatabase
                 Write("\nВведіть кількість одиниць : ");
                 try
                 {
+                    check = false;
                     ProductAmount = ReadLine();
 
                     Validation.Amount(ProductAmount);
-
+                    warehouseToSave[1] = ProductAmount;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -335,10 +353,11 @@ namespace ProductDatabase
                 Write("\nВведіть ціну за одиницю : ");
                 try
                 {
+                    check = false;
                     ProductPrice = ReadLine();
 
                     Validation.Price(ProductPrice);
-
+                    warehouseToSave[2] = ProductPrice;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -369,9 +388,10 @@ namespace ProductDatabase
 
                 try
                 {
+                    check = false;
                     ProductWarehouse = ReadLine();
                     bool valid = Validation.WarehouseNumber(ProductWarehouse);
-
+                    warehouseToSave[0] = ProductWarehouse;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -396,16 +416,24 @@ namespace ProductDatabase
             }
             while (!check);
 
+            //запис у файл WarehouseRecord.dat
+            warehouseEditor.Add(warehouseToSave);
+
+            //для запису в файл ShortDescription.dat
+            string[] shortDescriptionToSave = new string[1];
+            ShortDescriptionEditor shortDescriptionEditor = new ShortDescriptionEditor();
+
             string ProductDescription = null;
             do
             {
                 Write("\nВведіть короткий опис : ");
                 try
                 {
+                    check = false;
                     ProductDescription = ReadLine();
 
                     Validation.ShortDescription(ProductDescription);
-
+                    shortDescriptionToSave[0] = ProductDescription;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -431,16 +459,24 @@ namespace ProductDatabase
             }
             while (!check);
 
+            //запис у файл ShortDescription.dat
+            shortDescriptionEditor.Add(shortDescriptionToSave);
+
+            //для запису в файл Memo.dat
+            string[] memoToSave = new string[1];
+            MemoEditor memoEditor = new MemoEditor();
+
             string ProductNotes = null;
             do
             {
                 Write("\nЗаповніть поле для приміток якщо потрібно : ");
                 try
                 {
+                    check = false;
                     ProductNotes = ReadLine();
 
                     Validation.Memo(ProductNotes);
-
+                    memoToSave[0] = ProductNotes;
                     Clear();
                     WriteLine("Категорія : {0}", ProductCategory);
                     WriteLine("Виробник : {0}", ProductManufacturer);
@@ -466,6 +502,9 @@ namespace ProductDatabase
                 }
             }
             while (!check);
+
+            //запис у файл Memo.dat
+            memoEditor.Add(memoToSave);
 
             WriteLine("\nІнформація введена успішно!");
             WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");

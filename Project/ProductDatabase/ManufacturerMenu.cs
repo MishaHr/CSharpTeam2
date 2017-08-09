@@ -56,8 +56,10 @@ namespace ProductDatabase
 
         private static void AddManufacturer()
         {
-            ObjectToStringConverter display = new ObjectToStringConverter();
+            //змінна що вказую правельність проходження меню 
             bool check = false;
+
+            ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих виробників\n");
             var manufacturer = display.ManufacturerListToText();
             foreach (var man in manufacturer)
@@ -70,6 +72,7 @@ namespace ProductDatabase
                 Write("\nВведіть назву виробника : ");
                 try
                 {
+                    check = false;
                     Name = (ReadLine());
                     Validation.ManufacturerName(Name);
 
@@ -103,8 +106,10 @@ namespace ProductDatabase
 
         private static void EditManufacturer()
         {
-            ObjectToStringConverter display = new ObjectToStringConverter();
+            //змінна що вказую правельність проходження меню 
             bool check = false;
+
+            ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих виробників\n");
             var manufacturer = display.ManufacturerListToText();
             foreach (var man in manufacturer)
@@ -118,6 +123,7 @@ namespace ProductDatabase
                 Write("\nВведіть ID виробника : ");
                 try
                 {
+                    check = false;
                     ManufacturerID = Console.ReadLine();
                     Validation.Id(ManufacturerID);
                     int ManID = Convert.ToInt32(ManufacturerID);
@@ -174,8 +180,9 @@ namespace ProductDatabase
 
         private static void DeleteManufacturer()
         {
-            ObjectToStringConverter display = new ObjectToStringConverter();
+            //змінна що вказую правельність проходження меню 
             bool check = false;
+            ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих виробників\n");
             var manufacturer = display.ManufacturerListToText();
             foreach (var man in manufacturer)
@@ -190,6 +197,7 @@ namespace ProductDatabase
                 Write("\nВведіть ID виробника : ");
                 try
                 {
+                    check = false;
                     ManID = Console.ReadLine();
                     Validation.Id(ManID);
                     ManufacturerID = Convert.ToInt32(ManID);

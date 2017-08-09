@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProductDatabase.BL;
+using ProductDatabase.ReportGenerationMenus;
+using ProductDatabase.ReportGenerationMenus.ShortReportMenu;
+using ProductDatabase.ReportGenerationMenus.WarehouseReportMenu;
 
 namespace ProductDatabase
 {
@@ -16,10 +19,10 @@ namespace ProductDatabase
             Clear();
             WriteLine("\tФормування звіту про товар");
             WriteLine("\n1. Сформувати повний звіт");
-            WriteLine("\n2. Сформувати короткий звіт");
-            WriteLine("\n3. Сформувати звіт по скадах");
+            WriteLine("2. Сформувати короткий звіт");
+            WriteLine("3. Сформувати звіт по скадах");
             WriteLine("\n0. Повернутися до попереднього меню");
-            Write("\nВведіть ID товару: ");
+            Write("\nОберіть пункт: ");
             Choose();
         }
 
@@ -33,12 +36,15 @@ namespace ProductDatabase
                     Back();
                     break;
                 case "1":
+                    FullReportTypeChoice.Show();
                     Back();
                     break;
                 case "2":
+                    ShortReportTypeChoice.Show();
                     Back();
                     break;
                 case "3":
+                    WarehouseReportTypeChoice.Show();
                     Back();
                     break;
                 default:
