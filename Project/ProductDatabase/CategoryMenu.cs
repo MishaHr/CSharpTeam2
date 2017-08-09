@@ -10,8 +10,10 @@ using ProductDatabase.BL.CustomExceptions;
 
 namespace ProductDatabase
 {
-    class CategoryMenu
+    static class  CategoryMenu
     {
+        
+
         public static void Show()
         {
             Title = "\tМеню роботи з базою \"Категорії\"";
@@ -55,11 +57,8 @@ namespace ProductDatabase
 
         public static void AddCategory()
         {
-            /*змінна що вказую правельність проходження меню 
-            (якщо вибивають помилки чек вертає для повторного проходження)*/
-            bool check = false;
-
             ObjectToStringConverter display = new ObjectToStringConverter();
+            bool сheck = false;
             WriteLine("Список існуючих категорій\n");
             try
             {
@@ -79,14 +78,13 @@ namespace ProductDatabase
             {
                 try
                 {
-                    check = false;
                     string newCategoryName = (ReadLine());
                     Validation.CategoryName(newCategoryName);
                     string[] toAdd = {newCategoryName};
                     CategoryEditor edit = new CategoryEditor();
                     edit.Add(toAdd);
                     Clear();
-                    check = true;
+                    сheck = true;
                     WriteLine("Назва категорії : {0}", newCategoryName);
                 }
                 catch (CustomeException e)
@@ -106,7 +104,7 @@ namespace ProductDatabase
                     Console.WriteLine(ie.Message);
                 }
             }
-            while (!check);
+            while (!сheck);
             WriteLine("\nКатегорія введена успішно!");
             WriteLine("Натисніть будь яку клавішу для повернення до попереднього меню.");
             ReadLine();
@@ -115,9 +113,6 @@ namespace ProductDatabase
 
         private static void EditCategory()
         {
-            //змінна що вказую правельність проходження меню 
-            bool check = false;
-
             ObjectToStringConverter display = new ObjectToStringConverter();
             WriteLine("Список існуючих категорій\n");
                 try
@@ -132,11 +127,11 @@ namespace ProductDatabase
             {
                 WriteLine(e.Message);
             }
+            bool check = false;
             do
             {
                 try
                 {
-                    check = false;
                     Write("\nВведіть ID категорії : ");
                     string CategoryID = Console.ReadLine();
                     Validation.Id(CategoryID);
@@ -173,10 +168,8 @@ namespace ProductDatabase
 
         private static void DeleteCategory()
         {
-            //змінна що вказую правельність проходження меню 
-            bool check = false;
-
             ObjectToStringConverter display = new ObjectToStringConverter();
+            bool check = false;
             WriteLine("Список існуючих категорій\n");
             try
             {
@@ -194,7 +187,6 @@ namespace ProductDatabase
             {
                 try
                 {
-                    check = false;
                     Write("\nВведіть ID категорії : ");
                     string categoryID = Console.ReadLine();
                     Validation.Id(categoryID);
