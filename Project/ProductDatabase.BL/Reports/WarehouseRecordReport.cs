@@ -29,7 +29,7 @@ namespace ProductDatabase.BL.Reports
                                  $"\nКількість на скалді: {Ammount}" +
                                  $"\nЦіна: {Price}" +
                                  $"\nПостачальник: {SupplierName}" +
-                                 $"\nДата поставки: {DeliveryDate.ToString("dd-MM-yyy")}" +
+                                 $"\nДата поставки: {DeliveryDate.ToString("dd.MM.yyy")}" +
                                  $"\nТермін привдатності: {ExpirationDate}" +
                                  $"\nСклад №{WarehouseNumber}");
         }
@@ -37,7 +37,7 @@ namespace ProductDatabase.BL.Reports
         public override string ToString()
         {
             return string.Format($"{ProductId};{CategoryName};{ManufacturerName};{Model};" +
-                                 $"{Ammount};{Price};{SupplierName};{DeliveryDate.ToString("dd-MM-yyy")};" +
+                                 $"{Ammount};{Price};{SupplierName};{DeliveryDate.ToString("dd.MM.yyy")};" +
                                  $"{ExpirationDate};{WarehouseNumber}");
         }
     }
