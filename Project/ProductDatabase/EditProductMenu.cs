@@ -14,10 +14,15 @@ namespace ProductDatabase
     {
         public static void Show()
         {
+            Title = "Меню редагування товару";
             Clear();
             WriteLine("\tРедагування товару");
+            WriteLine("\n1. Редагувати основні дані");
+            WriteLine("2. Редагувати Короткий опис");
+            WriteLine("3. Редагувати Примітку");
+            WriteLine("4. Редагувати запис на склад");
             WriteLine("\n0. Повернутися до попереднього меню");
-            Write("\nВведіть ID товару: ");
+            Write("\nОберіть пункт: ");
             Choose();
         }
 
@@ -28,26 +33,29 @@ namespace ProductDatabase
             switch (choice)
             {
                 case "0":
+                    MainMenu.Show();
+                    break;
+                case "1":
+                    
+                    Back();
+                    break;
+                case "2":
+                    
+                    Back();
+                    break;
+                case "3":
+                    
                     Back();
                     break;
                 default:
-                    EditProduct();
+                    Show();
                     break;
             }
         }
 
-        private string Text { get; set; }
-
-        public static void EditProduct()
+        public static void ReportGeneration()
         {
-            Title = "\tМеню редагування існуючого товару";
 
-
-
-            WriteLine("Натисніть будь яку клавішу для повернення до головного меню.");
-
-            ReadLine();
-            Back();
         }
 
         public static void Back()
