@@ -179,7 +179,19 @@ namespace ProductDatabase.BL
             else
                 throw new CustomeException($"Довжина поля Короткий опис повинна бути до {longText} символів");
         }
-
+        //14.Назва виробника 
+        public static bool ManufacturerName(string str)
+        {
+            //"Length of the product name shoud be up to 50 characters"
+            string trimStr = str.Trim();
+            if (trimStr.Length > 0 && trimStr.Length <= shortText)
+                if (!str.Contains(";"))
+                    return true;
+                else
+                    throw new CustomeException("В цьому полі не можна використовувати \";\"");
+            else
+                throw new CustomeException($"Довжина назви виробника повинна бути до {shortText} символів");
+        }
     }
 }
 
